@@ -1,0 +1,278 @@
+fileFormatVersion: 2
+guid: 6108321a2eb3e914688c91ca7df78474
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6367379169414895660
+    second: "B\u1EA3ng \u0111i\u1EC1u khi\u1EC3n game pixel Last Day Survivor_0"
+  - first:
+      213: -7262807565407534742
+    second: "B\u1EA3ng \u0111i\u1EC1u khi\u1EC3n game pixel Last Day Survivor_1"
+  - first:
+      213: 9139048043089581246
+    second: "B\u1EA3ng \u0111i\u1EC1u khi\u1EC3n game pixel Last Day Survivor_2"
+  - first:
+      213: 407803860145793011
+    second: "B\u1EA3ng \u0111i\u1EC1u khi\u1EC3n game pixel Last Day Survivor_3"
+  - first:
+      213: 9122090849723543274
+    second: "B\u1EA3ng \u0111i\u1EC1u khi\u1EC3n game pixel Last Day Survivor_4"
+  - first:
+      213: 6977679489180590343
+    second: "B\u1EA3ng \u0111i\u1EC1u khi\u1EC3n game pixel Last Day Survivor_5"
+  - first:
+      213: 1823830543730561511
+    second: "B\u1EA3ng \u0111i\u1EC1u khi\u1EC3n game pixel Last Day Survivor_6"
+  - first:
+      213: -5052540909228590952
+    second: "B\u1EA3ng \u0111i\u1EC1u khi\u1EC3n game pixel Last Day Survivor_7"
+  - first:
+      213: -2324620917070068096
+    second: "B\u1EA3ng \u0111i\u1EC1u khi\u1EC3n game pixel Last Day Survivor_8"
+  - first:
+      213: -6396055410299429359
+    second: "B\u1EA3ng \u0111i\u1EC1u khi\u1EC3n game pixel Last Day Survivor_9"
+  - first:
+      213: 3872647821313206188
+    second: "B\u1EA3ng \u0111i\u1EC1u khi\u1EC3n game pixel Last Day Survivor_10"
+  - first:
+      213: -1015641720440350902
+    second: "B\u1EA3ng \u0111i\u1EC1u khi\u1EC3n game pixel Last Day Survivor_11"
+  - first:
+      213: -4852525370502794114
+    second: "B\u1EA3ng \u0111i\u1EC1u khi\u1EC3n game pixel Last Day Survivor_12"
+  - first:
+      213: 9139100973777014628
+    second: "B\u1EA3ng \u0111i\u1EC1u khi\u1EC3n game pixel Last Day Survivor_13"
+  - first:
+      213: -7797725436618355373
+    second: "B\u1EA3ng \u0111i\u1EC1u khi\u1EC3n game pixel Last Day Survivor_14"
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: "B\u1EA3ng \u0111i\u1EC1u khi\u1EC3n game pixel Last Day Survivor_0"
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 499
+        width: 1118
+        height: 559
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c2852376e997d5850800000000000000
+      internalID: 6367379169414895660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "B\u1EA3ng \u0111i\u1EC1u khi\u1EC3n game pixel Last Day Survivor_1"
+      rect:
+        serializedVersion: 2
+        x: 329
+        y: 180
+        width: 789
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a614ddfcff2553b90800000000000000
+      internalID: -7262807565407534742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "B\u1EA3ng \u0111i\u1EC1u khi\u1EC3n game pixel Last Day Survivor_2"
+      rect:
+        serializedVersion: 2
+        x: 842
+        y: 32
+        width: 393
+        height: 147
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb4559146cb64de70800000000000000
+      internalID: 9139048043089581246
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "B\u1EA3ng \u0111i\u1EC1u khi\u1EC3n game pixel Last Day Survivor_3"
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 31
+        width: 396
+        height: 148
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f7e50e337fc8a500800000000000000
+      internalID: 407803860145793011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 478e9c5b7a5cf3448897278268791753
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      "B\u1EA3ng \u0111i\u1EC1u khi\u1EC3n game pixel Last Day Survivor_0": 6367379169414895660
+      "B\u1EA3ng \u0111i\u1EC1u khi\u1EC3n game pixel Last Day Survivor_1": -7262807565407534742
+      "B\u1EA3ng \u0111i\u1EC1u khi\u1EC3n game pixel Last Day Survivor_10": 3872647821313206188
+      "B\u1EA3ng \u0111i\u1EC1u khi\u1EC3n game pixel Last Day Survivor_11": -1015641720440350902
+      "B\u1EA3ng \u0111i\u1EC1u khi\u1EC3n game pixel Last Day Survivor_12": -4852525370502794114
+      "B\u1EA3ng \u0111i\u1EC1u khi\u1EC3n game pixel Last Day Survivor_13": 9139100973777014628
+      "B\u1EA3ng \u0111i\u1EC1u khi\u1EC3n game pixel Last Day Survivor_14": -7797725436618355373
+      "B\u1EA3ng \u0111i\u1EC1u khi\u1EC3n game pixel Last Day Survivor_2": 9139048043089581246
+      "B\u1EA3ng \u0111i\u1EC1u khi\u1EC3n game pixel Last Day Survivor_3": 407803860145793011
+      "B\u1EA3ng \u0111i\u1EC1u khi\u1EC3n game pixel Last Day Survivor_4": 9122090849723543274
+      "B\u1EA3ng \u0111i\u1EC1u khi\u1EC3n game pixel Last Day Survivor_5": 6977679489180590343
+      "B\u1EA3ng \u0111i\u1EC1u khi\u1EC3n game pixel Last Day Survivor_6": 1823830543730561511
+      "B\u1EA3ng \u0111i\u1EC1u khi\u1EC3n game pixel Last Day Survivor_7": -5052540909228590952
+      "B\u1EA3ng \u0111i\u1EC1u khi\u1EC3n game pixel Last Day Survivor_8": -2324620917070068096
+      "B\u1EA3ng \u0111i\u1EC1u khi\u1EC3n game pixel Last Day Survivor_9": -6396055410299429359
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

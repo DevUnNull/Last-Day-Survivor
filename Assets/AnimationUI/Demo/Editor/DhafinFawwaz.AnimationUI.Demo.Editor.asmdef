@@ -1,0 +1,19 @@
+{
+    "name": "DhafinFawwaz.AnimationUI.Demo.Editor",
+    "rootNamespace": "DhafinFawwaz.AnimationUILib.Demo",
+    "references": [
+        "DhafinFawwaz.AnimationUI.Demo",
+        "DhafinFawwaz.AnimationUI"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
