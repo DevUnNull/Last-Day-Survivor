@@ -6,6 +6,10 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] private int maxHealth = 50;
     [SerializeField] private int currentHealth;
 
+    [Header("EXP Drop")]
+    [SerializeField] private GameObject expGemPrefab;
+    [SerializeField] private int expDropValue = 10;
+
     public int CurrentHealth => currentHealth;
 
     private void Awake()
@@ -26,6 +30,15 @@ public class EnemyHealth : MonoBehaviour
 
     private void Die()
     {
+        if (expGemPrefab != null)
+        {
+            Instantiate(expGemPrefab, transform.position, Quaternion.identity);
+        }
+        else
+        {
+            ExpGem.Spawn(transform.position, expDropValue);
+        }
+
         Destroy(gameObject);
     }
 }

@@ -21,11 +21,16 @@ public class Bullet : MonoBehaviour
         rb.freezeRotation = true;
     }
 
-    public void Setup(Vector2 direction, float bulletSpeed, int bulletDamage)
+    private int pierceCount = 0;
+    private int hitCount = 0;
+
+    public void Setup(Vector2 direction, float bulletSpeed, int bulletDamage, int pierce = 0)
     {
         this.moveDirection = direction.normalized;
         this.speed = bulletSpeed;
         this.damage = bulletDamage;
+        this.pierceCount = pierce;
+        this.hitCount = 0;
 
         // Rotate bullet sprite to face movement direction
         if (moveDirection.sqrMagnitude > 0.01f)
@@ -64,7 +69,11 @@ public class Bullet : MonoBehaviour
         if (enemyHealth != null)
         {
             enemyHealth.TakeDamage(damage);
-            Destroy(gameObject);
+            hitCount++;
+            if (hitCount > pierceCount)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }

@@ -78,8 +78,14 @@ public class TopDownPlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // Move player using 2D physics
-        Vector2 targetPosition = rb.position + moveInput * (moveSpeed * Time.fixedDeltaTime);
+        // Move player using 2D physics with stats multiplier
+        float speed = moveSpeed;
+        if (PlayerStats.Instance != null)
+        {
+            speed *= PlayerStats.Instance.MoveSpeedMultiplier;
+        }
+
+        Vector2 targetPosition = rb.position + moveInput * (speed * Time.fixedDeltaTime);
         rb.MovePosition(targetPosition);
     }
 }

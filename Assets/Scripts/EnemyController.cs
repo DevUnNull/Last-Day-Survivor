@@ -12,6 +12,9 @@ public class EnemyController : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
     private float lastDamageTime;
+    private float slowFactor = 1f;
+    private float slowTimer = 0f;
+    private Color originalColor = Color.white;
 
     private void Awake()
     {
@@ -24,6 +27,20 @@ public class EnemyController : MonoBehaviour
         rb.freezeRotation = true;
 
         spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer != null)
+        {
+            originalColor = spriteRenderer.color;
+        }
+    }
+
+    public void ApplySlow(float speedMultiplier, float duration)
+    {
+        slowFactor = Mathf.Min(slowFactor, speedMultiplier);
+        slowTimer = Mathf.Max(slowTimer, duration);
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.color = new Color(0.4f, 0.75f, 1f, 1f); // Ice slow blue tint
+        }
     }
 
     private void Start()
@@ -43,9 +60,24 @@ public class EnemyController : MonoBehaviour
     {
         if (playerTransform == null || !playerTransform.gameObject.activeInHierarchy) return;
 
+        // Slow effect timer
+        if (slowTimer > 0f)
+        {
+            slowTimer -= Time.fixedDeltaTime;
+            if (slowTimer <= 0f)
+            {
+                slowFactor = 1f;
+                if (spriteRenderer != null)
+                {
+                    spriteRenderer.color = originalColor;
+                }
+            }
+        }
+
         // Move towards Player
         Vector2 direction = ((Vector2)playerTransform.position - rb.position).normalized;
-        Vector2 targetPos = rb.position + direction * (moveSpeed * Time.fixedDeltaTime);
+        float currentSpeed = moveSpeed * slowFactor;
+        Vector2 targetPos = rb.position + direction * (currentSpeed * Time.fixedDeltaTime);
         rb.MovePosition(targetPos);
 
         // Flip sprite left/right based on target direction
