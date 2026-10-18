@@ -110,19 +110,38 @@ public class UpgradeManager : MonoBehaviour
     private void LoadIcons()
     {
 #if UNITY_EDITOR
-        if (iconBolt == null) iconBolt = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Sprite/Generated/icon_magic_bolt.png");
-        if (iconFire == null) iconFire = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Sprite/Generated/icon_fireball.png");
-        if (iconIce == null) iconIce = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Sprite/Generated/icon_ice_spear.png");
-        if (iconOrb == null) iconOrb = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Sprite/Generated/icon_dark_orb.png");
-        if (iconShield == null) iconShield = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Sprite/Generated/icon_magic_shield.png");
-        if (iconTome == null) iconTome = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Sprite/Generated/icon_arcane_tome.png");
-        if (iconBoots == null) iconBoots = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Sprite/Generated/icon_hermes_boots.png");
-        if (iconHaste == null) iconHaste = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Sprite/Generated/icon_spell_haste.png");
-        if (iconHeart == null) iconHeart = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Sprite/Generated/icon_vitality_heart.png");
-        if (iconMagnet == null) iconMagnet = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Sprite/Generated/icon_magnetic_pendant.png");
-        if (iconPotion == null) iconPotion = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Sprite/Generated/icon_heal_potion.png");
+        if (iconBolt == null) iconBolt = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Sprite/Skill/Magic Bolt.png");
+        if (iconFire == null) iconFire = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Sprite/Skill/Fireball.png");
+        if (iconIce == null) iconIce = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Sprite/Skill/Ice Spear.png");
+        if (iconOrb == null) iconOrb = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Sprite/Skill/Dark Orb.png");
+        if (iconShield == null) iconShield = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Sprite/Skill/Magic Shield.png");
+        if (iconTome == null) iconTome = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Sprite/Skill/Might.png");
+        if (iconBoots == null) iconBoots = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Sprite/Skill/Swiftness.png");
+        if (iconHaste == null) iconHaste = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Sprite/Skill/Spell Haste.png");
+        if (iconHeart == null) iconHeart = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Sprite/Skill/Vitality.png");
+        if (iconMagnet == null) iconMagnet = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Sprite/Skill/Magnet.png");
+        if (iconPotion == null) iconPotion = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Sprite/Skill/Health Potion.png");
 #endif
     }
+
+#if UNITY_EDITOR
+    [ContextMenu("Assign New Skill Icons")]
+    public void AssignNewIcons()
+    {
+        iconBolt = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Sprite/Skill/Magic Bolt.png");
+        iconFire = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Sprite/Skill/Fireball.png");
+        iconIce = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Sprite/Skill/Ice Spear.png");
+        iconOrb = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Sprite/Skill/Dark Orb.png");
+        iconShield = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Sprite/Skill/Magic Shield.png");
+        iconTome = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Sprite/Skill/Might.png");
+        iconBoots = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Sprite/Skill/Swiftness.png");
+        iconHaste = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Sprite/Skill/Spell Haste.png");
+        iconHeart = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Sprite/Skill/Vitality.png");
+        iconMagnet = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Sprite/Skill/Magnet.png");
+        iconPotion = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Sprite/Skill/Health Potion.png");
+        UnityEditor.EditorUtility.SetDirty(this);
+    }
+#endif
 
     public void ShowLevelUpSelection()
     {

@@ -32,6 +32,7 @@ public class UpgradeCardUI : MonoBehaviour
 
         if (iconImage != null)
         {
+            iconImage.preserveAspect = true;
             if (option.icon != null)
             {
                 iconImage.sprite = option.icon;

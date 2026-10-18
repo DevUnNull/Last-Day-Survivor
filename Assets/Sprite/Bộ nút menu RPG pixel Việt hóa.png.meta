@@ -1,0 +1,428 @@
+fileFormatVersion: 2
+guid: 16686dd6aed5840d4b7b3d2306756e0b
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5717319484443917351
+    second: "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_0"
+  - first:
+      213: -1005331016171625816
+    second: "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_1"
+  - first:
+      213: -6660265674336616189
+    second: "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_2"
+  - first:
+      213: 1835672862366744272
+    second: "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_3"
+  - first:
+      213: -6800406810837518271
+    second: "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_4"
+  - first:
+      213: 8918317723146116551
+    second: "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_5"
+  - first:
+      213: -2535205159142862803
+    second: "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_6"
+  - first:
+      213: 3065580896591858684
+    second: "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_7"
+  - first:
+      213: 1081335767607769692
+    second: "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_8"
+  - first:
+      213: 8029804161468292880
+    second: "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_9"
+  - first:
+      213: -1077417980682738725
+    second: "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_10"
+  - first:
+      213: 471292176909031790
+    second: "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_11"
+  - first:
+      213: 5485452217668584900
+    second: "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_12"
+  - first:
+      213: 6667908649919515551
+    second: "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_13"
+  - first:
+      213: -3289242719646788320
+    second: "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_14"
+  - first:
+      213: 3747773862801790395
+    second: "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_15"
+  - first:
+      213: 2249529687253769064
+    second: "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_16"
+  - first:
+      213: -12549806621880798
+    second: "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_17"
+  - first:
+      213: 4665681842857666892
+    second: "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_18"
+  - first:
+      213: -4687016017581492072
+    second: "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_19"
+  - first:
+      213: 4024048670053345400
+    second: "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_20"
+  - first:
+      213: -5745994800886177762
+    second: "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_21"
+  - first:
+      213: 6458914497630317389
+    second: "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_22"
+  - first:
+      213: -162896126000575999
+    second: "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_23"
+  - first:
+      213: 6606543556416928386
+    second: "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_24"
+  - first:
+      213: -1763017589293023298
+    second: "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_25"
+  - first:
+      213: 6925486701933171905
+    second: "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_26"
+  - first:
+      213: 5701689585278125310
+    second: "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_27"
+  - first:
+      213: 1605218939168391598
+    second: "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_28"
+  - first:
+      213: -1653464463670681480
+    second: "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_29"
+  - first:
+      213: 6334990297385651410
+    second: "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_30"
+  - first:
+      213: -6672581657727344260
+    second: "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_31"
+  - first:
+      213: -2599105644844256615
+    second: "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_32"
+  - first:
+      213: 9124873788947744473
+    second: "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_33"
+  - first:
+      213: 6322523906985910173
+    second: "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_34"
+  - first:
+      213: 3757461103566916966
+    second: "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_35"
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_0"
+      rect:
+        serializedVersion: 2
+        x: 911
+        y: 419
+        width: 785
+        height: 313
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d30d46783008a0b0800000000000000
+      internalID: -5717319484443917351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_29"
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 132
+        width: 14
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8706d2aa4d6bd09e0800000000000000
+      internalID: -1653464463670681480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_31"
+      rect:
+        serializedVersion: 2
+        x: 911
+        y: 88
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c71ef5cc55a3663a0800000000000000
+      internalID: -6672581657727344260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_32"
+      rect:
+        serializedVersion: 2
+        x: 556
+        y: 31
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9927859cf2f1eebd0800000000000000
+      internalID: -2599105644844256615
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_33"
+      rect:
+        serializedVersion: 2
+        x: 885
+        y: 25
+        width: 11
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d6c08a8d5012ae70800000000000000
+      internalID: 9124873788947744473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_34"
+      rect:
+        serializedVersion: 2
+        x: 1387
+        y: 23
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9f5fc7cefd1eb750800000000000000
+      internalID: 6322523906985910173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_35"
+      rect:
+        serializedVersion: 2
+        x: 571
+        y: 23
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66d047f37fe252430800000000000000
+      internalID: 3757461103566916966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: d61db939169554d8281edf58841ac97c
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_0": -5717319484443917351
+      "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_1": -1005331016171625816
+      "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_10": -1077417980682738725
+      "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_11": 471292176909031790
+      "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_12": 5485452217668584900
+      "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_13": 6667908649919515551
+      "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_14": -3289242719646788320
+      "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_15": 3747773862801790395
+      "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_16": 2249529687253769064
+      "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_17": -12549806621880798
+      "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_18": 4665681842857666892
+      "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_19": -4687016017581492072
+      "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_2": -6660265674336616189
+      "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_20": 4024048670053345400
+      "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_21": -5745994800886177762
+      "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_22": 6458914497630317389
+      "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_23": -162896126000575999
+      "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_24": 6606543556416928386
+      "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_25": -1763017589293023298
+      "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_26": 6925486701933171905
+      "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_27": 5701689585278125310
+      "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_28": 1605218939168391598
+      "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_29": -1653464463670681480
+      "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_3": 1835672862366744272
+      "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_30": 6334990297385651410
+      "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_31": -6672581657727344260
+      "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_32": -2599105644844256615
+      "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_33": 9124873788947744473
+      "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_34": 6322523906985910173
+      "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_35": 3757461103566916966
+      "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_4": -6800406810837518271
+      "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_5": 8918317723146116551
+      "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_6": -2535205159142862803
+      "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_7": 3065580896591858684
+      "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_8": 1081335767607769692
+      "Bo\u0323\u0302 nu\u0301t menu RPG pixel Vie\u0323\u0302t ho\u0301a_9": 8029804161468292880
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

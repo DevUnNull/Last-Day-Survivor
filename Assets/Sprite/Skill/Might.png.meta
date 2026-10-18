@@ -1,0 +1,728 @@
+fileFormatVersion: 2
+guid: 763c6a2e9c2d140e493a9d07789af84d
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3862273165461876074
+    second: Might_0
+  - first:
+      213: 2155074392006312754
+    second: Might_1
+  - first:
+      213: -4776745249599594029
+    second: Might_2
+  - first:
+      213: 6422231279574584042
+    second: Might_3
+  - first:
+      213: -932521922009623760
+    second: Might_4
+  - first:
+      213: -4743411766768952873
+    second: Might_5
+  - first:
+      213: 3094800149180420179
+    second: Might_6
+  - first:
+      213: -2423957165802735133
+    second: Might_7
+  - first:
+      213: -823013557554938563
+    second: Might_8
+  - first:
+      213: 3017693244954705569
+    second: Might_9
+  - first:
+      213: -5962614827169953610
+    second: Might_10
+  - first:
+      213: 7920776584464560392
+    second: Might_11
+  - first:
+      213: 1886868401344044417
+    second: Might_12
+  - first:
+      213: -7243255355397804312
+    second: Might_13
+  - first:
+      213: -950066447448489853
+    second: Might_14
+  - first:
+      213: 3771388930387138991
+    second: Might_15
+  - first:
+      213: -5238520738621830517
+    second: Might_16
+  - first:
+      213: -86584388622352378
+    second: Might_17
+  - first:
+      213: -7421415647847939911
+    second: Might_18
+  - first:
+      213: -2592986274905417225
+    second: Might_19
+  - first:
+      213: -1587569947740836928
+    second: Might_20
+  - first:
+      213: -3623024626592878912
+    second: Might_21
+  - first:
+      213: 4395910159490777734
+    second: Might_22
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Might_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 38
+        width: 1056
+        height: 1156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6de0e41bfc899530800000000000000
+      internalID: 3862273165461876074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Might_1
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 1024
+        width: 17
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 233c310ddbc58ed10800000000000000
+      internalID: 2155074392006312754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Might_2
+      rect:
+        serializedVersion: 2
+        x: 498
+        y: 1052
+        width: 102
+        height: 142
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d1e417f08795bdb0800000000000000
+      internalID: -4776745249599594029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Might_3
+      rect:
+        serializedVersion: 2
+        x: 671
+        y: 903
+        width: 65
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aea02748259502950800000000000000
+      internalID: 6422231279574584042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Might_4
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 823
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0331a5da0440f03f0800000000000000
+      internalID: -932521922009623760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Might_5
+      rect:
+        serializedVersion: 2
+        x: 1073
+        y: 712
+        width: 74
+        height: 152
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d9145a31240c2eb0800000000000000
+      internalID: -4743411766768952873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Might_6
+      rect:
+        serializedVersion: 2
+        x: 1141
+        y: 714
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 35099b6b650f2fa20800000000000000
+      internalID: 3094800149180420179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Might_7
+      rect:
+        serializedVersion: 2
+        x: 975
+        y: 471
+        width: 232
+        height: 143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e9b095eccf5c5ed0800000000000000
+      internalID: -2423957165802735133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Might_8
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 359
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3d7b98a7811494f0800000000000000
+      internalID: -823013557554938563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Might_9
+      rect:
+        serializedVersion: 2
+        x: 914
+        y: 351
+        width: 165
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1aefe92940001e920800000000000000
+      internalID: 3017693244954705569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Might_10
+      rect:
+        serializedVersion: 2
+        x: 325
+        y: 194
+        width: 10
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b8ce0ee769804da0800000000000000
+      internalID: -5962614827169953610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Might_11
+      rect:
+        serializedVersion: 2
+        x: 305
+        y: 181
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 801fd3666504ced60800000000000000
+      internalID: 7920776584464560392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Might_12
+      rect:
+        serializedVersion: 2
+        x: 1101
+        y: 103
+        width: 76
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18d550060d08f2a10800000000000000
+      internalID: 1886868401344044417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Might_13
+      rect:
+        serializedVersion: 2
+        x: 394
+        y: 136
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ee611471a9ca7b90800000000000000
+      internalID: -7243255355397804312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Might_14
+      rect:
+        serializedVersion: 2
+        x: 434
+        y: 108
+        width: 7
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 380c0d6899fa0d2f0800000000000000
+      internalID: -950066447448489853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Might_15
+      rect:
+        serializedVersion: 2
+        x: 745
+        y: 117
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa9d091204aa65430800000000000000
+      internalID: 3771388930387138991
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Might_16
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 101
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8acde1a4290d47b0800000000000000
+      internalID: -5238520738621830517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Might_17
+      rect:
+        serializedVersion: 2
+        x: 590
+        y: 93
+        width: 16
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 600021115f36ccef0800000000000000
+      internalID: -86584388622352378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Might_18
+      rect:
+        serializedVersion: 2
+        x: 641
+        y: 92
+        width: 27
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b08f73e9c5d10990800000000000000
+      internalID: -7421415647847939911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Might_19
+      rect:
+        serializedVersion: 2
+        x: 486
+        y: 69
+        width: 15
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f99cc0a8bcd30cd0800000000000000
+      internalID: -2592986274905417225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Might_20
+      rect:
+        serializedVersion: 2
+        x: 673
+        y: 82
+        width: 9
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0cb62d83b81d7f9e0800000000000000
+      internalID: -1587569947740836928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Might_21
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 55
+        width: 11
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ce60773c4e68bdc0800000000000000
+      internalID: -3623024626592878912
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Might_22
+      rect:
+        serializedVersion: 2
+        x: 514
+        y: 55
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6828af0eff8610d30800000000000000
+      internalID: 4395910159490777734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Might_0: 3862273165461876074
+      Might_1: 2155074392006312754
+      Might_10: -5962614827169953610
+      Might_11: 7920776584464560392
+      Might_12: 1886868401344044417
+      Might_13: -7243255355397804312
+      Might_14: -950066447448489853
+      Might_15: 3771388930387138991
+      Might_16: -5238520738621830517
+      Might_17: -86584388622352378
+      Might_18: -7421415647847939911
+      Might_19: -2592986274905417225
+      Might_2: -4776745249599594029
+      Might_20: -1587569947740836928
+      Might_21: -3623024626592878912
+      Might_22: 4395910159490777734
+      Might_3: 6422231279574584042
+      Might_4: -932521922009623760
+      Might_5: -4743411766768952873
+      Might_6: 3094800149180420179
+      Might_7: -2423957165802735133
+      Might_8: -823013557554938563
+      Might_9: 3017693244954705569
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

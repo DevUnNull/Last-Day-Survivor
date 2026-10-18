@@ -8,9 +8,7 @@ public static class AnimationUICustomizable
 {
     public static void SetActiveAllInput(bool isActivating)
     {
-        Debug.Log("Set Active All Input");
-        // Please modify this line to use your own Singleton class.
-        // Singleton.Instance.Game.SetActiveAllInput(isActivating);
+        // Safe: Do not disable Unity EventSystem.current to prevent permanent UI lockouts
     }
     public static void PlaySound(AudioClip _SFXFile)
     {

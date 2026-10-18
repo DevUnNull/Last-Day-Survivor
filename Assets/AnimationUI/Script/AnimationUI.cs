@@ -76,8 +76,12 @@ public class AnimationUI : MonoBehaviour
     [ContextMenu("Stop Animation")]
     public void Stop()
     {
-        foreach(Coroutine coroutine in _coroutines)StopCoroutine(coroutine);
+        foreach(Coroutine coroutine in _coroutines)
+        {
+            if (coroutine != null) StopCoroutine(coroutine);
+        }
         _coroutines.Clear();
+        SetActiveAllInput(true);
     }
 
     IEnumerator PlayAnimation()
@@ -229,21 +233,13 @@ public class AnimationUI : MonoBehaviour
         atTimes.Clear();
     }
 
-    IEnumerator ReverseArrayAtTime(float t)
-    {
-        yield return new WaitForSecondsRealtime(t);
-        Array.Reverse(AnimationSequence);
-    }
     IEnumerator PlayReversedAnimation()
     {
-        Array.Reverse(AnimationSequence);
-        ReverseArrayAtTime(TotalDuration);
-
         for(int i = 0; i < atTimeEvents.Count; i++)StartCoroutine(AtTimeEvent(atTimeEvents[i], atTimes[i])); //Function to call at time
-        // for(int i = atTimeEvents.Count-1; i >= 0; i++)StartCoroutine(AtTimeEvent(atTimeEvents[i], atTimes[i])); //Function to call at time
 
-        foreach(Sequence sequence in AnimationSequence)
+        for(int seqIdx = AnimationSequence.Length - 1; seqIdx >= 0; seqIdx--)
         {
+            Sequence sequence = AnimationSequence[seqIdx];
             if(sequence.SequenceType == Sequence.Type.Animation)
             {
                 if(sequence.TargetComp == null)
@@ -382,7 +378,6 @@ public class AnimationUI : MonoBehaviour
 
         OnAnimationEnded?.Invoke(); //Function to call at end
 
-        Array.Reverse(AnimationSequence);
         // OnAnimationEnded = null;
         atTimeEvents.Clear();
         atTimes.Clear();
@@ -657,9 +652,16 @@ public class AnimationUI : MonoBehaviour
 
 
 
+    void OnDisable()
+    {
+        SetActiveAllInput(true);
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.update -= EditorUpdate;
+#endif
+    }
+    
 #if UNITY_EDITOR
     void OnEnable() => UnityEditor.EditorApplication.update += EditorUpdate;
-    void OnDisable() => UnityEditor.EditorApplication.update -= EditorUpdate;
     
     void ForceRepaint()
     {

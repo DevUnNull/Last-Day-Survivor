@@ -23,6 +23,7 @@ public class ButtonUI : Selectable, IPointerClickHandler, ISubmitHandler
 
     public TMP_Text Text { get => _text; set => _text = value;}
     public Graphic TargetGraphic { get => targetGraphic; set => targetGraphic = value; }
+    public UnityEvent onClick => _onClick;
     
     public static event Action s_onClick;
     public static event Action s_onPointerEnter;

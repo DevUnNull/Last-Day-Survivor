@@ -1,0 +1,728 @@
+fileFormatVersion: 2
+guid: 96c0e1d9f15684fd0adc934f6197a79d
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1163530357524698354
+    second: Spell Haste_0
+  - first:
+      213: -4133357721874242216
+    second: Spell Haste_1
+  - first:
+      213: -2135241344733107102
+    second: Spell Haste_2
+  - first:
+      213: -7581310195720689562
+    second: Spell Haste_3
+  - first:
+      213: -7727188295654306722
+    second: Spell Haste_4
+  - first:
+      213: -5115244323323481135
+    second: Spell Haste_5
+  - first:
+      213: -572202118980220534
+    second: Spell Haste_6
+  - first:
+      213: 1156980635876328656
+    second: Spell Haste_7
+  - first:
+      213: -7833761232391896737
+    second: Spell Haste_8
+  - first:
+      213: -3509858773894016119
+    second: Spell Haste_9
+  - first:
+      213: -1925777911750532509
+    second: Spell Haste_10
+  - first:
+      213: 5204504583830806401
+    second: Spell Haste_11
+  - first:
+      213: -795440409883122206
+    second: Spell Haste_12
+  - first:
+      213: -4398966868018788084
+    second: Spell Haste_13
+  - first:
+      213: -2867680696794839433
+    second: Spell Haste_14
+  - first:
+      213: -7720146652846744875
+    second: Spell Haste_15
+  - first:
+      213: -294537607694520619
+    second: Spell Haste_16
+  - first:
+      213: 3294805755927278005
+    second: Spell Haste_17
+  - first:
+      213: -1012746308186649999
+    second: Spell Haste_18
+  - first:
+      213: 2343403383464283111
+    second: Spell Haste_19
+  - first:
+      213: 824548649734777380
+    second: Spell Haste_20
+  - first:
+      213: -4147717989724814341
+    second: Spell Haste_21
+  - first:
+      213: -2196414219718608951
+    second: Spell Haste_22
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Spell Haste_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 23
+        width: 1235
+        height: 1212
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0b6b52fd4f4adfe0800000000000000
+      internalID: -1163530357524698354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spell Haste_1
+      rect:
+        serializedVersion: 2
+        x: 741
+        y: 1144
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 855611a2d0d53a6c0800000000000000
+      internalID: -4133357721874242216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spell Haste_2
+      rect:
+        serializedVersion: 2
+        x: 762
+        y: 1131
+        width: 9
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26ca4795f491e52e0800000000000000
+      internalID: -2135241344733107102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spell Haste_3
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 1044
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66865046b86c9c690800000000000000
+      internalID: -7581310195720689562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spell Haste_4
+      rect:
+        serializedVersion: 2
+        x: 939
+        y: 1020
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e5c08fc7f2383c490800000000000000
+      internalID: -7727188295654306722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spell Haste_5
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 1001
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d378f0c3600309b0800000000000000
+      internalID: -5115244323323481135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spell Haste_6
+      rect:
+        serializedVersion: 2
+        x: 1109
+        y: 345
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a89457654312f08f0800000000000000
+      internalID: -572202118980220534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spell Haste_7
+      rect:
+        serializedVersion: 2
+        x: 466
+        y: 192
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d40a6522cb6e0010800000000000000
+      internalID: 1156980635876328656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spell Haste_8
+      rect:
+        serializedVersion: 2
+        x: 705
+        y: 180
+        width: 9
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f510e080aa3e84390800000000000000
+      internalID: -7833761232391896737
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spell Haste_9
+      rect:
+        serializedVersion: 2
+        x: 713
+        y: 180
+        width: 6
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 983524a8a0a7a4fc0800000000000000
+      internalID: -3509858773894016119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spell Haste_10
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 182
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 362e0d541334645e0800000000000000
+      internalID: -1925777911750532509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spell Haste_11
+      rect:
+        serializedVersion: 2
+        x: 691
+        y: 176
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18f9027285d1a3840800000000000000
+      internalID: 5204504583830806401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spell Haste_12
+      rect:
+        serializedVersion: 2
+        x: 428
+        y: 154
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e5ece0692706f4f0800000000000000
+      internalID: -795440409883122206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spell Haste_13
+      rect:
+        serializedVersion: 2
+        x: 561
+        y: 144
+        width: 21
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c090705b0fab3f2c0800000000000000
+      internalID: -4398966868018788084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spell Haste_14
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 122
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7768c429993f338d0800000000000000
+      internalID: -2867680696794839433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spell Haste_15
+      rect:
+        serializedVersion: 2
+        x: 530
+        y: 119
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5da1627b5878cd490800000000000000
+      internalID: -7720146652846744875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spell Haste_16
+      rect:
+        serializedVersion: 2
+        x: 535
+        y: 115
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5deef583b9799ebf0800000000000000
+      internalID: -294537607694520619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spell Haste_17
+      rect:
+        serializedVersion: 2
+        x: 689
+        y: 117
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b135fdd06089bd20800000000000000
+      internalID: 3294805755927278005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spell Haste_18
+      rect:
+        serializedVersion: 2
+        x: 705
+        y: 119
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 17a42f4399002f1f0800000000000000
+      internalID: -1012746308186649999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spell Haste_19
+      rect:
+        serializedVersion: 2
+        x: 713
+        y: 117
+        width: 8
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7eb46dc16f0758020800000000000000
+      internalID: 2343403383464283111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spell Haste_20
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 89
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42a2877d0a2617b00800000000000000
+      internalID: 824548649734777380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spell Haste_21
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 87
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf384f1c6785076c0800000000000000
+      internalID: -4147717989724814341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spell Haste_22
+      rect:
+        serializedVersion: 2
+        x: 561
+        y: 90
+        width: 13
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c73e0e77e4c481e0800000000000000
+      internalID: -2196414219718608951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Spell Haste_0: -1163530357524698354
+      Spell Haste_1: -4133357721874242216
+      Spell Haste_10: -1925777911750532509
+      Spell Haste_11: 5204504583830806401
+      Spell Haste_12: -795440409883122206
+      Spell Haste_13: -4398966868018788084
+      Spell Haste_14: -2867680696794839433
+      Spell Haste_15: -7720146652846744875
+      Spell Haste_16: -294537607694520619
+      Spell Haste_17: 3294805755927278005
+      Spell Haste_18: -1012746308186649999
+      Spell Haste_19: 2343403383464283111
+      Spell Haste_2: -2135241344733107102
+      Spell Haste_20: 824548649734777380
+      Spell Haste_21: -4147717989724814341
+      Spell Haste_22: -2196414219718608951
+      Spell Haste_3: -7581310195720689562
+      Spell Haste_4: -7727188295654306722
+      Spell Haste_5: -5115244323323481135
+      Spell Haste_6: -572202118980220534
+      Spell Haste_7: 1156980635876328656
+      Spell Haste_8: -7833761232391896737
+      Spell Haste_9: -3509858773894016119
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

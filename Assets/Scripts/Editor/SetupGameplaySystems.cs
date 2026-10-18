@@ -56,11 +56,15 @@ public static class SetupGameplaySystems
 
         Undo.RegisterFullObjectHierarchyUndo(canvas.gameObject, "Setup Survivor HUD & Level Up UI");
 
-        Font defaultFont = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+        Font defaultFont = AssetDatabase.LoadAssetAtPath<Font>("Assets/Baloo_2,Chewy,Press_Start_2P/Press_Start_2P/PressStart2P-Regular.ttf");
         if (defaultFont == null)
         {
-            Text sampleText = canvas.GetComponentInChildren<Text>(true);
-            if (sampleText != null) defaultFont = sampleText.font;
+            defaultFont = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+            if (defaultFont == null)
+            {
+                Text sampleText = canvas.GetComponentInChildren<Text>(true);
+                if (sampleText != null) defaultFont = sampleText.font;
+            }
         }
 
         // Build EXP Bar in HUD
@@ -155,7 +159,7 @@ public static class SetupGameplaySystems
 
         Text levelText = levelTextObj.AddComponent<Text>();
         levelText.font = font;
-        levelText.fontSize = 16;
+        levelText.fontSize = 14;
         levelText.fontStyle = FontStyle.Bold;
         levelText.alignment = TextAnchor.MiddleCenter;
         levelText.color = new Color(1f, 0.85f, 0.2f, 1f);
@@ -172,7 +176,7 @@ public static class SetupGameplaySystems
 
         Text expText = expTextObj.AddComponent<Text>();
         expText.font = font;
-        expText.fontSize = 13;
+        expText.fontSize = 12;
         expText.fontStyle = FontStyle.Bold;
         expText.alignment = TextAnchor.MiddleCenter;
         expText.color = Color.white;
@@ -216,7 +220,7 @@ public static class SetupGameplaySystems
 
         Text headerText = headerObj.AddComponent<Text>();
         headerText.font = font;
-        headerText.fontSize = 46;
+        headerText.fontSize = 38;
         headerText.fontStyle = FontStyle.Bold;
         headerText.alignment = TextAnchor.MiddleCenter;
         headerText.color = new Color(1f, 0.85f, 0.2f, 1f);
@@ -239,7 +243,8 @@ public static class SetupGameplaySystems
 
         Text subText = subObj.AddComponent<Text>();
         subText.font = font;
-        subText.fontSize = 18;
+        subText.fontSize = 12;
+        subText.verticalOverflow = VerticalWrapMode.Overflow;
         subText.alignment = TextAnchor.MiddleCenter;
         subText.color = new Color(0.7f, 0.8f, 0.95f, 1f);
         subText.text = "Choose an upgrade to empower your Wizard";
@@ -326,7 +331,7 @@ public static class SetupGameplaySystems
 
         Text tagText = tagObj.AddComponent<Text>();
         tagText.font = font;
-        tagText.fontSize = 14;
+        tagText.fontSize = 11;
         tagText.fontStyle = FontStyle.Bold;
         tagText.alignment = TextAnchor.MiddleCenter;
         tagText.color = new Color(1f, 0.85f, 0.2f, 1f);
@@ -368,7 +373,7 @@ public static class SetupGameplaySystems
 
         Text titleText = titleObj.AddComponent<Text>();
         titleText.font = font;
-        titleText.fontSize = 20;
+        titleText.fontSize = 15;
         titleText.fontStyle = FontStyle.Bold;
         titleText.alignment = TextAnchor.MiddleCenter;
         titleText.color = Color.white;
@@ -386,7 +391,7 @@ public static class SetupGameplaySystems
 
         Text levelText = levelObj.AddComponent<Text>();
         levelText.font = font;
-        levelText.fontSize = 14;
+        levelText.fontSize = 11;
         levelText.fontStyle = FontStyle.Bold;
         levelText.alignment = TextAnchor.MiddleCenter;
         levelText.color = new Color(0.4f, 0.85f, 1f, 1f);
@@ -404,8 +409,9 @@ public static class SetupGameplaySystems
 
         Text descText = descObj.AddComponent<Text>();
         descText.font = font;
-        descText.fontSize = 14;
-        descText.lineSpacing = 1.15f;
+        descText.fontSize = 11;
+        descText.lineSpacing = 1.2f;
+        descText.verticalOverflow = VerticalWrapMode.Overflow;
         descText.alignment = TextAnchor.UpperCenter;
         descText.color = new Color(0.8f, 0.88f, 0.98f, 1f);
         descText.text = "Upgrade description explaining details of the upgrade.";
@@ -435,7 +441,7 @@ public static class SetupGameplaySystems
 
         Text btnText = btnTextObj.AddComponent<Text>();
         btnText.font = font;
-        btnText.fontSize = 15;
+        btnText.fontSize = 13;
         btnText.fontStyle = FontStyle.Bold;
         btnText.alignment = TextAnchor.MiddleCenter;
         btnText.color = Color.white;

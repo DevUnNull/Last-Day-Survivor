@@ -261,8 +261,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 18
+    m_Font: {fileID: 12800000, guid: 3e75fe25bd50b4ed3b74a2be1f56a20b, type: 3}
+    m_FontSize: 12
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
@@ -271,7 +271,7 @@ MonoBehaviour:
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: Choose an upgrade to empower your Wizard
 --- !u!1 &173014366
@@ -543,7 +543,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 25, y: -52}
+  m_AnchoredPosition: {x: 25, y: -99}
   m_SizeDelta: {x: 240, y: 32}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &330751333
@@ -963,8 +963,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_Font: {fileID: 12800000, guid: 3e75fe25bd50b4ed3b74a2be1f56a20b, type: 3}
+    m_FontSize: 11
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
@@ -973,8 +973,8 @@ MonoBehaviour:
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1.15
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1.2
   m_Text: Upgrade description explaining details of the upgrade.
 --- !u!222 &464010257
 CanvasRenderer:
@@ -1278,8 +1278,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 46
+    m_Font: {fileID: 12800000, guid: 3e75fe25bd50b4ed3b74a2be1f56a20b, type: 3}
+    m_FontSize: 38
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 10
@@ -1441,8 +1441,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_Font: {fileID: 12800000, guid: 3e75fe25bd50b4ed3b74a2be1f56a20b, type: 3}
+    m_FontSize: 11
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 10
@@ -1512,8 +1512,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 15
+    m_Font: {fileID: 12800000, guid: 3e75fe25bd50b4ed3b74a2be1f56a20b, type: 3}
+    m_FontSize: 13
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 10
@@ -1591,8 +1591,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_Font: {fileID: 12800000, guid: 3e75fe25bd50b4ed3b74a2be1f56a20b, type: 3}
+    m_FontSize: 11
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 10
@@ -1705,7 +1705,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &766577239
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1847,8 +1847,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_Font: {fileID: 12800000, guid: 3e75fe25bd50b4ed3b74a2be1f56a20b, type: 3}
+    m_FontSize: 11
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
@@ -1857,8 +1857,8 @@ MonoBehaviour:
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1.15
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1.2
   m_Text: Upgrade description explaining details of the upgrade.
 --- !u!222 &797550299
 CanvasRenderer:
@@ -1953,8 +1953,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_Font: {fileID: 12800000, guid: 3e75fe25bd50b4ed3b74a2be1f56a20b, type: 3}
+    m_FontSize: 11
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 10
@@ -2004,7 +2004,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.22, y: 1}
   m_AnchorMax: {x: 0.78, y: 1}
-  m_AnchoredPosition: {x: 0, y: -16}
+  m_AnchoredPosition: {x: -298, y: -52}
   m_SizeDelta: {x: 0, y: 24}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &804600309
@@ -2119,8 +2119,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 20
+    m_Font: {fileID: 12800000, guid: 3e75fe25bd50b4ed3b74a2be1f56a20b, type: 3}
+    m_FontSize: 15
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 10
@@ -2233,7 +2233,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &860918432
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2394,8 +2394,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_Font: {fileID: 12800000, guid: 3e75fe25bd50b4ed3b74a2be1f56a20b, type: 3}
+    m_FontSize: 11
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 10
@@ -2652,8 +2652,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 15
+    m_Font: {fileID: 12800000, guid: 3e75fe25bd50b4ed3b74a2be1f56a20b, type: 3}
+    m_FontSize: 13
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 10
@@ -2731,8 +2731,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 15
+    m_Font: {fileID: 12800000, guid: 3e75fe25bd50b4ed3b74a2be1f56a20b, type: 3}
+    m_FontSize: 13
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 10
@@ -3096,8 +3096,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 13
+    m_Font: {fileID: 12800000, guid: 3e75fe25bd50b4ed3b74a2be1f56a20b, type: 3}
+    m_FontSize: 12
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 10
@@ -3233,7 +3233,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1440586207
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3394,8 +3394,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 16
+    m_Font: {fileID: 12800000, guid: 3e75fe25bd50b4ed3b74a2be1f56a20b, type: 3}
+    m_FontSize: 14
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 10
@@ -4019,8 +4019,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 20
+    m_Font: {fileID: 12800000, guid: 3e75fe25bd50b4ed3b74a2be1f56a20b, type: 3}
+    m_FontSize: 15
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 10
@@ -4098,8 +4098,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_Font: {fileID: 12800000, guid: 3e75fe25bd50b4ed3b74a2be1f56a20b, type: 3}
+    m_FontSize: 11
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 10
@@ -4227,17 +4227,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeManager
   levelUpUI: {fileID: 1385741983}
-  iconBolt: {fileID: 3392518508600796308, guid: 642f82df171678d4aa562c637cee2e5e, type: 3}
-  iconFire: {fileID: 3450096102820895434, guid: cca0b855216155646ba172809307afad, type: 3}
-  iconIce: {fileID: -8824489798131516185, guid: 6bd695288654ceb46b2a5429f2d6fa6e, type: 3}
-  iconOrb: {fileID: 6363432862161924356, guid: 08bbad99412d5e146870d80b5d5a8d4d, type: 3}
-  iconShield: {fileID: 710029500384210977, guid: 870f56ca7a2773443806d2fb8fc4c969, type: 3}
-  iconTome: {fileID: 7986269536059882235, guid: 9c86a231f0289434d8eeb1c1364fc127, type: 3}
-  iconBoots: {fileID: -7504129492406511465, guid: 23b8e23aa4d8daf4eb6555e6449038a0, type: 3}
-  iconHaste: {fileID: 8361266278856499930, guid: 108499564bb4d584aa7d8e38dad39bea, type: 3}
-  iconHeart: {fileID: 1094013249614610994, guid: ee9cdfc0dd0b96645b060063f1181833, type: 3}
-  iconMagnet: {fileID: 6122349893607220319, guid: bfe755cd75255284c88f2751041fe439, type: 3}
-  iconPotion: {fileID: -7920466990871000833, guid: 0966475a22b58d847a9d92fc2aa08dce, type: 3}
+  iconBolt: {fileID: 21300000, guid: ac4bcfcd2cfca486d8158a1572a5084b, type: 3}
+  iconFire: {fileID: 21300000, guid: b9c9586ac1ca94ae2b9ce7f24ab485f9, type: 3}
+  iconIce: {fileID: 21300000, guid: eb2b56f26c3c641169147ddcaa4c2f9e, type: 3}
+  iconOrb: {fileID: 21300000, guid: 443559d10747245d4baa17c336580b37, type: 3}
+  iconShield: {fileID: 21300000, guid: 327ec9cf7f7bf48faa88c9308495a5f1, type: 3}
+  iconTome: {fileID: 21300000, guid: 763c6a2e9c2d140e493a9d07789af84d, type: 3}
+  iconBoots: {fileID: 21300000, guid: 893d2762706684b0b9c3778aff6531f8, type: 3}
+  iconHaste: {fileID: 21300000, guid: 96c0e1d9f15684fd0adc934f6197a79d, type: 3}
+  iconHeart: {fileID: 21300000, guid: e552f37c9a6e249e7866a57dae849aca, type: 3}
+  iconMagnet: {fileID: 21300000, guid: 7039fe009a1ae4bc7be6c1cab4bca63a, type: 3}
+  iconPotion: {fileID: 21300000, guid: 082b5e45caca9473aac78fb933fd2682, type: 3}
 --- !u!1 &1936642522
 GameObject:
   m_ObjectHideFlags: 0
@@ -4296,8 +4296,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_Font: {fileID: 12800000, guid: 3e75fe25bd50b4ed3b74a2be1f56a20b, type: 3}
+    m_FontSize: 11
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
@@ -4306,8 +4306,8 @@ MonoBehaviour:
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1.15
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1.2
   m_Text: Upgrade description explaining details of the upgrade.
 --- !u!222 &1936642525
 CanvasRenderer:
@@ -4553,8 +4553,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_Font: {fileID: 12800000, guid: 3e75fe25bd50b4ed3b74a2be1f56a20b, type: 3}
+    m_FontSize: 11
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 10
@@ -4632,8 +4632,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 18
+    m_Font: {fileID: 12800000, guid: 3e75fe25bd50b4ed3b74a2be1f56a20b, type: 3}
+    m_FontSize: 14
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 10
@@ -5026,8 +5026,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 20
+    m_Font: {fileID: 12800000, guid: 3e75fe25bd50b4ed3b74a2be1f56a20b, type: 3}
+    m_FontSize: 15
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 10

@@ -1,0 +1,1248 @@
+fileFormatVersion: 2
+guid: 443559d10747245d4baa17c336580b37
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7515139026188779267
+    second: Dark Orb_0
+  - first:
+      213: 3585800999903861160
+    second: Dark Orb_1
+  - first:
+      213: -2727803499264586705
+    second: Dark Orb_2
+  - first:
+      213: 7047729146683675117
+    second: Dark Orb_3
+  - first:
+      213: 1854929529909214993
+    second: Dark Orb_4
+  - first:
+      213: -9003133072155363644
+    second: Dark Orb_5
+  - first:
+      213: 1526418208635095790
+    second: Dark Orb_6
+  - first:
+      213: -2553765823624284219
+    second: Dark Orb_7
+  - first:
+      213: 1139567607725904635
+    second: Dark Orb_8
+  - first:
+      213: -1887928539286240522
+    second: Dark Orb_9
+  - first:
+      213: 1956681036412233196
+    second: Dark Orb_10
+  - first:
+      213: -6732982233985963357
+    second: Dark Orb_11
+  - first:
+      213: 5088655140316031155
+    second: Dark Orb_12
+  - first:
+      213: -1097348568277709073
+    second: Dark Orb_13
+  - first:
+      213: 7226765797600322101
+    second: Dark Orb_14
+  - first:
+      213: 3144761368633417184
+    second: Dark Orb_15
+  - first:
+      213: -1871539044482896573
+    second: Dark Orb_16
+  - first:
+      213: -6500115648612780161
+    second: Dark Orb_17
+  - first:
+      213: -8283173981601793643
+    second: Dark Orb_18
+  - first:
+      213: -4911760304599071288
+    second: Dark Orb_19
+  - first:
+      213: 8044200717549009334
+    second: Dark Orb_20
+  - first:
+      213: -352472648376828250
+    second: Dark Orb_21
+  - first:
+      213: -164196108153408923
+    second: Dark Orb_22
+  - first:
+      213: 7579098590745075313
+    second: Dark Orb_23
+  - first:
+      213: -8810772754926330141
+    second: Dark Orb_24
+  - first:
+      213: -4947232540295767096
+    second: Dark Orb_25
+  - first:
+      213: 7895000902634041693
+    second: Dark Orb_26
+  - first:
+      213: 1402569100379970960
+    second: Dark Orb_27
+  - first:
+      213: 4104948356846522784
+    second: Dark Orb_28
+  - first:
+      213: 1290361915408765985
+    second: Dark Orb_29
+  - first:
+      213: 6310870408299998319
+    second: Dark Orb_30
+  - first:
+      213: 7187365519790728475
+    second: Dark Orb_31
+  - first:
+      213: 3152700596951747874
+    second: Dark Orb_32
+  - first:
+      213: -7570545443764660876
+    second: Dark Orb_33
+  - first:
+      213: -4536242122318597830
+    second: Dark Orb_34
+  - first:
+      213: 1255518918156040935
+    second: Dark Orb_35
+  - first:
+      213: -439277761806625310
+    second: Dark Orb_36
+  - first:
+      213: 5250783358235706647
+    second: Dark Orb_37
+  - first:
+      213: -1256346899349843599
+    second: Dark Orb_38
+  - first:
+      213: -8285083663701334471
+    second: Dark Orb_39
+  - first:
+      213: -5178962581797138272
+    second: Dark Orb_40
+  - first:
+      213: 8956798537876852335
+    second: Dark Orb_41
+  - first:
+      213: -9187181405869255942
+    second: Dark Orb_42
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Dark Orb_0
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 25
+        width: 1054
+        height: 1204
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30f38ad90232b4860800000000000000
+      internalID: 7515139026188779267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark Orb_1
+      rect:
+        serializedVersion: 2
+        x: 729
+        y: 1051
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a99282d20353c130800000000000000
+      internalID: 3585800999903861160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark Orb_2
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 972
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2c44418b25e42ad0800000000000000
+      internalID: -2727803499264586705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark Orb_3
+      rect:
+        serializedVersion: 2
+        x: 812
+        y: 977
+        width: 27
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de15f3581509ec160800000000000000
+      internalID: 7047729146683675117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark Orb_4
+      rect:
+        serializedVersion: 2
+        x: 842
+        y: 964
+        width: 9
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11ffe9164980eb910800000000000000
+      internalID: 1854929529909214993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark Orb_5
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 795
+        width: 17
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c6bb98eb227e0380800000000000000
+      internalID: -9003133072155363644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark Orb_6
+      rect:
+        serializedVersion: 2
+        x: 1067
+        y: 757
+        width: 142
+        height: 124
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eea0260064dee2510800000000000000
+      internalID: 1526418208635095790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark Orb_7
+      rect:
+        serializedVersion: 2
+        x: 902
+        y: 557
+        width: 112
+        height: 212
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c7775b83833f8cd0800000000000000
+      internalID: -2553765823624284219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark Orb_8
+      rect:
+        serializedVersion: 2
+        x: 1067
+        y: 624
+        width: 92
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf25b0893be80df00800000000000000
+      internalID: 1139567607725904635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark Orb_9
+      rect:
+        serializedVersion: 2
+        x: 1127
+        y: 678
+        width: 6
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f285860ffabcc5e0800000000000000
+      internalID: -1887928539286240522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark Orb_10
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 612
+        width: 14
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce528122907872b10800000000000000
+      internalID: 1956681036412233196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark Orb_11
+      rect:
+        serializedVersion: 2
+        x: 1121
+        y: 578
+        width: 26
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3aa2040c454af82a0800000000000000
+      internalID: -6732982233985963357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark Orb_12
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 584
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b8a007a3e88e9640800000000000000
+      internalID: 5088655140316031155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark Orb_13
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 578
+        width: 28
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fee06098a4f65c0f0800000000000000
+      internalID: -1097348568277709073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark Orb_14
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 550
+        width: 7
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 532e8e03431aa4460800000000000000
+      internalID: 7226765797600322101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark Orb_15
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 550
+        width: 7
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ed14c89dcf64ab20800000000000000
+      internalID: 3144761368633417184
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark Orb_16
+      rect:
+        serializedVersion: 2
+        x: 936
+        y: 508
+        width: 36
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34da256a725f606e0800000000000000
+      internalID: -1871539044482896573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark Orb_17
+      rect:
+        serializedVersion: 2
+        x: 1081
+        y: 302
+        width: 112
+        height: 227
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f773a75b143fac5a0800000000000000
+      internalID: -6500115648612780161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark Orb_18
+      rect:
+        serializedVersion: 2
+        x: 1129
+        y: 463
+        width: 12
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 599fddd56214c0d80800000000000000
+      internalID: -8283173981601793643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark Orb_19
+      rect:
+        serializedVersion: 2
+        x: 1137
+        y: 461
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c5028ec60ce5dbb0800000000000000
+      internalID: -4911760304599071288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark Orb_20
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 257
+        width: 164
+        height: 151
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b9737fbeedb2af60800000000000000
+      internalID: 8044200717549009334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark Orb_21
+      rect:
+        serializedVersion: 2
+        x: 1043
+        y: 379
+        width: 19
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ae35786ef3cb1bf0800000000000000
+      internalID: -352472648376828250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark Orb_22
+      rect:
+        serializedVersion: 2
+        x: 1141
+        y: 393
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 562b3047288a8bdf0800000000000000
+      internalID: -164196108153408923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark Orb_23
+      rect:
+        serializedVersion: 2
+        x: 1069
+        y: 353
+        width: 17
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 17e1603330e5e2960800000000000000
+      internalID: 7579098590745075313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark Orb_24
+      rect:
+        serializedVersion: 2
+        x: 997
+        y: 281
+        width: 11
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ee1de16cd8d9b580800000000000000
+      internalID: -8810772754926330141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark Orb_25
+      rect:
+        serializedVersion: 2
+        x: 713
+        y: 231
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8cbda665736e75bb0800000000000000
+      internalID: -4947232540295767096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark Orb_26
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 180
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d51f3eecd7da09d60800000000000000
+      internalID: 7895000902634041693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark Orb_27
+      rect:
+        serializedVersion: 2
+        x: 423
+        y: 176
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09d56196a2de67310800000000000000
+      internalID: 1402569100379970960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark Orb_28
+      rect:
+        serializedVersion: 2
+        x: 747
+        y: 170
+        width: 10
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a1192718c4b7f830800000000000000
+      internalID: 4104948356846522784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark Orb_29
+      rect:
+        serializedVersion: 2
+        x: 754
+        y: 164
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 124d1af435948e110800000000000000
+      internalID: 1290361915408765985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark Orb_30
+      rect:
+        serializedVersion: 2
+        x: 715
+        y: 126
+        width: 56
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6cee3e2337b49750800000000000000
+      internalID: 6310870408299998319
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark Orb_31
+      rect:
+        serializedVersion: 2
+        x: 770
+        y: 146
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1564062cd6aeb360800000000000000
+      internalID: 7187365519790728475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark Orb_32
+      rect:
+        serializedVersion: 2
+        x: 884
+        y: 160
+        width: 15
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22d887c3d74a0cb20800000000000000
+      internalID: 3152700596951747874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark Orb_33
+      rect:
+        serializedVersion: 2
+        x: 466
+        y: 95
+        width: 20
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4759474870500f690800000000000000
+      internalID: -7570545443764660876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark Orb_34
+      rect:
+        serializedVersion: 2
+        x: 673
+        y: 122
+        width: 13
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a313904e2d70c01c0800000000000000
+      internalID: -4536242122318597830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark Orb_35
+      rect:
+        serializedVersion: 2
+        x: 735
+        y: 117
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ea3975ddcf7c6110800000000000000
+      internalID: 1255518918156040935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark Orb_36
+      rect:
+        serializedVersion: 2
+        x: 739
+        y: 119
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e599c9f33f57e9f0800000000000000
+      internalID: -439277761806625310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark Orb_37
+      rect:
+        serializedVersion: 2
+        x: 756
+        y: 119
+        width: 7
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7150c2cf4a78ed840800000000000000
+      internalID: 5250783358235706647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark Orb_38
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 91
+        width: 14
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 171d695c62f809ee0800000000000000
+      internalID: -1256346899349843599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark Orb_39
+      rect:
+        serializedVersion: 2
+        x: 522
+        y: 95
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 936a0badd48750d80800000000000000
+      internalID: -8285083663701334471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark Orb_40
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 81
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a011fe98f0a028b0800000000000000
+      internalID: -5178962581797138272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark Orb_41
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 79
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6e43e6a0d0fc4c70800000000000000
+      internalID: 8956798537876852335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark Orb_42
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 79
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af2d618ef23908080800000000000000
+      internalID: -9187181405869255942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Dark Orb_0: 7515139026188779267
+      Dark Orb_1: 3585800999903861160
+      Dark Orb_10: 1956681036412233196
+      Dark Orb_11: -6732982233985963357
+      Dark Orb_12: 5088655140316031155
+      Dark Orb_13: -1097348568277709073
+      Dark Orb_14: 7226765797600322101
+      Dark Orb_15: 3144761368633417184
+      Dark Orb_16: -1871539044482896573
+      Dark Orb_17: -6500115648612780161
+      Dark Orb_18: -8283173981601793643
+      Dark Orb_19: -4911760304599071288
+      Dark Orb_2: -2727803499264586705
+      Dark Orb_20: 8044200717549009334
+      Dark Orb_21: -352472648376828250
+      Dark Orb_22: -164196108153408923
+      Dark Orb_23: 7579098590745075313
+      Dark Orb_24: -8810772754926330141
+      Dark Orb_25: -4947232540295767096
+      Dark Orb_26: 7895000902634041693
+      Dark Orb_27: 1402569100379970960
+      Dark Orb_28: 4104948356846522784
+      Dark Orb_29: 1290361915408765985
+      Dark Orb_3: 7047729146683675117
+      Dark Orb_30: 6310870408299998319
+      Dark Orb_31: 7187365519790728475
+      Dark Orb_32: 3152700596951747874
+      Dark Orb_33: -7570545443764660876
+      Dark Orb_34: -4536242122318597830
+      Dark Orb_35: 1255518918156040935
+      Dark Orb_36: -439277761806625310
+      Dark Orb_37: 5250783358235706647
+      Dark Orb_38: -1256346899349843599
+      Dark Orb_39: -8285083663701334471
+      Dark Orb_4: 1854929529909214993
+      Dark Orb_40: -5178962581797138272
+      Dark Orb_41: 8956798537876852335
+      Dark Orb_42: -9187181405869255942
+      Dark Orb_5: -9003133072155363644
+      Dark Orb_6: 1526418208635095790
+      Dark Orb_7: -2553765823624284219
+      Dark Orb_8: 1139567607725904635
+      Dark Orb_9: -1887928539286240522
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
