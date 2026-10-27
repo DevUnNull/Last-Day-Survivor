@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8558148423794f9987e1f4454a63182, type: 3}
+  m_Name: Map_1_SkyRuins
+  m_EditorClassIdentifier: Assembly-CSharp::MapData
+  mapId: map_sky_ruins
+  mapName: "Ph\u1EBF T\xEDch B\u1EA7u Tr\u1EDDi"
+  description: "T\xE0n t\xEDch ma thu\u1EADt c\u1ED5 x\u01B0a l\u01A1 l\u1EEDng tr\xEAn
+    ch\xEDn t\u1EA7ng m\xE2y. S\u1ED1ng s\xF3t tr\u01B0\u1EDBc c\xE1c \u0111\u1EE3t
+    qu\xE1i v\u1EADt cho \u0111\u1EBFn khi Long V\u01B0\u01A1ng B\u1EA7u Tr\u1EDDi
+    th\u1EE9c t\u1EC9nh."
+  previewSprite: {fileID: 3468244779728606172, guid: 641c518c544064b4c8b1e4c5b859215b, type: 3}
+  backgroundSprite: {fileID: 3468244779728606172, guid: 641c518c544064b4c8b1e4c5b859215b, type: 3}
+  difficulty: "D\u1EC4 \u2605\u2606\u2606"
+  difficultyRating: 1
+  sceneName: 2_InGame
+  ambientColor: {r: 0.95, g: 0.98, b: 1, a: 1}
+  backgroundColorTint: {r: 1, g: 1, b: 1, a: 1}
+  survivalDuration: 300
+  unlockRequirementMapId: 
+  isUnlockedByDefault: 1
+  bossData: {fileID: 11400000, guid: 42c320cb3b67c47449206935e58f0e3b, type: 2}
+  baseSpawnInterval: 2.5
+  minSpawnInterval: 0.3
+  intervalDecreaseRate: 0.05
+  baseEnemyHealth: 50
+  enemySpeedMultiplier: 1

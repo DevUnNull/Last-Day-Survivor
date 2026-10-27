@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8558148423794f9987e1f4454a63182, type: 3}
+  m_Name: Map_3_AbyssalEclipse
+  m_EditorClassIdentifier: Assembly-CSharp::MapData
+  mapId: map_abyssal_eclipse
+  mapName: "Nh\u1EADt Th\u1EF1c V\u1EF1c S\xE2u"
+  description: "Mi\u1EC1n \u0111\u1EA5t ho\xE0ng h\xF4n v\u0129nh h\u1EB1ng ch\u1EE9a
+    ma ph\xE1p h\u01B0 kh\xF4ng v\u0169 tr\u1EE5 v\xE0 c\xE1c \u0111\u1EC1n th\u1EDD
+    c\u1ED5 x\u01B0a \u0111\u01B0\u1EE3c canh gi\u1EEF b\u1EDFi Titan V\u1EF1c Th\u1EB3m."
+  previewSprite: {fileID: -5989462958255894664, guid: 23f664c7766c9447b8fe9eaeda88059f, type: 3}
+  backgroundSprite: {fileID: -5989462958255894664, guid: 23f664c7766c9447b8fe9eaeda88059f, type: 3}
+  difficulty: "C\u1EF0C KH\xD3 \u2605\u2605\u2605"
+  difficultyRating: 3
+  sceneName: 2_InGame
+  ambientColor: {r: 0.75, g: 0.65, b: 0.9, a: 1}
+  backgroundColorTint: {r: 0.9, g: 0.85, b: 1, a: 1}
+  survivalDuration: 300
+  unlockRequirementMapId: map_dark_storm
+  isUnlockedByDefault: 0
+  bossData: {fileID: 11400000, guid: 2c80105d7d47a48c59bfae34b4e3b1a7, type: 2}
+  baseSpawnInterval: 2.5
+  minSpawnInterval: 0.3
+  intervalDecreaseRate: 0.05
+  baseEnemyHealth: 50
+  enemySpeedMultiplier: 1

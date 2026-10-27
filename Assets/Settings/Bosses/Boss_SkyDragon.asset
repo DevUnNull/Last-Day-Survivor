@@ -1,0 +1,205 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54175e6f5828d45d987d4e45f5316a20, type: 3}
+  m_Name: Boss_SkyDragon
+  m_EditorClassIdentifier: Assembly-CSharp::BossData
+  bossId: sky_dragon
+  bossName: "LONG V\u01AF\u01A0NG B\u1EA6U TR\u1EDCI"
+  bossTitle: "Tai \u01AF\u01A1ng C\u1EE7a B\u1EA7u Tr\u1EDDi C\u1ED5 \u0110\u1EA1i"
+  bossIcon: {fileID: 3482030557965037171, guid: 3855faddd97254b609d61b2f445f86df, type: 3}
+  defaultSprite: {fileID: 3482030557965037171, guid: 3855faddd97254b609d61b2f445f86df, type: 3}
+  maxHealth: 4500
+  contactDamage: 25
+  healthScalePerPlayerLevel: 0.35
+  damageScalePerPlayerLevel: 0.15
+  phases:
+  - phaseName: "Giai \u0110o\u1EA1n 1: Long V\u01B0\u01A1ng Th\u1EE9c T\u1EC9nh"
+    healthThreshold: 1
+    moveSpeed: 2.8
+    preferredDistanceToPlayer: 6
+    attackInterval: 2
+    phaseTint: {r: 1, g: 1, b: 1, a: 1}
+    attacks:
+    - attackName: "H\u01A1i Th\u1EDF R\u1ED3ng L\u1EEDa"
+      patternType: 0
+      animationTrigger: Attack
+      damage: 25
+      attackRange: 12
+      minRange: 0
+      cooldown: 4
+      telegraphDuration: 1
+      castTime: 0.3
+      attackDuration: 0.6
+      recoveryDuration: 0.8
+      telegraphType: 2
+      areaRadius: 3
+      areaSize: {x: 2, y: 12}
+      coneAngle: 60
+      projectilePrefab: {fileID: 0}
+      vfxPrefab: {fileID: 0}
+      summonPrefab: {fileID: 0}
+      summonCount: 2
+      projectileCount: 5
+      projectileSpreadAngle: 25
+      projectileSpeed: 10
+      projectileLifetime: 4
+    - attackName: "C\xFA Lao C\u1EE7a R\u1ED3ng"
+      patternType: 2
+      animationTrigger: Attack
+      damage: 35
+      attackRange: 10
+      minRange: 3
+      cooldown: 6
+      telegraphDuration: 1.2
+      castTime: 0.2
+      attackDuration: 0.5
+      recoveryDuration: 1
+      telegraphType: 2
+      areaRadius: 3
+      areaSize: {x: 3, y: 10}
+      coneAngle: 60
+      projectilePrefab: {fileID: 0}
+      vfxPrefab: {fileID: 0}
+      summonPrefab: {fileID: 0}
+      summonCount: 2
+      projectileCount: 1
+      projectileSpreadAngle: 0
+      projectileSpeed: 14
+      projectileLifetime: 5
+    - attackName: "S\xF3ng Gi\xF3 C\xE1nh R\u1ED3ng"
+      patternType: 4
+      animationTrigger: Attack
+      damage: 18
+      attackRange: 8
+      minRange: 0
+      cooldown: 5.5
+      telegraphDuration: 0.8
+      castTime: 0.2
+      attackDuration: 0.4
+      recoveryDuration: 0.7
+      telegraphType: 1
+      areaRadius: 4
+      areaSize: {x: 2, y: 12}
+      coneAngle: 60
+      projectilePrefab: {fileID: 0}
+      vfxPrefab: {fileID: 0}
+      summonPrefab: {fileID: 0}
+      summonCount: 2
+      projectileCount: 10
+      projectileSpreadAngle: 0
+      projectileSpeed: 8
+      projectileLifetime: 3.5
+  - phaseName: "Giai \u0110o\u1EA1n 2: Long V\u01B0\u01A1ng N\u1ED9 Kh\xED"
+    healthThreshold: 0.5
+    moveSpeed: 3.6
+    preferredDistanceToPlayer: 5
+    attackInterval: 1.3
+    phaseTint: {r: 1, g: 0.6, b: 0.6, a: 1}
+    attacks:
+    - attackName: "C\xFA B\u1ED5 Tr\u1EDDi Gi\xE1ng"
+      patternType: 1
+      animationTrigger: Attack
+      damage: 45
+      attackRange: 14
+      minRange: 0
+      cooldown: 4.5
+      telegraphDuration: 1.1
+      castTime: 0.3
+      attackDuration: 0.5
+      recoveryDuration: 0.7
+      telegraphType: 1
+      areaRadius: 3.5
+      areaSize: {x: 2, y: 12}
+      coneAngle: 60
+      projectilePrefab: {fileID: 0}
+      vfxPrefab: {fileID: 0}
+      summonPrefab: {fileID: 0}
+      summonCount: 2
+      projectileCount: 1
+      projectileSpreadAngle: 0
+      projectileSpeed: 8
+      projectileLifetime: 5
+    - attackName: "Thi\xEAn H\u1ECFa Cu\u1ED3ng N\u1ED9"
+      patternType: 0
+      animationTrigger: Attack
+      damage: 30
+      attackRange: 14
+      minRange: 0
+      cooldown: 3.5
+      telegraphDuration: 0.9
+      castTime: 0.2
+      attackDuration: 0.7
+      recoveryDuration: 0.6
+      telegraphType: 2
+      areaRadius: 3
+      areaSize: {x: 2.5, y: 14}
+      coneAngle: 60
+      projectilePrefab: {fileID: 0}
+      vfxPrefab: {fileID: 0}
+      summonPrefab: {fileID: 0}
+      summonCount: 2
+      projectileCount: 9
+      projectileSpreadAngle: 40
+      projectileSpeed: 12
+      projectileLifetime: 4
+    - attackName: "Tri\u1EC7u H\u1ED3i Long Binh"
+      patternType: 5
+      animationTrigger: Attack
+      damage: 0
+      attackRange: 20
+      minRange: 0
+      cooldown: 12
+      telegraphDuration: 0.8
+      castTime: 0.4
+      attackDuration: 0.5
+      recoveryDuration: 0.8
+      telegraphType: 1
+      areaRadius: 3
+      areaSize: {x: 2, y: 12}
+      coneAngle: 60
+      projectilePrefab: {fileID: 0}
+      vfxPrefab: {fileID: 0}
+      summonPrefab: {fileID: 4197338611000075993, guid: 6d6c918954f6d43d5bc7900e4e480b16, type: 3}
+      summonCount: 3
+      projectileCount: 1
+      projectileSpreadAngle: 0
+      projectileSpeed: 8
+      projectileLifetime: 5
+    - attackName: "\u0110o\xE0n Qu\xE2n Qu\xE1i Th\xFA Tr\xE0n V\xE0o"
+      patternType: 6
+      animationTrigger: Attack
+      damage: 15
+      attackRange: 20
+      minRange: 0
+      cooldown: 11
+      telegraphDuration: 1
+      castTime: 0.3
+      attackDuration: 0.5
+      recoveryDuration: 0.8
+      telegraphType: 1
+      areaRadius: 7.5
+      areaSize: {x: 2, y: 12}
+      coneAngle: 60
+      projectilePrefab: {fileID: 0}
+      vfxPrefab: {fileID: 0}
+      summonPrefab: {fileID: 0}
+      summonCount: 14
+      projectileCount: 1
+      projectileSpreadAngle: 0
+      projectileSpeed: 8
+      projectileLifetime: 5
+  introDuration: 2
+  deathDuration: 2.5
+  spawnVFXPrefab: {fileID: 0}
+  deathVFXPrefab: {fileID: 0}
+  expReward: 500
+  goldReward: 1000

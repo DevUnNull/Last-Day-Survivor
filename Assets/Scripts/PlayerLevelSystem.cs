@@ -37,11 +37,35 @@ public class PlayerLevelSystem : MonoBehaviour
         OnExpChanged?.Invoke(currentExp, expToNextLevel, currentLevel);
     }
 
-    public int CalculateRequiredExp(int level)
+    public static int CalculateRequiredExp(int level)
     {
-        // Smooth exponential-linear roguelite scaling
-        // Lv 1->2: 25, Lv 2->3: 45, Lv 3->4: 70, Lv 4->5: 100, etc.
-        return 15 + level * 10 + Mathf.RoundToInt(Mathf.Pow(level, 1.35f) * 8f);
+        // Roguelite steep progression curve:
+        // Early levels are accessible, but mid-to-high levels become exponentially harder.
+        // Lv 1: 40 EXP (needs 4 gems)
+        // Lv 2: 110 EXP (needs 11 gems)
+        // Lv 3: 200 EXP (needs 20 gems)
+        // Lv 5: 450 EXP
+        // Lv 10: ~1,500 EXP
+        // Lv 15: ~3,400 EXP
+        // Lv 20: ~6,200 EXP
+        if (level <= 1) return 40;
+
+        float baseRequirement = 40f;
+        float linearGrowth = level * 25f;
+        float exponentialGrowth = Mathf.Pow(level, 1.85f) * 18f;
+
+        // Tier jumps after Level 10 and Level 20
+        float tierBonus = 0f;
+        if (level > 20)
+        {
+            tierBonus = (level - 20) * 120f + 10 * 50f;
+        }
+        else if (level > 10)
+        {
+            tierBonus = (level - 10) * 50f;
+        }
+
+        return Mathf.RoundToInt(baseRequirement + linearGrowth + exponentialGrowth + tierBonus);
     }
 
     public void AddExp(int amount)

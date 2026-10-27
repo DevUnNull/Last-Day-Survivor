@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8558148423794f9987e1f4454a63182, type: 3}
+  m_Name: Map_2_DarkStorm
+  m_EditorClassIdentifier: Assembly-CSharp::MapData
+  mapId: map_dark_storm
+  mapName: "B\xE3o T\u1ED1i L\xF4i \u0110\xECnh"
+  description: "B\u1EA7u tr\u1EDDi t\xE0 \xE1c b\u1ECB nu\u1ED1t ch\u1EEDng b\u1EDFi
+    s\u1EA5m s\xE9t cu\u1ED3ng lo\u1EA1n v\xE0 b\xE3o t\u1ED1 c\u1EA5m k\u1EF5. L\xE3nh
+    \u0111\u1ECBa cai tr\u1ECB b\u1EDFi Kh\u1ED5ng L\u1ED3 S\u1EA5m S\xE9t."
+  previewSprite: {fileID: -1046444227985733684, guid: 7f5792884b00e4ac3b53704f31d3f7ff, type: 3}
+  backgroundSprite: {fileID: -1046444227985733684, guid: 7f5792884b00e4ac3b53704f31d3f7ff, type: 3}
+  difficulty: "TRUNG B\xCCNH \u2605\u2605\u2606"
+  difficultyRating: 2
+  sceneName: 2_InGame
+  ambientColor: {r: 0.75, g: 0.8, b: 0.95, a: 1}
+  backgroundColorTint: {r: 0.85, g: 0.9, b: 1, a: 1}
+  survivalDuration: 300
+  unlockRequirementMapId: map_sky_ruins
+  isUnlockedByDefault: 0
+  bossData: {fileID: 11400000, guid: b145a135fd9924b84aa8389821648275, type: 2}
+  baseSpawnInterval: 2.5
+  minSpawnInterval: 0.3
+  intervalDecreaseRate: 0.05
+  baseEnemyHealth: 50
+  enemySpeedMultiplier: 1

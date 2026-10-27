@@ -9,6 +9,7 @@ public class GameOverManager : MonoBehaviour
     [Header("UI References")]
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private Button restartButton;
+    [SerializeField] private Button homeButton;
 
     private void Awake()
     {
@@ -24,6 +25,11 @@ public class GameOverManager : MonoBehaviour
         {
             restartButton.onClick.AddListener(RestartGame);
         }
+
+        if (homeButton != null)
+        {
+            homeButton.onClick.AddListener(ReturnToMainMenu);
+        }
     }
 
     public void ShowGameOver()
@@ -38,5 +44,11 @@ public class GameOverManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void ReturnToMainMenu()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("1_1_MainMenu");
     }
 }

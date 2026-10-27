@@ -33,6 +33,17 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    public void SetCombatStats(int newDamage, float speedMult = 1f, Color? tint = null)
+    {
+        this.damageAmount = newDamage;
+        this.moveSpeed *= speedMult;
+        if (tint.HasValue && spriteRenderer != null)
+        {
+            this.originalColor = tint.Value;
+            this.spriteRenderer.color = tint.Value;
+        }
+    }
+
     public void ApplySlow(float speedMultiplier, float duration)
     {
         slowFactor = Mathf.Min(slowFactor, speedMultiplier);
