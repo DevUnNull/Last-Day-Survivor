@@ -36,6 +36,12 @@ public class EnemyHealth : MonoBehaviour
         if (currentHealth <= 0) return;
 
         currentHealth -= damage;
+
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayEnemyHit();
+        }
+
         onHealthChanged?.Invoke(currentHealth, maxHealth);
 
         if (currentHealth <= 0)
@@ -47,6 +53,11 @@ public class EnemyHealth : MonoBehaviour
 
     protected virtual void Die()
     {
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayEnemyDeath();
+        }
+
         onDied?.Invoke();
 
         if (expGemPrefab != null)

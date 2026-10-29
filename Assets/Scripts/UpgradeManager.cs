@@ -393,6 +393,7 @@ public class UpgradeManager : MonoBehaviour
                 onSelected = () =>
                 {
                     magneticPendantRank++;
+                    if (AudioManager.Instance != null) AudioManager.Instance.PlayMagnetPickup();
                     if (playerStats != null) playerStats.AddPickupRange(1.6f);
                 }
             });
@@ -415,6 +416,7 @@ public class UpgradeManager : MonoBehaviour
             description = "Restores 35 HP immediately.",
             onSelected = () =>
             {
+                if (AudioManager.Instance != null) AudioManager.Instance.PlayPotionPickup();
                 if (playerHealth != null) playerHealth.Heal(35);
             }
         };

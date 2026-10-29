@@ -68,6 +68,11 @@ public class Bullet : MonoBehaviour
         EnemyHealth enemyHealth = target.GetComponent<EnemyHealth>();
         if (enemyHealth != null)
         {
+            if (AudioManager.Instance != null)
+            {
+                AudioManager.Instance.PlayBoltImpact();
+            }
+
             enemyHealth.TakeDamage(damage);
             hitCount++;
             if (hitCount > pierceCount)

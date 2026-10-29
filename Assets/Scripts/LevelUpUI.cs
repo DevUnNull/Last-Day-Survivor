@@ -14,11 +14,6 @@ public class LevelUpUI : MonoBehaviour
 
     public bool IsShowing => modalPanel != null && modalPanel.activeSelf;
 
-    private void Awake()
-    {
-        // Keep initial state as configured in scene
-    }
-
     public void Show(List<UpgradeOption> options)
     {
         if (modalPanel != null)
@@ -28,6 +23,11 @@ public class LevelUpUI : MonoBehaviour
 
         // Pause gameplay
         Time.timeScale = 0f;
+
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayCardAppear();
+        }
 
         if (headerTitleText != null)
         {
@@ -59,6 +59,11 @@ public class LevelUpUI : MonoBehaviour
 
     public void OnCardClicked(UpgradeOption option)
     {
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayCardSelect();
+        }
+
         if (UpgradeManager.Instance != null)
         {
             UpgradeManager.Instance.OnUpgradeChosen(option);

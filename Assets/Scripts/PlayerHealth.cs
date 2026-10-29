@@ -26,12 +26,20 @@ public class PlayerHealth : MonoBehaviour
             currentHealth = Mathf.Min(currentHealth + amount, maxHealth);
         }
         onHealthChanged?.Invoke(currentHealth, maxHealth);
+        CheckLowHealthState();
     }
 
     public void Heal(int amount)
     {
         currentHealth = Mathf.Min(currentHealth + amount, maxHealth);
         onHealthChanged?.Invoke(currentHealth, maxHealth);
+
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayPlayerHeal();
+        }
+
+        CheckLowHealthState();
     }
 
     public void TakeDamage(int damage)
@@ -49,21 +57,52 @@ public class PlayerHealth : MonoBehaviour
         currentHealth -= damage;
         if (currentHealth < 0) currentHealth = 0;
 
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayPlayerHurt();
+        }
+
         onHealthChanged?.Invoke(currentHealth, maxHealth);
 
         if (currentHealth <= 0)
         {
             Die();
         }
+        else
+        {
+            CheckLowHealthState();
+        }
+    }
+
+    private void CheckLowHealthState()
+    {
+        if (AudioManager.Instance == null) return;
+
+        bool isLowHealth = currentHealth > 0 && currentHealth <= (maxHealth * 0.3f);
+        AudioManager.Instance.SetLowHealthLoop(isLowHealth);
     }
 
     private void Die()
     {
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayPlayerDie();
+            AudioManager.Instance.SetLowHealthLoop(false);
+        }
+
         onPlayerDied?.Invoke();
         if (GameOverManager.Instance != null)
         {
             GameOverManager.Instance.ShowGameOver();
         }
         gameObject.SetActive(false);
+    }
+
+    private void OnDisable()
+    {
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.SetLowHealthLoop(false);
+        }
     }
 }

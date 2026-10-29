@@ -76,6 +76,11 @@ public class ExpGem : MonoBehaviour
 
     private void Collect()
     {
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayGemPickup();
+        }
+
         if (PlayerLevelSystem.Instance != null)
         {
             PlayerLevelSystem.Instance.AddExp(expValue);

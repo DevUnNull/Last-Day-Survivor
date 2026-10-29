@@ -1,4 +1,3 @@
-
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -12,6 +11,9 @@ public class UIButtonAnimation : MonoBehaviour,
     [SerializeField] private float hoverScale = 1.1f;
     [SerializeField] private float clickScale = 0.95f;
     [SerializeField] private float animationSpeed = 15f;
+
+    [Header("Audio Settings")]
+    [SerializeField] private bool playAudio = true;
 
     private RectTransform rectTransform;
     private Vector3 originalScale;
@@ -42,6 +44,11 @@ public class UIButtonAnimation : MonoBehaviour,
     {
         isHovering = true;
         UpdateTargetScale();
+
+        if (playAudio && AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayUIHover();
+        }
     }
 
     // Khi chuột rời khỏi Button
@@ -59,6 +66,11 @@ public class UIButtonAnimation : MonoBehaviour,
 
         isPressing = true;
         UpdateTargetScale();
+
+        if (playAudio && AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayUIClick();
+        }
     }
 
     // Khi thả chuột

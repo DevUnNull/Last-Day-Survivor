@@ -67,6 +67,11 @@ public class IceSpearProjectile : MonoBehaviour
         if (hitEnemyIds.Contains(id)) return;
         hitEnemyIds.Add(id);
 
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayIceSpearPierce();
+        }
+
         EnemyHealth enemyHealth = target.GetComponent<EnemyHealth>();
         if (enemyHealth != null)
         {

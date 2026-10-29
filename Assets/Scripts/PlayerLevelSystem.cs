@@ -87,9 +87,17 @@ public class PlayerLevelSystem : MonoBehaviour
 
         OnExpChanged?.Invoke(currentExp, expToNextLevel, currentLevel);
 
-        if (leveledUp && UpgradeManager.Instance != null && !UpgradeManager.Instance.IsActive)
+        if (leveledUp)
         {
-            UpgradeManager.Instance.ShowLevelUpSelection();
+            if (AudioManager.Instance != null)
+            {
+                AudioManager.Instance.PlayLevelUpJingle();
+            }
+
+            if (UpgradeManager.Instance != null && !UpgradeManager.Instance.IsActive)
+            {
+                UpgradeManager.Instance.ShowLevelUpSelection();
+            }
         }
     }
 

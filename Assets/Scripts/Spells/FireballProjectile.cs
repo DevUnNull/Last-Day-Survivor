@@ -70,6 +70,11 @@ public class FireballProjectile : MonoBehaviour
         if (hasExploded) return;
         hasExploded = true;
 
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayFireballExplode();
+        }
+
         // Damage all enemies in explosion radius
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
         foreach (var col in hits)

@@ -50,6 +50,11 @@ public class DarkOrbSpell : MonoBehaviour
                 break;
         }
 
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.SetDarkOrbLoop(true);
+        }
+
         RebuildOrbs();
     }
 
@@ -70,8 +75,6 @@ public class DarkOrbSpell : MonoBehaviour
             if (orb != null) Destroy(orb);
         }
         activeOrbs.Clear();
-
-        if (currentLevel <= 0) return;
 
         if (cachedOrbSprite == null)
         {
@@ -124,6 +127,14 @@ public class DarkOrbSpell : MonoBehaviour
         float mod = PlayerStats.Instance != null ? PlayerStats.Instance.MagicDamageMultiplier : 1f;
         return Mathf.RoundToInt(baseDamage * mod);
     }
+
+    private void OnDisable()
+    {
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.SetDarkOrbLoop(false);
+        }
+    }
 }
 
 public class DarkOrbContact : MonoBehaviour
@@ -158,6 +169,10 @@ public class DarkOrbContact : MonoBehaviour
             if (!lastHitTime.ContainsKey(id) || Time.time >= lastHitTime[id] + HitCooldown)
             {
                 lastHitTime[id] = Time.time;
+                if (AudioManager.Instance != null)
+                {
+                    AudioManager.Instance.PlayDarkOrbHit();
+                }
                 if (parentSpell != null)
                 {
                     enemy.TakeDamage(parentSpell.GetCurrentDamage());

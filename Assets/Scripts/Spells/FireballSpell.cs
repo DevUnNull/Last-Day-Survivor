@@ -66,6 +66,11 @@ public class FireballSpell : MonoBehaviour
         List<Transform> targets = FindEnemies(fireballCount);
         if (targets.Count == 0) return;
 
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayFireballLaunch();
+        }
+
         float dmgMod = PlayerStats.Instance != null ? PlayerStats.Instance.MagicDamageMultiplier : 1f;
         int finalDamage = Mathf.RoundToInt(baseDamage * dmgMod);
 

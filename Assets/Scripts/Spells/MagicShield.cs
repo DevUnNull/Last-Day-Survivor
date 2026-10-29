@@ -51,6 +51,12 @@ public class MagicShield : MonoBehaviour
         }
 
         currentShield = maxShield;
+
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayShieldActivate();
+        }
+
         UpdateVisual();
     }
 
@@ -68,6 +74,10 @@ public class MagicShield : MonoBehaviour
         if (currentShield < maxShield && Time.time >= lastDamageTime + regenDelay)
         {
             currentShield = maxShield;
+            if (AudioManager.Instance != null)
+            {
+                AudioManager.Instance.PlayShieldRegen();
+            }
             UpdateVisual();
         }
 
@@ -91,6 +101,10 @@ public class MagicShield : MonoBehaviour
         if (currentShield >= incomingDamage)
         {
             currentShield -= incomingDamage;
+            if (AudioManager.Instance != null)
+            {
+                AudioManager.Instance.PlayShieldAbsorb();
+            }
             UpdateVisual();
             return 0; // Completely absorbed!
         }
@@ -98,6 +112,12 @@ public class MagicShield : MonoBehaviour
         {
             int remainingDamage = incomingDamage - currentShield;
             currentShield = 0;
+
+            if (AudioManager.Instance != null)
+            {
+                AudioManager.Instance.PlayShieldBreak();
+            }
+
             UpdateVisual();
 
             if (currentLevel >= 3)

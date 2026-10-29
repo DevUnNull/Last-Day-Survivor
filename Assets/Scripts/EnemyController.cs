@@ -122,6 +122,11 @@ public class EnemyController : MonoBehaviour
         PlayerHealth playerHealth = target.GetComponent<PlayerHealth>();
         if (playerHealth != null)
         {
+            if (AudioManager.Instance != null)
+            {
+                AudioManager.Instance.PlayEnemyAttack();
+            }
+
             playerHealth.TakeDamage(damageAmount);
             lastDamageTime = Time.time;
         }

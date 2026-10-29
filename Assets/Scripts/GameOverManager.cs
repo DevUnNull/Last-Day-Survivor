@@ -34,6 +34,13 @@ public class GameOverManager : MonoBehaviour
 
     public void ShowGameOver()
     {
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.StopBGM();
+            AudioManager.Instance.PlayGameOverJingle();
+            AudioManager.Instance.PlayGameOverPopup();
+        }
+
         if (gameOverPanel != null)
         {
             gameOverPanel.SetActive(true);

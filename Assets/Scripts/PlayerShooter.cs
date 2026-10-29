@@ -83,6 +83,11 @@ public class PlayerShooter : MonoBehaviour
     {
         if (bulletPrefab == null) return;
 
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayBoltCast();
+        }
+
         Vector2 baseDir = ((Vector2)target.position - (Vector2)transform.position).normalized;
         float damageMod = PlayerStats.Instance != null ? PlayerStats.Instance.MagicDamageMultiplier : 1f;
         int finalDamage = Mathf.RoundToInt(baseBulletDamage * damageMod);

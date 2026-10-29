@@ -7,10 +7,12 @@ public class TopDownPlayerController : MonoBehaviour
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private bool flipSpriteTowardsMovement = true;
     [SerializeField] private bool invertFlipX = true; // Set true if default sprite faces Left
+    [SerializeField] private float stepInterval = 0.32f;
 
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
     private Vector2 moveInput;
+    private float stepTimer = 0f;
 
     private void Awake()
     {
@@ -73,6 +75,24 @@ public class TopDownPlayerController : MonoBehaviour
             {
                 spriteRenderer.flipX = !invertFlipX; // Left movement
             }
+        }
+
+        // Footstep audio logic
+        if (moveInput.sqrMagnitude > 0.01f)
+        {
+            stepTimer -= Time.deltaTime;
+            if (stepTimer <= 0f)
+            {
+                stepTimer = stepInterval;
+                if (AudioManager.Instance != null)
+                {
+                    AudioManager.Instance.PlayPlayerFootstep();
+                }
+            }
+        }
+        else
+        {
+            stepTimer = 0.05f; // Fast trigger on first step
         }
     }
 

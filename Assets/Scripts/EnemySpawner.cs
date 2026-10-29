@@ -94,6 +94,11 @@ public class EnemySpawner : MonoBehaviour
             eh.SetHealthStats(health, expReward);
         }
 
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayEnemySpawn();
+        }
+
         return spawned;
     }
 
