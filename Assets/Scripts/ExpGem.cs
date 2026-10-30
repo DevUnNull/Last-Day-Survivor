@@ -3,7 +3,7 @@ using UnityEngine;
 public class ExpGem : MonoBehaviour
 {
     [Header("EXP Properties")]
-    [SerializeField] private int expValue = 10;
+    [SerializeField] private int expValue = 15;
     [SerializeField] private float initialFlySpeed = 2f;
     [SerializeField] private float flyAcceleration = 18f;
 
@@ -89,7 +89,7 @@ public class ExpGem : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public static ExpGem Spawn(Vector3 position, int expAmount = 10)
+    public static ExpGem Spawn(Vector3 position, int expAmount = 15)
     {
         GameObject gemObj = new GameObject("ExpGem");
         gemObj.transform.position = position;

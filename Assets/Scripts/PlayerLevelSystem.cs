@@ -8,7 +8,7 @@ public class PlayerLevelSystem : MonoBehaviour
     [Header("Progression Data")]
     [SerializeField] private int currentLevel = 1;
     [SerializeField] private int currentExp = 0;
-    [SerializeField] private int expToNextLevel = 25;
+    [SerializeField] private int expToNextLevel = 15;
     [SerializeField] private int pendingLevelUps = 0;
 
     public int CurrentLevel => currentLevel;
@@ -39,30 +39,32 @@ public class PlayerLevelSystem : MonoBehaviour
 
     public static int CalculateRequiredExp(int level)
     {
-        // Roguelite steep progression curve:
-        // Early levels are accessible, but mid-to-high levels become exponentially harder.
-        // Lv 1: 40 EXP (needs 4 gems)
-        // Lv 2: 110 EXP (needs 11 gems)
-        // Lv 3: 200 EXP (needs 20 gems)
-        // Lv 5: 450 EXP
-        // Lv 10: ~1,500 EXP
-        // Lv 15: ~3,400 EXP
-        // Lv 20: ~6,200 EXP
-        if (level <= 1) return 40;
+        // Smooth early-game progression for fast leveling:
+        // Lv 1: 15 EXP (1 early-game kill = instant Level 2 upgrade)
+        // Lv 2: 35 EXP (~2 kills -> Level 3)
+        // Lv 3: 65 EXP (~3-4 kills -> Level 4)
+        // Lv 4: 105 EXP (~5-6 kills -> Level 5)
+        // Lv 5: 155 EXP (~7-8 kills -> Level 6)
+        if (level <= 1) return 15;
+        if (level == 2) return 35;
+        if (level == 3) return 65;
+        if (level == 4) return 105;
+        if (level == 5) return 155;
 
-        float baseRequirement = 40f;
+        // Level 6 and beyond: smooth progressive scaling
+        float baseRequirement = 15f;
         float linearGrowth = level * 25f;
-        float exponentialGrowth = Mathf.Pow(level, 1.85f) * 18f;
+        float exponentialGrowth = Mathf.Pow(level, 1.6f) * 6f;
 
         // Tier jumps after Level 10 and Level 20
         float tierBonus = 0f;
         if (level > 20)
         {
-            tierBonus = (level - 20) * 120f + 10 * 50f;
+            tierBonus = (level - 20) * 80f + 10 * 30f;
         }
         else if (level > 10)
         {
-            tierBonus = (level - 10) * 50f;
+            tierBonus = (level - 10) * 30f;
         }
 
         return Mathf.RoundToInt(baseRequirement + linearGrowth + exponentialGrowth + tierBonus);

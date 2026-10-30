@@ -8,7 +8,7 @@ public class EnemyHealth : MonoBehaviour
 
     [Header("EXP Drop")]
     [SerializeField] protected GameObject expGemPrefab;
-    [SerializeField] protected int expDropValue = 10;
+    [SerializeField] protected int expDropValue = 15;
 
     public int CurrentHealth => currentHealth;
     public int MaxHealth => maxHealth;

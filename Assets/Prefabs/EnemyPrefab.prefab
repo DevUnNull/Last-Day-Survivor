@@ -190,7 +190,7 @@ MonoBehaviour:
   maxHealth: 50
   currentHealth: 0
   expGemPrefab: {fileID: 5297660217928653704, guid: 1a55953fbc98b87418688594e8952f3a, type: 3}
-  expDropValue: 10
+  expDropValue: 15
 --- !u!95 &2665954357473798230
 Animator:
   serializedVersion: 7

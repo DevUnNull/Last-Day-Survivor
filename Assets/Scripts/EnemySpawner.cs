@@ -72,7 +72,7 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    public GameObject SpawnCustomEnemy(Vector3 position, int health, int damage, float speedMult = 1f, Color? tint = null, float scaleMult = 1f, int expReward = 10)
+    public GameObject SpawnCustomEnemy(Vector3 position, int health, int damage, float speedMult = 1f, Color? tint = null, float scaleMult = 1f, int expReward = 15)
     {
         if (enemyPrefab == null) return null;
         GameObject spawned = Instantiate(enemyPrefab, position, Quaternion.identity);
@@ -123,7 +123,9 @@ public class EnemySpawner : MonoBehaviour
 
         int finalHealth = Mathf.RoundToInt(baseEnemyHealth * hpMult);
         int finalDamage = Mathf.RoundToInt(baseEnemyDamage * dmgMult);
-        int expReward = 10;
+
+        // Base EXP: 15 EXP per normal monster, boosted to 20 EXP during the first 2 minutes (early game fast leveling)
+        int expReward = minutesElapsed < 2.0f ? 20 : 15;
         float scaleMult = 1f;
         float speedMult = 1.0f;
         Color? tint = null;
@@ -132,7 +134,7 @@ public class EnemySpawner : MonoBehaviour
         {
             finalHealth = Mathf.RoundToInt(finalHealth * 2.8f);
             finalDamage = Mathf.RoundToInt(finalDamage * 1.6f);
-            expReward = 35;
+            expReward = minutesElapsed < 2.0f ? 60 : 50;
             scaleMult = 1.45f;
             speedMult = 1.15f;
             tint = new Color(1f, 0.45f, 0.2f, 1f); // fiery golden/orange tint

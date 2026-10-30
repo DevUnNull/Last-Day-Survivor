@@ -8067,7 +8067,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerLevelSystem
   currentLevel: 1
   currentExp: 0
-  expToNextLevel: 25
+  expToNextLevel: 15
   pendingLevelUps: 0
 --- !u!114 &2141069101
 MonoBehaviour:
