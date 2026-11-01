@@ -4,25 +4,25 @@ public class EnemySpawner : MonoBehaviour
 {
     [Header("Spawn Settings")]
     [SerializeField] private GameObject enemyPrefab;
-    [SerializeField] private float initialSpawnInterval = 2.0f;
-    [SerializeField] private float minimumSpawnInterval = 0.25f;
-    [SerializeField] private float spawnIntervalDecreaseRate = 0.04f;
+    [SerializeField] private float initialSpawnInterval = 2.5f;
+    [SerializeField] private float minimumSpawnInterval = 0.45f;
+    [SerializeField] private float spawnIntervalDecreaseRate = 0.015f;
 
     [Header("Spawn Distance (Outside View)")]
     [SerializeField] private float spawnRadiusMin = 10f;
     [SerializeField] private float spawnRadiusMax = 14f;
 
     [Header("Base Monster Attributes")]
-    [SerializeField] private int baseEnemyHealth = 50;
-    [SerializeField] private int baseEnemyDamage = 10;
+    [SerializeField] private int baseEnemyHealth = 45;
+    [SerializeField] private int baseEnemyDamage = 8;
 
     [Header("Time-Based Progression Scaling")]
-    [Tooltip("Health increase percentage per minute (e.g. 0.8 = +80% HP per minute)")]
-    [SerializeField] private float healthScalePerMinute = 0.85f;
-    [Tooltip("Damage increase percentage per minute (e.g. 0.45 = +45% Damage per minute)")]
-    [SerializeField] private float damageScalePerMinute = 0.45f;
+    [Tooltip("Health increase percentage per minute (e.g. 0.4 = +40% HP per minute)")]
+    [SerializeField] private float healthScalePerMinute = 0.45f;
+    [Tooltip("Damage increase percentage per minute (e.g. 0.25 = +25% Damage per minute)")]
+    [SerializeField] private float damageScalePerMinute = 0.25f;
     [Tooltip("Base chance to spawn an Elite monster (increases over time)")]
-    [SerializeField] private float baseEliteChance = 0.05f;
+    [SerializeField] private float baseEliteChance = 0.03f;
 
     public static EnemySpawner Instance { get; private set; }
     public GameObject EnemyPrefab => enemyPrefab;

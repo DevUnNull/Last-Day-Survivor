@@ -77,6 +77,17 @@ public class AudioManager : MonoBehaviour
     [Range(0f, 1f)] [SerializeField] private float sfxVolume = 1f;
     [Range(0f, 1f)] [SerializeField] private float uiVolume = 1f;
 
+    public float MasterVolume => masterVolume;
+    public float BGMVolume => bgmVolume;
+    public float AmbienceVolume => ambVolume;
+    public float SFXVolume => sfxVolume;
+    public float UIVolume => uiVolume;
+
+    private const string PREF_MASTER_VOL = "Audio_MasterVolume";
+    private const string PREF_BGM_VOL = "Audio_BGMVolume";
+    private const string PREF_SFX_VOL = "Audio_SFXVolume";
+    private const string PREF_VFX_ENABLED = "Setting_VFXEnabled";
+
     // Dedicated Audio Sources
     private AudioSource bgmSource;
     private AudioSource ambSource;
@@ -107,6 +118,7 @@ public class AudioManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
+            LoadSettings();
             InitializeAudioSources();
 #if UNITY_EDITOR
             AutoPopulateClipsIfMissing();
@@ -439,6 +451,71 @@ public class AudioManager : MonoBehaviour
 
     public void PlayMagnetPickup() => PlaySFX(clipMagnetPickup, 0.9f);
     public void PlayPotionPickup() => PlaySFX(clipPotionPickup, 0.85f);
+
+    // ==========================================
+    // VOLUME & SETTINGS RUNTIME CONTROLS
+    // ==========================================
+    public void LoadSettings()
+    {
+        masterVolume = PlayerPrefs.GetFloat(PREF_MASTER_VOL, 1f);
+        bgmVolume = PlayerPrefs.GetFloat(PREF_BGM_VOL, 0.7f);
+        sfxVolume = PlayerPrefs.GetFloat(PREF_SFX_VOL, 1f);
+    }
+
+    public void SetMasterVolume(float vol)
+    {
+        masterVolume = Mathf.Clamp01(vol);
+        PlayerPrefs.SetFloat(PREF_MASTER_VOL, masterVolume);
+        PlayerPrefs.Save();
+        ApplyVolumeChanges();
+    }
+
+    public void SetBGMVolume(float vol)
+    {
+        bgmVolume = Mathf.Clamp01(vol);
+        PlayerPrefs.SetFloat(PREF_BGM_VOL, bgmVolume);
+        PlayerPrefs.Save();
+        ApplyVolumeChanges();
+    }
+
+    public void SetSFXVolume(float vol)
+    {
+        sfxVolume = Mathf.Clamp01(vol);
+        PlayerPrefs.SetFloat(PREF_SFX_VOL, sfxVolume);
+        PlayerPrefs.Save();
+        ApplyVolumeChanges();
+    }
+
+    private void ApplyVolumeChanges()
+    {
+        if (bgmSource != null)
+        {
+            bgmSource.volume = bgmVolume * masterVolume;
+        }
+        if (ambSource != null)
+        {
+            ambSource.volume = ambVolume * masterVolume;
+        }
+        if (lowHealthLoopSource != null && lowHealthLoopSource.isPlaying)
+        {
+            lowHealthLoopSource.volume = 0.6f * sfxVolume * masterVolume;
+        }
+        if (darkOrbLoopSource != null && darkOrbLoopSource.isPlaying)
+        {
+            darkOrbLoopSource.volume = 0.5f * sfxVolume * masterVolume;
+        }
+    }
+
+    public static bool IsVFXEnabled()
+    {
+        return PlayerPrefs.GetInt(PREF_VFX_ENABLED, 1) == 1;
+    }
+
+    public static void SetVFXEnabled(bool enabled)
+    {
+        PlayerPrefs.SetInt(PREF_VFX_ENABLED, enabled ? 1 : 0);
+        PlayerPrefs.Save();
+    }
 
 #if UNITY_EDITOR
     [ContextMenu("Auto Populate Clips from Assets/Audio")]
