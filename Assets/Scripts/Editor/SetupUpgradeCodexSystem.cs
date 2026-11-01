@@ -102,7 +102,7 @@ public static class SetupUpgradeCodexSystem
         AnimationUI aui = h2uObj.GetComponent<AnimationUI>();
 
         // Load fonts & sprites
-        TMP_FontAsset passionFont = AssetDatabase.LoadAssetAtPath<TMP_FontAsset>("Assets/AnimationUI/Demo/Font/PassionOne-Regular SDF.asset");
+        TMP_FontAsset passionFont = AssetDatabase.LoadAssetAtPath<TMP_FontAsset>("Assets/AnimationUI/Demo/Font/LiberationSans SDF.asset");
         Sprite parallelogram = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/AnimationUI/Demo/UI/parallelogram.png");
         Sprite parallelogramFlipped = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/AnimationUI/Demo/UI/parallelogramFlipped.png");
 

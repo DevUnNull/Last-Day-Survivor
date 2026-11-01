@@ -334,7 +334,7 @@ public class SkillCodexUI : MonoBehaviour
         // Update Page Navigation Text
         if (pageIndicatorText != null)
         {
-            pageIndicatorText.text = $"PAGE {currentPage + 1} / {maxPage + 1}";
+            pageIndicatorText.text = $"TRANG {currentPage + 1} / {maxPage + 1}";
         }
         if (prevPageBtn != null) prevPageBtn.interactable = (currentPage > 0);
         if (nextPageBtn != null) nextPageBtn.interactable = (currentPage < maxPage);
@@ -370,7 +370,7 @@ public class SkillCodexUI : MonoBehaviour
         if (costTr != null)
         {
             var tmp = costTr.GetComponent<TMP_Text>();
-            if (tmp != null) tmp.text = $"MAX LV. {skill.maxLevel}";
+            if (tmp != null) tmp.text = $"CẤP TỐI ĐA: {skill.maxLevel}";
         }
 
         // Description
@@ -403,7 +403,7 @@ public class SkillCodexUI : MonoBehaviour
         if (buyBtnTr != null)
         {
             var btnTmp = buyBtnTr.GetComponentInChildren<TMP_Text>();
-            if (btnTmp != null) btnTmp.text = "DETAILS";
+            if (btnTmp != null) btnTmp.text = "CHI TIẾT";
 
             var btn = buyBtnTr.GetComponent<Button>();
             if (btn == null) btn = buyBtnTr.gameObject.AddComponent<Button>();
@@ -457,12 +457,12 @@ public class SkillCodexUI : MonoBehaviour
 
         if (detailCategoryText != null)
         {
-            detailCategoryText.text = (skill.category == SkillCategory.ActiveSpell) ? "[ ACTIVE SPELL ]" : "[ PASSIVE ABILITY ]";
+            detailCategoryText.text = (skill.category == SkillCategory.ActiveSpell) ? "[ CHIÊU KÍCH HOẠT ]" : "[ NỘI TẠI HỖ TRỢ ]";
             detailCategoryText.color = (skill.category == SkillCategory.ActiveSpell) ?
                 new Color(0.4f, 0.85f, 1f, 1f) : new Color(0.5f, 1f, 0.6f, 1f);
         }
 
-        if (detailMaxLevelText != null) detailMaxLevelText.text = $"MAX LEVEL: {skill.maxLevel}";
+        if (detailMaxLevelText != null) detailMaxLevelText.text = $"CẤP TỐI ĐA: {skill.maxLevel}";
         if (detailOverviewText != null) detailOverviewText.text = skill.overview;
 
         // Render levels
@@ -565,18 +565,18 @@ public class SkillCodexUI : MonoBehaviour
         var mb = new SkillData
         {
             id = "magic_bolt",
-            name = "Magic Bolt",
+            name = "Tia Sét Ma Pháp",
             category = SkillCategory.ActiveSpell,
-            tagText = "[ ACTIVE - ARCANE BOLTS ]",
+            tagText = "[ KÍCH HOẠT - TIA SÉT BÍ THUẬT ]",
             maxLevel = 5,
-            overview = "Fires rapid piercing arcane bolts at the nearest enemy. High velocity projectile that shreds single targets and gains multi-enemy piercing upon reaching ultimate evolution.",
+            overview = "Bắn các tia sét bí thuật tốc độ cao vào kẻ địch gần nhất. Đạn xuyên phá mục tiêu và đạt khả năng xuyên nhiều quái khi nâng cấp tối đa.",
             levels = new List<SkillLevelInfo>
             {
-                new SkillLevelInfo { level = 1, title = "Unlock", description = "Fires 1 Magic Bolt dealing 20 arcane damage. Cooldown: 0.8s.", isUltimate = false },
-                new SkillLevelInfo { level = 2, title = "Empower", description = "+10 Magic Bolt Damage and +15% projectile velocity.", isUltimate = false },
-                new SkillLevelInfo { level = 3, title = "Quickcast", description = "Reduces cooldown to 0.55s (30% faster fire rate).", isUltimate = false },
-                new SkillLevelInfo { level = 4, title = "Triple Spread", description = "Fires 3 Magic Bolts simultaneously in a forward spread angle.", isUltimate = false },
-                new SkillLevelInfo { level = 5, title = "Arcane Overload", description = "ULTIMATE: Bolts pierce through 2 enemies and gain +13 bonus Damage!", isUltimate = true }
+                new SkillLevelInfo { level = 1, title = "Mở khóa", description = "Bắn 1 Tia Sét Ma Pháp gây 20 sát thương bí thuật. Hồi chiêu: 0.8s.", isUltimate = false },
+                new SkillLevelInfo { level = 2, title = "Cường hóa", description = "+10 Sát thương Tia Sét Ma Pháp và +15% tốc độ bay của đạn.", isUltimate = false },
+                new SkillLevelInfo { level = 3, title = "Niệm nhanh", description = "Giảm thời gian hồi chiêu còn 0.55s (tốc độ bắn nhanh hơn 30%).", isUltimate = false },
+                new SkillLevelInfo { level = 4, title = "Bắn ba", description = "Bắn 3 Tia Sét Ma Pháp cùng lúc theo góc tỏa phía trước.", isUltimate = false },
+                new SkillLevelInfo { level = 5, title = "Quá tải bí thuật", description = "TỐI THƯỢNG: Đạn xuyên qua 2 kẻ địch và tăng thêm +13 sát thương!", isUltimate = true }
             }
         };
         skills.Add(mb);
@@ -585,18 +585,18 @@ public class SkillCodexUI : MonoBehaviour
         var fb = new SkillData
         {
             id = "fireball",
-            name = "Fireball",
+            name = "Quả Cầu Lửa",
             category = SkillCategory.ActiveSpell,
-            tagText = "[ ACTIVE - AREA OF EFFECT ]",
+            tagText = "[ KÍCH HOẠT - SÁT THƯƠNG DIỆN RỘNG ]",
             maxLevel = 5,
-            overview = "Hurls massive explosive fireballs that detonate on impact, decimating clusters of enemies with devastating area-of-effect damage.",
+            overview = "Phóng quả cầu lửa khổng lồ phát nổ khi va chạm, hủy diệt hàng loạt quái vật bằng sát thương diện rộng uy lực.",
             levels = new List<SkillLevelInfo>
             {
-                new SkillLevelInfo { level = 1, title = "Unlock", description = "Launches an explosive fireball dealing 45 AoE damage. Cooldown: 1.8s.", isUltimate = false },
-                new SkillLevelInfo { level = 2, title = "Blast Radius", description = "+20 Explosion Damage and +30% detonation radius.", isUltimate = false },
-                new SkillLevelInfo { level = 3, title = "Twin Flames", description = "Fires 2 Fireballs simultaneously at different target locations.", isUltimate = false },
-                new SkillLevelInfo { level = 4, title = "Accelerate", description = "Reduces cooldown to 1.35s and adds +15 Damage.", isUltimate = false },
-                new SkillLevelInfo { level = 5, title = "Inferno Blast", description = "ULTIMATE: Launches 3 Fireballs, 110 Damage, with a massive screen-shattering blast radius!", isUltimate = true }
+                new SkillLevelInfo { level = 1, title = "Mở khóa", description = "Phóng 1 quả cầu lửa phát nổ gây 45 sát thương diện rộng. Hồi chiêu: 1.8s.", isUltimate = false },
+                new SkillLevelInfo { level = 2, title = "Bán kính nổ", description = "+20 Sát thương nổ và +30% bán kính phát nổ.", isUltimate = false },
+                new SkillLevelInfo { level = 3, title = "Song hỏa", description = "Phóng 2 Cầu Lửa đồng thời vào các vị trí mục tiêu khác nhau.", isUltimate = false },
+                new SkillLevelInfo { level = 4, title = "Gia tốc", description = "Giảm thời gian hồi chiêu xuống 1.35s và +15 sát thương.", isUltimate = false },
+                new SkillLevelInfo { level = 5, title = "Hỏa ngục bùng nổ", description = "TỐI THƯỢNG: Phóng 3 Cầu Lửa, 110 sát thương cùng bán kính nổ rung chuyển màn hình!", isUltimate = true }
             }
         };
         skills.Add(fb);
@@ -605,18 +605,18 @@ public class SkillCodexUI : MonoBehaviour
         var is_ = new SkillData
         {
             id = "ice_spear",
-            name = "Ice Spear",
+            name = "Băng Thương",
             category = SkillCategory.ActiveSpell,
-            tagText = "[ ACTIVE - PIERCE & SLOW ]",
+            tagText = "[ KÍCH HOẠT - XUYÊN THẦU & LÀM CHẬM ]",
             maxLevel = 5,
-            overview = "Condenses sharp glacial spikes that pierce through all enemies in their trajectory, heavily slowing down their movement speed.",
+            overview = "Ngưng tụ những ngọn giáo băng sắc nhọn xuyên qua toàn bộ kẻ địch trên đường bay và làm chậm tốc độ chạy của chúng.",
             levels = new List<SkillLevelInfo>
             {
-                new SkillLevelInfo { level = 1, title = "Unlock", description = "Fires an ice spear that pierces all foes, dealing 35 damage and slowing by 40%.", isUltimate = false },
-                new SkillLevelInfo { level = 2, title = "Frostbite", description = "+16 Damage and reduces cooldown to 1.9s.", isUltimate = false },
-                new SkillLevelInfo { level = 3, title = "Twin Shards", description = "Fires 2 Ice Spears in twin spread angles.", isUltimate = false },
-                new SkillLevelInfo { level = 4, title = "Permafrost", description = "Slow increased to 60% with extended 3.5s freeze duration.", isUltimate = false },
-                new SkillLevelInfo { level = 5, title = "Glacial Spike", description = "ULTIMATE: Fires 3 Ice Spears, Freezes enemies completely solid on contact!", isUltimate = true }
+                new SkillLevelInfo { level = 1, title = "Mở khóa", description = "Bắn giáo băng xuyên qua mọi mục tiêu, gây 35 sát thương và làm chậm 40%.", isUltimate = false },
+                new SkillLevelInfo { level = 2, title = "Tê cóng", description = "+16 Sát thương và giảm thời gian hồi chiêu xuống 1.9s.", isUltimate = false },
+                new SkillLevelInfo { level = 3, title = "Song thương", description = "Bắn 2 Băng Thương theo góc tỏa đôi.", isUltimate = false },
+                new SkillLevelInfo { level = 4, title = "Băng vĩnh cửu", description = "Làm chậm tăng lên 60% với thời gian kéo dài 3.5s.", isUltimate = false },
+                new SkillLevelInfo { level = 5, title = "Gai băng cực đại", description = "TỐI THƯỢNG: Bắn 3 Băng Thương, đóng băng hoàn toàn kẻ địch khi trúng đòn!", isUltimate = true }
             }
         };
         skills.Add(is_);
@@ -625,18 +625,18 @@ public class SkillCodexUI : MonoBehaviour
         var _do = new SkillData
         {
             id = "dark_orb",
-            name = "Dark Orb",
+            name = "Cầu Bóng Tối",
             category = SkillCategory.ActiveSpell,
-            tagText = "[ ACTIVE - ORBITAL DEFENSE ]",
+            tagText = "[ KÍCH HOẠT - VÒNG QUANH PHÒNG THỦ ]",
             maxLevel = 5,
-            overview = "Summons shadowy void spheres orbiting around the Wizard, creating a lethal perimeter that continuously shreds approaching enemies.",
+            overview = "Triệu hồi các khối cầu hắc ám bay quanh Pháp Sư, tạo nên vòng bảo hộ liên tục nghiền nát mọi kẻ địch áp sát.",
             levels = new List<SkillLevelInfo>
             {
-                new SkillLevelInfo { level = 1, title = "Unlock", description = "Summons 1 dark orb orbiting you, dealing 25 contact damage repeatedly.", isUltimate = false },
-                new SkillLevelInfo { level = 2, title = "Momentum", description = "+1 Dark Orb (2 total) and +25% orbit rotation speed.", isUltimate = false },
-                new SkillLevelInfo { level = 3, title = "Void Power", description = "+1 Dark Orb (3 total) and +10 damage per impact.", isUltimate = false },
-                new SkillLevelInfo { level = 4, title = "Expanding Orbit", description = "+1 Dark Orb (4 total) and +20% orbit radius.", isUltimate = false },
-                new SkillLevelInfo { level = 5, title = "Void Ring", description = "ULTIMATE: 5 Dark Orbs spinning furiously, dealing 55 contact damage!", isUltimate = true }
+                new SkillLevelInfo { level = 1, title = "Mở khóa", description = "Triệu hồi 1 cầu bóng tối bay quanh bạn, liên tục gây 25 sát thương va chạm.", isUltimate = false },
+                new SkillLevelInfo { level = 2, title = "Động năng", description = "+1 Cầu Bóng Tối (tổng cộng 2 cầu) và +25% tốc độ xoay quanh.", isUltimate = false },
+                new SkillLevelInfo { level = 3, title = "Uy lực hư không", description = "+1 Cầu Bóng Tối (tổng cộng 3 cầu) và +10 sát thương mỗi cú chạm.", isUltimate = false },
+                new SkillLevelInfo { level = 4, title = "Mở rộng quỹ đạo", description = "+1 Cầu Bóng Tối (tổng cộng 4 cầu) và +20% bán kính xoay.", isUltimate = false },
+                new SkillLevelInfo { level = 5, title = "Vành đai hư không", description = "TỐI THƯỢNG: 5 Cầu Bóng Tối xoay vũ bão, gây 55 sát thương va chạm!", isUltimate = true }
             }
         };
         skills.Add(_do);
@@ -645,18 +645,18 @@ public class SkillCodexUI : MonoBehaviour
         var ms = new SkillData
         {
             id = "magic_shield",
-            name = "Magic Shield",
+            name = "Khiên Hộ Thể",
             category = SkillCategory.ActiveSpell,
-            tagText = "[ ACTIVE - BARRIER & SHOCKWAVE ]",
+            tagText = "[ KÍCH HOẠT - LỚP KHIÊN & SÓNG NỔ ]",
             maxLevel = 5,
-            overview = "Manifests a protective barrier that absorbs incoming damage. Regenerates back to full health after staying out of danger for several seconds.",
+            overview = "Hiện thực hóa lớp khiên bảo vệ giúp hấp thụ sát thương. Tự hồi phục đầy máu sau khi rời khỏi nguy hiểm vài giây.",
             levels = new List<SkillLevelInfo>
             {
-                new SkillLevelInfo { level = 1, title = "Unlock", description = "Creates a barrier absorbing up to 35 damage. Recharges after 8s out of combat.", isUltimate = false },
-                new SkillLevelInfo { level = 2, title = "Reinforce", description = "Shield durability increased to 60 HP and recharge delay reduced to 6s.", isUltimate = false },
-                new SkillLevelInfo { level = 3, title = "Shockwave", description = "Shield Shockwave: Emits an explosive blast that knocks back and damages nearby foes when broken.", isUltimate = false },
-                new SkillLevelInfo { level = 4, title = "Bulwark", description = "Shield durability increased to 125 HP and recharge delay reduced to 5s.", isUltimate = false },
-                new SkillLevelInfo { level = 5, title = "Aegis Barrier", description = "ULTIMATE: 170 HP Shield and permanently grants 15% passive damage reduction!", isUltimate = true }
+                new SkillLevelInfo { level = 1, title = "Mở khóa", description = "Tạo lớp khiên hấp thụ tới 35 sát thương. Hồi lại sau 8s rời giao tranh.", isUltimate = false },
+                new SkillLevelInfo { level = 2, title = "Gia cố", description = "Độ bền khiên tăng lên 60 Máu và giảm thời gian hồi còn 6s.", isUltimate = false },
+                new SkillLevelInfo { level = 3, title = "Sóng xung kích", description = "Sóng Nổ Khiên: Khi vỡ, phát nổ đẩy lùi và gây sát thương quái xung quanh.", isUltimate = false },
+                new SkillLevelInfo { level = 4, title = "Thành lũy", description = "Độ bền khiên tăng lên 125 Máu và giảm thời gian hồi phục còn 5s.", isUltimate = false },
+                new SkillLevelInfo { level = 5, title = "Thần khiên Aegis", description = "TỐI THƯỢNG: Khiên 170 Máu và giảm vĩnh viễn 15% mọi sát thương nhận vào!", isUltimate = true }
             }
         };
         skills.Add(ms);
@@ -665,18 +665,18 @@ public class SkillCodexUI : MonoBehaviour
         var might = new SkillData
         {
             id = "might",
-            name = "Might",
+            name = "Cổ Thư Bí Thuật",
             category = SkillCategory.PassiveUpgrade,
-            tagText = "[ PASSIVE - MAGIC DAMAGE ]",
+            tagText = "[ NỘI TẠI - SÁT THƯƠNG PHÉP ]",
             maxLevel = 5,
-            overview = "An ancient arcane tome that awakens latent magical power, granting a permanent percentage bonus to all spell damage.",
+            overview = "Cổ thư ma pháp đánh thức sức mạnh tiềm ẩn, tăng phần trăm sát thương vĩnh viễn cho tất cả các chiêu thức.",
             levels = new List<SkillLevelInfo>
             {
-                new SkillLevelInfo { level = 1, title = "Rank 1", description = "+20% Magic Damage for all active spells.", isUltimate = false },
-                new SkillLevelInfo { level = 2, title = "Rank 2", description = "+40% Magic Damage (cumulative).", isUltimate = false },
-                new SkillLevelInfo { level = 3, title = "Rank 3", description = "+60% Magic Damage (cumulative).", isUltimate = false },
-                new SkillLevelInfo { level = 4, title = "Rank 4", description = "+80% Magic Damage (cumulative).", isUltimate = false },
-                new SkillLevelInfo { level = 5, title = "Archmage Mastery", description = "MAX LEVEL: +100% Magic Damage (doubles total spell power output)!", isUltimate = true }
+                new SkillLevelInfo { level = 1, title = "Cấp 1", description = "+20% Sát thương phép cho toàn bộ kỹ năng đang dùng.", isUltimate = false },
+                new SkillLevelInfo { level = 2, title = "Cấp 2", description = "+40% Sát thương phép (cộng dồn).", isUltimate = false },
+                new SkillLevelInfo { level = 3, title = "Cấp 3", description = "+60% Sát thương phép (cộng dồn).", isUltimate = false },
+                new SkillLevelInfo { level = 4, title = "Cấp 4", description = "+80% Sát thương phép (cộng dồn).", isUltimate = false },
+                new SkillLevelInfo { level = 5, title = "Đại pháp sư", description = "CẤP TỐI ĐA: +100% Sát thương phép (nhân đôi toàn bộ hỏa lực ma pháp)!", isUltimate = true }
             }
         };
         skills.Add(might);
@@ -685,18 +685,18 @@ public class SkillCodexUI : MonoBehaviour
         var swift = new SkillData
         {
             id = "swiftness",
-            name = "Swiftness",
+            name = "Giày Thần Tốc",
             category = SkillCategory.PassiveUpgrade,
-            tagText = "[ PASSIVE - MOVEMENT SPEED ]",
+            tagText = "[ NỘI TẠI - TỐC ĐỘ DI CHUYỂN ]",
             maxLevel = 5,
-            overview = "Mythical winged boots that bestow light, swift strides, allowing the Wizard to outmaneuver swarming enemy hordes.",
+            overview = "Đôi giày thần thánh ban tặng bước chân thanh thoát, giúp Pháp Sư dễ dàng lướt qua bầy quái vật đông đúc.",
             levels = new List<SkillLevelInfo>
             {
-                new SkillLevelInfo { level = 1, title = "Rank 1", description = "+15% Movement Speed for the character.", isUltimate = false },
-                new SkillLevelInfo { level = 2, title = "Rank 2", description = "+30% Movement Speed.", isUltimate = false },
-                new SkillLevelInfo { level = 3, title = "Rank 3", description = "+45% Movement Speed.", isUltimate = false },
-                new SkillLevelInfo { level = 4, title = "Rank 4", description = "+60% Movement Speed.", isUltimate = false },
-                new SkillLevelInfo { level = 5, title = "Zephyr Agility", description = "MAX LEVEL: +75% Movement Speed to outrun any swarm in the blink of an eye!", isUltimate = true }
+                new SkillLevelInfo { level = 1, title = "Cấp 1", description = "+15% Tốc độ di chuyển cho nhân vật.", isUltimate = false },
+                new SkillLevelInfo { level = 2, title = "Cấp 2", description = "+30% Tốc độ di chuyển.", isUltimate = false },
+                new SkillLevelInfo { level = 3, title = "Cấp 3", description = "+45% Tốc độ di chuyển.", isUltimate = false },
+                new SkillLevelInfo { level = 4, title = "Cấp 4", description = "+60% Tốc độ di chuyển.", isUltimate = false },
+                new SkillLevelInfo { level = 5, title = "Thần phong lướt gió", description = "CẤP TỐI ĐA: +75% Tốc độ di chuyển, bỏ xa mọi đàn quái trong nháy mắt!", isUltimate = true }
             }
         };
         skills.Add(swift);
@@ -705,18 +705,18 @@ public class SkillCodexUI : MonoBehaviour
         var haste = new SkillData
         {
             id = "haste",
-            name = "Spell Haste",
+            name = "Gia Tốc Niệm",
             category = SkillCategory.PassiveUpgrade,
-            tagText = "[ PASSIVE - COOLDOWN REDUCTION ]",
+            tagText = "[ NỘI TẠI - GIẢM THỜI GIAN HỒI ]",
             maxLevel = 5,
-            overview = "Unblocks arcane meridians to reduce spell recovery times, unleashing spells like a relentless magical tempest.",
+            overview = "Khai thông kinh mạch bí thuật giúp hồi chiêu thần tốc, xả đạn phép liên hoàn như một cơn bão ma pháp không ngừng nghỉ.",
             levels = new List<SkillLevelInfo>
             {
-                new SkillLevelInfo { level = 1, title = "Rank 1", description = "-12% Cooldown across all spells.", isUltimate = false },
-                new SkillLevelInfo { level = 2, title = "Rank 2", description = "-24% Cooldown across all spells.", isUltimate = false },
-                new SkillLevelInfo { level = 3, title = "Rank 3", description = "-36% Cooldown across all spells.", isUltimate = false },
-                new SkillLevelInfo { level = 4, title = "Rank 4", description = "-48% Cooldown across all spells.", isUltimate = false },
-                new SkillLevelInfo { level = 5, title = "Rapid Tempest", description = "MAX LEVEL: -60% Cooldown Reduction for non-stop barrage of magic!", isUltimate = true }
+                new SkillLevelInfo { level = 1, title = "Cấp 1", description = "-12% Thời gian hồi chiêu cho tất cả phép thuật.", isUltimate = false },
+                new SkillLevelInfo { level = 2, title = "Cấp 2", description = "-24% Thời gian hồi chiêu cho tất cả phép thuật.", isUltimate = false },
+                new SkillLevelInfo { level = 3, title = "Cấp 3", description = "-36% Thời gian hồi chiêu cho tất cả phép thuật.", isUltimate = false },
+                new SkillLevelInfo { level = 4, title = "Cấp 4", description = "-48% Thời gian hồi chiêu cho tất cả phép thuật.", isUltimate = false },
+                new SkillLevelInfo { level = 5, title = "Cơn bão cuồng nộ", description = "CẤP TỐI ĐA: -60% Thời gian hồi chiêu, bắn phép liên tục không ngừng!", isUltimate = true }
             }
         };
         skills.Add(haste);
@@ -725,18 +725,18 @@ public class SkillCodexUI : MonoBehaviour
         var vit = new SkillData
         {
             id = "vitality",
-            name = "Vitality",
+            name = "Trái Tim Sức Sống",
             category = SkillCategory.PassiveUpgrade,
-            tagText = "[ PASSIVE - MAXIMUM HEALTH ]",
+            tagText = "[ NỘI TẠI - MÁU TỐI ĐA ]",
             maxLevel = 5,
-            overview = "Infuses the Wizard with sacred life essence, boosting maximum health and instantly healing wounds during combat.",
+            overview = "Truyền sinh mệnh thuần khiết vào Pháp Sư, gia tăng lượng máu tối đa và hồi phục vết thương trong trận chiến.",
             levels = new List<SkillLevelInfo>
             {
-                new SkillLevelInfo { level = 1, title = "Rank 1", description = "+25 Max HP and immediately heals 25 HP.", isUltimate = false },
-                new SkillLevelInfo { level = 2, title = "Rank 2", description = "+50 Max HP and immediately heals 25 HP.", isUltimate = false },
-                new SkillLevelInfo { level = 3, title = "Rank 3", description = "+75 Max HP and immediately heals 25 HP.", isUltimate = false },
-                new SkillLevelInfo { level = 4, title = "Rank 4", description = "+100 Max HP and immediately heals 25 HP.", isUltimate = false },
-                new SkillLevelInfo { level = 5, title = "Immortal Core", description = "MAX LEVEL: +125 Max HP (reaching 225 total HP) for incredible endurance!", isUltimate = true }
+                new SkillLevelInfo { level = 1, title = "Cấp 1", description = "+25 Máu tối đa và hồi ngay 25 Máu.", isUltimate = false },
+                new SkillLevelInfo { level = 2, title = "Cấp 2", description = "+50 Máu tối đa và hồi ngay 25 Máu.", isUltimate = false },
+                new SkillLevelInfo { level = 3, title = "Cấp 3", description = "+75 Máu tối đa và hồi ngay 25 Máu.", isUltimate = false },
+                new SkillLevelInfo { level = 4, title = "Cấp 4", description = "+100 Máu tối đa và hồi ngay 25 Máu.", isUltimate = false },
+                new SkillLevelInfo { level = 5, title = "Trái tim bất tử", description = "CẤP TỐI ĐA: +125 Máu tối đa (đạt 225 tổng Máu) tạo sức bền kinh ngạc!", isUltimate = true }
             }
         };
         skills.Add(vit);
@@ -745,18 +745,18 @@ public class SkillCodexUI : MonoBehaviour
         var mag = new SkillData
         {
             id = "magnet",
-            name = "Magnet",
+            name = "Mặt Dây Nam Châm",
             category = SkillCategory.PassiveUpgrade,
-            tagText = "[ PASSIVE - EXP PICKUP RANGE ]",
+            tagText = "[ NỘI TẠI - BÁN KÍNH HÚT KINH NGHIỆM ]",
             maxLevel = 5,
-            overview = "An enchanted magnetic relic that radiates an attracting field, pulling distant fallen experience gems straight to the Wizard.",
+            overview = "Cổ vật từ tính phát ra từ trường hút toàn bộ ngọc kinh nghiệm rơi trên chiến trường về phía Pháp Sư.",
             levels = new List<SkillLevelInfo>
             {
-                new SkillLevelInfo { level = 1, title = "Rank 1", description = "+45% EXP Gem pickup radius.", isUltimate = false },
-                new SkillLevelInfo { level = 2, title = "Rank 2", description = "+90% EXP Gem pickup radius.", isUltimate = false },
-                new SkillLevelInfo { level = 3, title = "Rank 3", description = "+135% EXP Gem pickup radius.", isUltimate = false },
-                new SkillLevelInfo { level = 4, title = "Rank 4", description = "+180% EXP Gem pickup radius.", isUltimate = false },
-                new SkillLevelInfo { level = 5, title = "Cosmic Pull", description = "MAX LEVEL: +225% Pickup Range to vacuum every single gem across the battlefield!", isUltimate = true }
+                new SkillLevelInfo { level = 1, title = "Cấp 1", description = "+45% Bán kính hút ngọc kinh nghiệm.", isUltimate = false },
+                new SkillLevelInfo { level = 2, title = "Cấp 2", description = "+90% Bán kính hút ngọc kinh nghiệm.", isUltimate = false },
+                new SkillLevelInfo { level = 3, title = "Cấp 3", description = "+135% Bán kính hút ngọc kinh nghiệm.", isUltimate = false },
+                new SkillLevelInfo { level = 4, title = "Cấp 4", description = "+180% Bán kính hút ngọc kinh nghiệm.", isUltimate = false },
+                new SkillLevelInfo { level = 5, title = "Hút vũ trụ", description = "CẤP TỐI ĐA: +225% Bán kính hút, thu thập mọi viên ngọc trên chiến trường!", isUltimate = true }
             }
         };
         skills.Add(mag);
@@ -765,14 +765,14 @@ public class SkillCodexUI : MonoBehaviour
         var pot = new SkillData
         {
             id = "health_potion",
-            name = "Health Potion",
+            name = "Bình Dược Liệu",
             category = SkillCategory.PassiveUpgrade,
-            tagText = "[ SUPPORT - INSTANT HEAL ]",
+            tagText = "[ HỖ TRỢ - HỒI MÁU TỨC THÌ ]",
             maxLevel = 1,
-            overview = "An emergency restorative potion that appears when wounded. Drink immediately to recover health and keep fighting.",
+            overview = "Bình thuốc hồi phục khẩn cấp xuất hiện khi bị thương. Dùng ngay để hồi máu và tiếp tục chiến đấu.",
             levels = new List<SkillLevelInfo>
             {
-                new SkillLevelInfo { level = 1, title = "Emergency Heal", description = "Restores 35 HP immediately upon selection.", isUltimate = false }
+                new SkillLevelInfo { level = 1, title = "Hồi máu khẩn cấp", description = "Hồi phục ngay 35 Máu khi chọn.", isUltimate = false }
             }
         };
         skills.Add(pot);

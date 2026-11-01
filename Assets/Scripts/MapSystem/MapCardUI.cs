@@ -61,7 +61,7 @@ public class MapCardUI : MonoBehaviour
         // Boss preview
         if (mapData.bossData != null)
         {
-            if (bossNameText != null) bossNameText.text = $"BOSS: {mapData.bossData.bossName}";
+            if (bossNameText != null) bossNameText.text = $"TRÙM: {mapData.bossData.bossName}";
             if (bossIconImage != null && mapData.bossData.bossIcon != null)
             {
                 bossIconImage.sprite = mapData.bossData.bossIcon;
@@ -75,7 +75,7 @@ public class MapCardUI : MonoBehaviour
             lockOverlay.SetActive(!isUnlocked);
             if (!isUnlocked && lockReasonText != null)
             {
-                lockReasonText.text = "LOCKED\nDefeat previous boss";
+                lockReasonText.text = "ĐÃ KHÓA\nHạ gục Trùm trước";
             }
         }
 

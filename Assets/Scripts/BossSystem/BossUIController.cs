@@ -4,7 +4,19 @@ using TMPro;
 
 public class BossUIController : MonoBehaviour
 {
-    public static BossUIController Instance { get; private set; }
+    private static BossUIController _instance;
+    public static BossUIController Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = FindFirstObjectByType<BossUIController>(FindObjectsInactive.Include);
+            }
+            return _instance;
+        }
+        private set => _instance = value;
+    }
 
     [Header("UI Containers")]
     [SerializeField] private GameObject bossUIRoot;
@@ -25,42 +37,74 @@ public class BossUIController : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null) Instance = this;
-        else Destroy(gameObject);
+        if (_instance == null) _instance = this;
+        else if (_instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
 
         if (bossUIRoot != null) bossUIRoot.SetActive(false);
     }
 
     public void ShowBossUI(BossController boss)
     {
+        if (_instance == null) _instance = this;
         this.currentBoss = boss;
-        if (currentBoss == null || currentBoss.BossConfig == null) return;
+        if (currentBoss == null) return;
 
-        if (bossUIRoot != null) bossUIRoot.SetActive(true);
+        if (gameObject != null && !gameObject.activeSelf)
+        {
+            gameObject.SetActive(true);
+        }
+
+        if (bossUIRoot != null)
+        {
+            bossUIRoot.SetActive(true);
+        }
+
+        if (canvasGroup != null)
+        {
+            canvasGroup.alpha = 1f;
+            canvasGroup.interactable = true;
+            canvasGroup.blocksRaycasts = true;
+        }
 
         var config = currentBoss.BossConfig;
-        if (bossNameText != null) bossNameText.text = config.bossName;
-        if (bossTitleText != null) bossTitleText.text = config.bossTitle;
-
-        if (bossIconImage != null)
+        if (config != null)
         {
-            if (config.bossIcon != null)
+            if (bossNameText != null) bossNameText.text = config.bossName;
+            if (bossTitleText != null) bossTitleText.text = config.bossTitle;
+
+            if (bossIconImage != null)
             {
-                bossIconImage.gameObject.SetActive(true);
-                bossIconImage.sprite = config.bossIcon;
+                if (config.bossIcon != null)
+                {
+                    bossIconImage.gameObject.SetActive(true);
+                    bossIconImage.sprite = config.bossIcon;
+                }
+                else
+                {
+                    bossIconImage.gameObject.SetActive(false);
+                }
             }
-            else
-            {
-                bossIconImage.gameObject.SetActive(false);
-            }
+        }
+        else
+        {
+            if (bossNameText != null) bossNameText.text = "TRÙM CUỐI";
+            if (bossTitleText != null) bossTitleText.text = "Kẻ Thống Trị Vực Thẳm";
         }
 
         UpdatePhase(currentBoss.CurrentPhaseIndex);
-        UpdateHealth(config.maxHealth, config.maxHealth);
+
+        int curHp = currentBoss.Health != null ? currentBoss.Health.CurrentHealth : (config != null ? config.maxHealth : 2000);
+        int maxHp = currentBoss.Health != null ? currentBoss.Health.MaxHealth : (config != null ? config.maxHealth : 2000);
+        UpdateHealth(curHp, maxHp);
 
         // Subscribe to health events
         if (currentBoss.Health != null)
         {
+            currentBoss.Health.onHealthChanged -= UpdateHealth;
             currentBoss.Health.onHealthChanged += UpdateHealth;
         }
     }
@@ -80,7 +124,7 @@ public class BossUIController : MonoBehaviour
     {
         if (phaseText != null)
         {
-            phaseText.text = $"PHASE {phaseIndex + 1}";
+            phaseText.text = $"GIAI ĐOẠN {phaseIndex + 1}";
         }
     }
 
@@ -95,14 +139,16 @@ public class BossUIController : MonoBehaviour
 
         if (healthFillImage != null)
         {
-            // Also adjust anchors to guarantee fill works with or without sliced sprite
-            RectTransform fillRt = healthFillImage.rectTransform;
-            if (fillRt != null)
+            if (healthFillImage.type != Image.Type.Filled)
             {
-                fillRt.anchorMin = Vector2.zero;
-                fillRt.anchorMax = new Vector2(targetFill, 1f);
-                fillRt.offsetMin = Vector2.zero;
-                fillRt.offsetMax = Vector2.zero;
+                RectTransform fillRt = healthFillImage.rectTransform;
+                if (fillRt != null)
+                {
+                    fillRt.anchorMin = Vector2.zero;
+                    fillRt.anchorMax = new Vector2(targetFill, 1f);
+                    fillRt.offsetMin = Vector2.zero;
+                    fillRt.offsetMax = Vector2.zero;
+                }
             }
         }
     }
@@ -111,7 +157,20 @@ public class BossUIController : MonoBehaviour
     {
         if (healthFillImage != null)
         {
-            healthFillImage.fillAmount = Mathf.Lerp(healthFillImage.fillAmount, targetFill, Time.deltaTime * 10f);
+            if (healthFillImage.type == Image.Type.Filled)
+            {
+                healthFillImage.fillAmount = Mathf.Lerp(healthFillImage.fillAmount, targetFill, Time.deltaTime * 10f);
+            }
+            else
+            {
+                RectTransform fillRt = healthFillImage.rectTransform;
+                if (fillRt != null)
+                {
+                    Vector2 curMax = fillRt.anchorMax;
+                    curMax.x = Mathf.Lerp(curMax.x, targetFill, Time.deltaTime * 10f);
+                    fillRt.anchorMax = curMax;
+                }
+            }
         }
     }
 

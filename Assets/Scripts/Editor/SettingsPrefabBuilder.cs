@@ -26,11 +26,7 @@ public static class SettingsPrefabBuilder
         Sprite toggleOn = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Sprite/Settings/toggle_on.png");
         Sprite toggleOff = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Sprite/Settings/toggle_off.png");
 
-        TMP_FontAsset fontAsset = AssetDatabase.LoadAssetAtPath<TMP_FontAsset>("Assets/TextMesh Pro/Resources/Fonts & Materials/PressStart2P-Regular SDF.asset");
-        if (fontAsset == null)
-        {
-            fontAsset = AssetDatabase.LoadAssetAtPath<TMP_FontAsset>("Assets/AnimationUI/Demo/Font/PassionOne-Regular SDF.asset");
-        }
+        TMP_FontAsset fontAsset = AssetDatabase.LoadAssetAtPath<TMP_FontAsset>("Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset");
 
         // 3. Create Root GameObject (Stretch overlay)
         GameObject rootGo = new GameObject("SettingsPanel");

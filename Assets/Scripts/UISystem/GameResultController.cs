@@ -50,14 +50,14 @@ public class GameResultController : MonoBehaviour
 
             if (victoryTitleText != null)
             {
-                victoryTitleText.text = map != null ? $"{map.mapName.ToUpper()} CONQUERED!" : "VICTORY!";
+                victoryTitleText.text = map != null ? $"{map.mapName.ToUpper()} ĐÃ CHINH PHỤC!" : "CHIẾN THẮNG!";
             }
 
             int m = Mathf.FloorToInt(timeSurvived / 60f);
             int s = Mathf.FloorToInt(timeSurvived % 60f);
-            if (victoryTimeText != null) victoryTimeText.text = $"Time: {m:00}:{s:00}";
-            if (victoryKillsText != null) victoryKillsText.text = $"Enemies Slain: {kills}";
-            if (victoryRewardsText != null) victoryRewardsText.text = $"Gold Earned: +{gold}";
+            if (victoryTimeText != null) victoryTimeText.text = $"Thời gian: {m:00}:{s:00}";
+            if (victoryKillsText != null) victoryKillsText.text = $"Hạ gục: {kills}";
+            if (victoryRewardsText != null) victoryRewardsText.text = $"Vàng nhận: +{gold}";
         }
     }
 
@@ -69,13 +69,13 @@ public class GameResultController : MonoBehaviour
 
             if (defeatTitleText != null)
             {
-                defeatTitleText.text = "DEFEATED";
+                defeatTitleText.text = "THẤT BẠI";
             }
 
             int m = Mathf.FloorToInt(timeSurvived / 60f);
             int s = Mathf.FloorToInt(timeSurvived % 60f);
-            if (defeatTimeText != null) defeatTimeText.text = $"Time: {m:00}:{s:00}";
-            if (defeatKillsText != null) defeatKillsText.text = $"Enemies Slain: {kills}";
+            if (defeatTimeText != null) defeatTimeText.text = $"Thời gian: {m:00}:{s:00}";
+            if (defeatKillsText != null) defeatKillsText.text = $"Hạ gục: {kills}";
         }
         else if (GameOverManager.Instance != null)
         {

@@ -31,11 +31,11 @@ public class LevelUpUI : MonoBehaviour
 
         if (headerTitleText != null)
         {
-            headerTitleText.text = "LEVEL UP!";
+            headerTitleText.text = "LÊN CẤP!";
         }
         if (subtitleText != null)
         {
-            subtitleText.text = "Choose an upgrade to empower your Wizard";
+            subtitleText.text = "Chọn 1 nâng cấp ma pháp để gia tăng sức mạnh";
         }
 
         if (cards == null || cards.Length == 0)

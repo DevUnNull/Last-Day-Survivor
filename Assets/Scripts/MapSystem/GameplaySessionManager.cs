@@ -160,7 +160,7 @@ public class GameplaySessionManager : MonoBehaviour
             }
             else
             {
-                survivalTimerText.text = $"BOSS FIGHT • {curMinutes:00}:{curSeconds:00}";
+                survivalTimerText.text = $"TRẬN CHIẾN TRÙM • {curMinutes:00}:{curSeconds:00}";
             }
         }
     }

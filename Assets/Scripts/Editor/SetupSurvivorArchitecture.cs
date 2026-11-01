@@ -10,7 +10,7 @@ public static class SetupSurvivorArchitecture
 {
     private static TMP_FontAsset GetPixelFont()
     {
-        return AssetDatabase.LoadAssetAtPath<TMP_FontAsset>("Assets/TextMesh Pro/Resources/Fonts & Materials/PressStart2P-Regular SDF.asset");
+        return AssetDatabase.LoadAssetAtPath<TMP_FontAsset>("Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset");
     }
 
     [MenuItem("Tools/1. Build Boss Prefab")]
@@ -417,7 +417,7 @@ public static class SetupSurvivorArchitecture
 
         TextMeshProUGUI bnameTmp = bnameObj.AddComponent<TextMeshProUGUI>();
         if (font != null) bnameTmp.font = font;
-        bnameTmp.text = data != null && data.bossData != null ? $"FINAL BOSS:\n<color=#FFD700>{data.bossData.bossName}</color>\n<size=9><color=#AAAAAA>{data.bossData.bossTitle}</color></size>" : "BOSS: UNKNOWN";
+        bnameTmp.text = data != null && data.bossData != null ? $"TRÙM CUỐI:\n<color=#FFD700>{data.bossData.bossName}</color>\n<size=9><color=#AAAAAA>{data.bossData.bossTitle}</color></size>" : "TRÙM: CHƯA RÕ";
         bnameTmp.fontSize = 11f;
         bnameTmp.alignment = TextAlignmentOptions.MidlineLeft;
         bnameTmp.color = Color.white;
@@ -458,7 +458,7 @@ public static class SetupSurvivorArchitecture
 
         TextMeshProUGUI ltTmp = lockTextObj.AddComponent<TextMeshProUGUI>();
         if (font != null) ltTmp.font = font;
-        ltTmp.text = "LOCKED\n\n<size=11><color=#FF6666>Defeat Previous Boss\nTo Unlock</color></size>";
+        ltTmp.text = "LOCKED\n\n<size=11><color=#FF6666>Hạ gục Trùm trước\nđể mở khóa</color></size>";
         ltTmp.fontSize = 16f;
         ltTmp.alignment = TextAlignmentOptions.Center;
         ltTmp.color = Color.white;
@@ -644,7 +644,7 @@ public static class SetupSurvivorArchitecture
 
         TextMeshProUGUI ptTmp = phaseObj.AddComponent<TextMeshProUGUI>();
         if (font != null) ptTmp.font = font;
-        ptTmp.text = "PHASE 1";
+        ptTmp.text = "GIAI ĐOẠN 1";
         ptTmp.fontSize = 12f;
         ptTmp.alignment = TextAlignmentOptions.Right;
         ptTmp.color = new Color(1f, 0.4f, 0.4f, 1f);
@@ -729,7 +729,7 @@ public static class SetupSurvivorArchitecture
 
         TextMeshProUGUI wtTmp = warnTextObj.AddComponent<TextMeshProUGUI>();
         if (font != null) wtTmp.font = font;
-        wtTmp.text = "WARNING!\nCOLOSSAL BOSS APPROACHING";
+        wtTmp.text = "CẢNH BÁO!\nTRÙM KHỔNG LỒ XUẤT HIỆN!";
         wtTmp.fontSize = 26f;
         wtTmp.alignment = TextAlignmentOptions.Center;
         wtTmp.color = Color.white;
@@ -785,7 +785,7 @@ public static class SetupSurvivorArchitecture
 
         TextMeshProUGUI vtTmp = vicTitleObj.AddComponent<TextMeshProUGUI>();
         if (font != null) vtTmp.font = font;
-        vtTmp.text = "MAP CONQUERED!";
+        vtTmp.text = "CHIẾN THẮNG!";
         vtTmp.fontSize = 24f;
         vtTmp.alignment = TextAlignmentOptions.Center;
         vtTmp.color = new Color(1f, 0.85f, 0.2f, 1f);
@@ -802,7 +802,7 @@ public static class SetupSurvivorArchitecture
 
         TextMeshProUGUI vtimeTmp = vicTimeObj.AddComponent<TextMeshProUGUI>();
         if (font != null) vtimeTmp.font = font;
-        vtimeTmp.text = "Time: 05:00";
+        vtimeTmp.text = "Thời gian: 05:00";
         vtimeTmp.fontSize = 16f;
         vtimeTmp.alignment = TextAlignmentOptions.Center;
         vtimeTmp.color = Color.white;
@@ -818,7 +818,7 @@ public static class SetupSurvivorArchitecture
 
         TextMeshProUGUI vkTmp = vicKillsObj.AddComponent<TextMeshProUGUI>();
         if (font != null) vkTmp.font = font;
-        vkTmp.text = "Enemies Slain: 120";
+        vkTmp.text = "Hạ gục: 120";
         vkTmp.fontSize = 16f;
         vkTmp.alignment = TextAlignmentOptions.Center;
         vkTmp.color = Color.white;
@@ -834,7 +834,7 @@ public static class SetupSurvivorArchitecture
 
         TextMeshProUGUI vrTmp = vicRewardsObj.AddComponent<TextMeshProUGUI>();
         if (font != null) vrTmp.font = font;
-        vrTmp.text = "Gold Earned: +1,000";
+        vrTmp.text = "Vàng nhận: +1.000";
         vrTmp.fontSize = 18f;
         vrTmp.alignment = TextAlignmentOptions.Center;
         vrTmp.color = new Color(1f, 0.9f, 0.3f, 1f);
@@ -863,7 +863,7 @@ public static class SetupSurvivorArchitecture
 
         TextMeshProUGUI vrbtTmp = vrbTextObj.AddComponent<TextMeshProUGUI>();
         if (font != null) vrbtTmp.font = font;
-        vrbtTmp.text = "REPLAY";
+        vrbtTmp.text = "CHƠI LẠI";
         vrbtTmp.fontSize = 16f;
         vrbtTmp.alignment = TextAlignmentOptions.Center;
         vrbtTmp.color = Color.white;
@@ -891,7 +891,7 @@ public static class SetupSurvivorArchitecture
 
         TextMeshProUGUI vmbtTmp = vmbTextObj.AddComponent<TextMeshProUGUI>();
         if (font != null) vmbtTmp.font = font;
-        vmbtTmp.text = "MAIN MENU";
+        vmbtTmp.text = "MENU CHÍNH";
         vmbtTmp.fontSize = 16f;
         vmbtTmp.alignment = TextAlignmentOptions.Center;
         vmbtTmp.color = Color.white;

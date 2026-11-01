@@ -172,8 +172,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b13590b1bb014733b7ca396c48cd847, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossHealth
-  maxHealth: 50
-  currentHealth: 0
+  maxHealth: 2500
+  currentHealth: 2500
   expGemPrefab: {fileID: 0}
   expDropValue: 10
 --- !u!114 &6324981282223988539
@@ -218,7 +218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a7c690d5d79c41d5b3cb4a89bdf1941, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossController
-  bossConfig: {fileID: 0}
+  bossConfig: {fileID: 11400000, guid: 42c320cb3b67c47449206935e58f0e3b, type: 2}
   bossHealth: {fileID: 0}
   animController: {fileID: 0}
   telegraphController: {fileID: 0}

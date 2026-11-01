@@ -63,6 +63,11 @@ public class BossController : MonoBehaviour
             rb.gravityScale = 0f;
             rb.freezeRotation = true;
         }
+
+        if (GetComponent<BossFloatingHealthBar>() == null)
+        {
+            gameObject.AddComponent<BossFloatingHealthBar>();
+        }
     }
 
     public void Initialize(BossData config)
@@ -87,18 +92,54 @@ public class BossController : MonoBehaviour
             float hpMult = 1f + (pLevel - 1) * bossConfig.healthScalePerPlayerLevel;
             currentDamageMultiplier = 1f + (pLevel - 1) * bossConfig.damageScalePerPlayerLevel;
 
-            int scaledHp = Mathf.RoundToInt(bossConfig.maxHealth * hpMult);
+            int scaledHp = Mathf.Max(100, Mathf.RoundToInt(bossConfig.maxHealth * hpMult));
             bossHealth.Initialize(scaledHp, this);
             SetupPhases();
+        }
+        else
+        {
+            if (bossHealth != null)
+            {
+                bossHealth.Initialize(2000, this);
+            }
         }
 
         FindPlayer();
         StartCoroutine(SpawnSequence());
+
+        if (BossUIController.Instance != null)
+        {
+            BossUIController.Instance.ShowBossUI(this);
+        }
     }
 
     private void Start()
     {
         if (playerTransform == null) FindPlayer();
+
+        if (bossConfig == null)
+        {
+            bossConfig = Resources.Load<BossData>("Settings/Bosses/Boss_SkyDragon");
+#if UNITY_EDITOR
+            if (bossConfig == null)
+            {
+                bossConfig = UnityEditor.AssetDatabase.LoadAssetAtPath<BossData>("Assets/Settings/Bosses/Boss_SkyDragon.asset");
+            }
+#endif
+            if (bossConfig != null)
+            {
+                Initialize(bossConfig);
+            }
+            else if (bossHealth != null && bossHealth.MaxHealth <= 50)
+            {
+                bossHealth.Initialize(2000, this);
+            }
+        }
+
+        if (BossUIController.Instance != null)
+        {
+            BossUIController.Instance.ShowBossUI(this);
+        }
     }
 
     private void FindPlayer()

@@ -68,7 +68,7 @@ public class UpgradeCardUI : MonoBehaviour
         {
             if (option.currentLevel == 0 && option.category == UpgradeCategory.NewSpell)
             {
-                levelBadgeText.text = "NEW!";
+                levelBadgeText.text = "MỚI!";
                 levelBadgeText.color = new Color(1f, 0.9f, 0.3f, 1f);
             }
             else if (option.nextLevel > 0)

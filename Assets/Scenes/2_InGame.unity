@@ -178,8 +178,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 4,500 / 4,500
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 78e6b1482c1ea40e8bd0062b0959f032, type: 2}
-  m_sharedMaterial: {fileID: -4650382512203120473, guid: 78e6b1482c1ea40e8bd0062b0959f032, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -198,7 +198,7 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: 0
+  m_TextStyleHashCode: -1183493901
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
@@ -391,8 +391,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "V\u1EC0 MENU"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 78e6b1482c1ea40e8bd0062b0959f032, type: 2}
-  m_sharedMaterial: {fileID: -4650382512203120473, guid: 78e6b1482c1ea40e8bd0062b0959f032, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -411,7 +411,7 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: 0
+  m_TextStyleHashCode: -1183493901
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
@@ -1594,7 +1594,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -60}
+  m_AnchoredPosition: {x: -172, y: -94}
   m_SizeDelta: {x: 820, y: 95}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &519962529
@@ -2130,8 +2130,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "H\u1EA1 g\u1EE5c: 120 qu\xE1i v\u1EADt"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 78e6b1482c1ea40e8bd0062b0959f032, type: 2}
-  m_sharedMaterial: {fileID: -4650382512203120473, guid: 78e6b1482c1ea40e8bd0062b0959f032, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2150,7 +2150,7 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: 0
+  m_TextStyleHashCode: -1183493901
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
@@ -2697,8 +2697,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Th\u1EDDi gian: 05:00"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 78e6b1482c1ea40e8bd0062b0959f032, type: 2}
-  m_sharedMaterial: {fileID: -4650382512203120473, guid: 78e6b1482c1ea40e8bd0062b0959f032, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2717,7 +2717,7 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: 0
+  m_TextStyleHashCode: -1183493901
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
@@ -4175,7 +4175,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -130, y: 60}
+  m_AnchoredPosition: {x: -130, y: 304}
   m_SizeDelta: {x: 220, y: 60}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!1 &1044438043
@@ -4316,8 +4316,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "C\u1EA2NH B\xC1O!\nTR\xD9M KH\u1ED4NG L\u1ED2 XU\u1EA4T HI\u1EC6N!"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 78e6b1482c1ea40e8bd0062b0959f032, type: 2}
-  m_sharedMaterial: {fileID: -4650382512203120473, guid: 78e6b1482c1ea40e8bd0062b0959f032, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: -4650382512203120473, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4603,14 +4603,14 @@ MonoBehaviour:
       m_Calls: []
   m_text: "GIAI \u0110O\u1EA0N 1"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 78e6b1482c1ea40e8bd0062b0959f032, type: 2}
-  m_sharedMaterial: {fileID: -4650382512203120473, guid: 78e6b1482c1ea40e8bd0062b0959f032, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4284901119
   m_fontColor: {r: 1, g: 0.4, b: 0.4, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -4623,7 +4623,7 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: 0
+  m_TextStyleHashCode: -1183493901
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
@@ -4877,14 +4877,14 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Tai \u01AF\u01A1ng C\u1EE7a B\u1EA7u Tr\u1EDDi C\u1ED5 \u0110\u1EA1i"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 78e6b1482c1ea40e8bd0062b0959f032, type: 2}
-  m_sharedMaterial: {fileID: -4650382512203120473, guid: 78e6b1482c1ea40e8bd0062b0959f032, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4292460466
   m_fontColor: {r: 0.7, g: 0.75, b: 0.85, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -4897,7 +4897,7 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: 0
+  m_TextStyleHashCode: -1183493901
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
@@ -5014,8 +5014,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "CH\u01A0I L\u1EA0I"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 78e6b1482c1ea40e8bd0062b0959f032, type: 2}
-  m_sharedMaterial: {fileID: -4650382512203120473, guid: 78e6b1482c1ea40e8bd0062b0959f032, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5034,7 +5034,7 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: 0
+  m_TextStyleHashCode: -1183493901
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
@@ -5151,8 +5151,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "PH\u1EBE T\xCDCH B\u1EA6U TR\u1EDCI"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 78e6b1482c1ea40e8bd0062b0959f032, type: 2}
-  m_sharedMaterial: {fileID: -4650382512203120473, guid: 78e6b1482c1ea40e8bd0062b0959f032, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5465,8 +5465,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 00:00 / 05:00
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 78e6b1482c1ea40e8bd0062b0959f032, type: 2}
-  m_sharedMaterial: {fileID: -4650382512203120473, guid: 78e6b1482c1ea40e8bd0062b0959f032, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5579,7 +5579,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 130, y: 60}
+  m_AnchoredPosition: {x: 130, y: 306}
   m_SizeDelta: {x: 220, y: 60}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1422038544
@@ -6269,14 +6269,14 @@ MonoBehaviour:
       m_Calls: []
   m_text: "V\xE0ng nh\u1EADn \u0111\u01B0\u1EE3c: +1.000"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 78e6b1482c1ea40e8bd0062b0959f032, type: 2}
-  m_sharedMaterial: {fileID: -4650382512203120473, guid: 78e6b1482c1ea40e8bd0062b0959f032, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4283229951
   m_fontColor: {r: 1, g: 0.9, b: 0.3, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -6289,7 +6289,7 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: 0
+  m_TextStyleHashCode: -1183493901
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
@@ -6429,14 +6429,14 @@ MonoBehaviour:
       m_Calls: []
   m_text: "LONG V\u01AF\u01A0NG B\u1EA6U TR\u1EDCI"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 78e6b1482c1ea40e8bd0062b0959f032, type: 2}
-  m_sharedMaterial: {fileID: -4650382512203120473, guid: 78e6b1482c1ea40e8bd0062b0959f032, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4281588223
   m_fontColor: {r: 1, g: 0.85, b: 0.2, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -6449,7 +6449,7 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: 0
+  m_TextStyleHashCode: -1183493901
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
@@ -6541,8 +6541,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -40}
-  m_SizeDelta: {x: 400, y: 250}
+  m_AnchoredPosition: {x: 0.1, y: -365}
+  m_SizeDelta: {x: 518.9139, y: 305.3088}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &1732527938
 CanvasRenderer:
@@ -6907,14 +6907,14 @@ MonoBehaviour:
       m_Calls: []
   m_text: "CHI\u1EBEN TH\u1EAENG!"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 78e6b1482c1ea40e8bd0062b0959f032, type: 2}
-  m_sharedMaterial: {fileID: -4650382512203120473, guid: 78e6b1482c1ea40e8bd0062b0959f032, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4281588223
   m_fontColor: {r: 1, g: 0.85, b: 0.2, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -6927,7 +6927,7 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: 0
+  m_TextStyleHashCode: -1183493901
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2

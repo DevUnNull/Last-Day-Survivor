@@ -201,8 +201,8 @@ public class UpgradeManager : MonoBehaviour
             list.Add(new UpgradeOption
             {
                 id = "magic_bolt",
-                title = "Magic Bolt",
-                subtitle = "SPELL UPGRADE",
+                title = "Tia Sét Ma Pháp",
+                subtitle = "NÂNG CẤP CHIÊU",
                 category = UpgradeCategory.SpellUpgrade,
                 currentLevel = playerShooter.CurrentLevel,
                 nextLevel = next,
@@ -220,8 +220,8 @@ public class UpgradeManager : MonoBehaviour
             list.Add(new UpgradeOption
             {
                 id = "fireball",
-                title = "Fireball",
-                subtitle = isNew ? "NEW SPELL" : "SPELL UPGRADE",
+                title = "Quả Cầu Lửa",
+                subtitle = isNew ? "CHIÊU MỚI" : "NÂNG CẤP CHIÊU",
                 category = isNew ? UpgradeCategory.NewSpell : UpgradeCategory.SpellUpgrade,
                 currentLevel = fireballSpell.CurrentLevel,
                 nextLevel = next,
@@ -239,8 +239,8 @@ public class UpgradeManager : MonoBehaviour
             list.Add(new UpgradeOption
             {
                 id = "ice_spear",
-                title = "Ice Spear",
-                subtitle = isNew ? "NEW SPELL" : "SPELL UPGRADE",
+                title = "Băng Thương",
+                subtitle = isNew ? "CHIÊU MỚI" : "NÂNG CẤP CHIÊU",
                 category = isNew ? UpgradeCategory.NewSpell : UpgradeCategory.SpellUpgrade,
                 currentLevel = iceSpearSpell.CurrentLevel,
                 nextLevel = next,
@@ -258,8 +258,8 @@ public class UpgradeManager : MonoBehaviour
             list.Add(new UpgradeOption
             {
                 id = "dark_orb",
-                title = "Dark Orb",
-                subtitle = isNew ? "NEW SPELL" : "SPELL UPGRADE",
+                title = "Cầu Bóng Tối",
+                subtitle = isNew ? "CHIÊU MỚI" : "NÂNG CẤP CHIÊU",
                 category = isNew ? UpgradeCategory.NewSpell : UpgradeCategory.SpellUpgrade,
                 currentLevel = darkOrbSpell.CurrentLevel,
                 nextLevel = next,
@@ -277,8 +277,8 @@ public class UpgradeManager : MonoBehaviour
             list.Add(new UpgradeOption
             {
                 id = "magic_shield",
-                title = "Magic Shield",
-                subtitle = isNew ? "NEW SPELL" : "SPELL UPGRADE",
+                title = "Khiên Hộ Thể",
+                subtitle = isNew ? "CHIÊU MỚI" : "NÂNG CẤP CHIÊU",
                 category = isNew ? UpgradeCategory.NewSpell : UpgradeCategory.SpellUpgrade,
                 currentLevel = magicShield.CurrentLevel,
                 nextLevel = next,
@@ -295,13 +295,13 @@ public class UpgradeManager : MonoBehaviour
             list.Add(new UpgradeOption
             {
                 id = "arcane_tome",
-                title = "Arcane Tome",
-                subtitle = "PASSIVE STAT",
+                title = "Cổ Thư Bí Thuật",
+                subtitle = "NỘI TẠI",
                 category = UpgradeCategory.PassiveStat,
                 currentLevel = arcaneTomeRank,
                 nextLevel = next,
                 icon = iconTome,
-                description = "+20% Magic Damage for all active spells.",
+                description = "+20% Sát thương ma pháp cho tất cả kỹ năng đang dùng.",
                 onSelected = () =>
                 {
                     arcaneTomeRank++;
@@ -317,13 +317,13 @@ public class UpgradeManager : MonoBehaviour
             list.Add(new UpgradeOption
             {
                 id = "hermes_boots",
-                title = "Hermes Boots",
-                subtitle = "PASSIVE STAT",
+                title = "Giày Thần Tốc",
+                subtitle = "NỘI TẠI",
                 category = UpgradeCategory.PassiveStat,
                 currentLevel = hermesBootsRank,
                 nextLevel = next,
                 icon = iconBoots,
-                description = "+15% Movement Speed to outmaneuver hordes.",
+                description = "+15% Tốc độ di chuyển giúp luồn lách qua bầy quái.",
                 onSelected = () =>
                 {
                     hermesBootsRank++;
@@ -339,13 +339,13 @@ public class UpgradeManager : MonoBehaviour
             list.Add(new UpgradeOption
             {
                 id = "spell_haste",
-                title = "Spell Haste",
-                subtitle = "PASSIVE STAT",
+                title = "Gia Tốc Niệm",
+                subtitle = "NỘI TẠI",
                 category = UpgradeCategory.PassiveStat,
                 currentLevel = spellHasteRank,
                 nextLevel = next,
                 icon = iconHaste,
-                description = "+12% Cooldown Reduction across all spells.",
+                description = "+12% Giảm thời gian hồi chiêu cho toàn bộ phép thuật.",
                 onSelected = () =>
                 {
                     spellHasteRank++;
@@ -361,13 +361,13 @@ public class UpgradeManager : MonoBehaviour
             list.Add(new UpgradeOption
             {
                 id = "vitality_heart",
-                title = "Vitality Heart",
-                subtitle = "PASSIVE STAT",
+                title = "Trái Tim Sức Sống",
+                subtitle = "NỘI TẠI",
                 category = UpgradeCategory.PassiveStat,
                 currentLevel = vitalityHeartRank,
                 nextLevel = next,
                 icon = iconHeart,
-                description = "+25 Max HP and immediately heals 25 HP.",
+                description = "+25 Máu tối đa và hồi phục ngay 25 Máu.",
                 onSelected = () =>
                 {
                     vitalityHeartRank++;
@@ -383,13 +383,13 @@ public class UpgradeManager : MonoBehaviour
             list.Add(new UpgradeOption
             {
                 id = "magnetic_pendant",
-                title = "Magnetic Pendant",
-                subtitle = "PASSIVE STAT",
+                title = "Mặt Dây Nam Châm",
+                subtitle = "NỘI TẠI",
                 category = UpgradeCategory.PassiveStat,
                 currentLevel = magneticPendantRank,
                 nextLevel = next,
                 icon = iconMagnet,
-                description = "+45% EXP Pickup Range to easily gather gems.",
+                description = "+45% Bán kính hút ngọc kinh nghiệm từ xa.",
                 onSelected = () =>
                 {
                     magneticPendantRank++;
@@ -407,13 +407,13 @@ public class UpgradeManager : MonoBehaviour
         return new UpgradeOption
         {
             id = "heal_potion",
-            title = "Field Potion",
-            subtitle = "RESTORE HEALTH",
+            title = "Bình Dược Liệu",
+            subtitle = "HỒI MÁU",
             category = UpgradeCategory.Consumable,
             currentLevel = 0,
             nextLevel = 0,
             icon = iconPotion,
-            description = "Restores 35 HP immediately.",
+            description = "Hồi phục 35 Máu ngay lập tức.",
             onSelected = () =>
             {
                 if (AudioManager.Instance != null) AudioManager.Instance.PlayPotionPickup();
@@ -426,11 +426,11 @@ public class UpgradeManager : MonoBehaviour
     {
         switch (rank)
         {
-            case 2: return "Fires 2 Magic Bolts simultaneously.";
-            case 3: return "+25% Fire Rate and +7 Magic Damage.";
-            case 4: return "Fires 3 Magic Bolts in a forward spread.";
-            case 5: return "Arcane Overload: Bolts pierce 2 enemies & +13 Damage!";
-            default: return "Enhances Magic Bolt power.";
+            case 2: return "Bắn 2 Tia Sét Ma Pháp cùng một lúc.";
+            case 3: return "+25% Tốc độ bắn và +7 Sát thương ma pháp.";
+            case 4: return "Bắn 3 Tia Sét Ma Pháp tỏa ra phía trước.";
+            case 5: return "Quá Tải Bí Thuật: Đạn xuyên qua 2 quái và +13 Sát thương!";
+            default: return "Gia tăng sức mạnh Tia Sét Ma Pháp.";
         }
     }
 
@@ -438,12 +438,12 @@ public class UpgradeManager : MonoBehaviour
     {
         switch (rank)
         {
-            case 1: return "Launches explosive fireballs dealing 45 AoE damage.";
-            case 2: return "+20 Explosion Damage and +30% Blast Radius.";
-            case 3: return "Fires 2 Fireballs simultaneously at different targets.";
-            case 4: return "Reduces cooldown to 1.35s and deals +15 Damage.";
-            case 5: return "Inferno Blast: 3 Fireballs, 110 Damage, huge explosion radius!";
-            default: return "Empowers Fireball spell.";
+            case 1: return "Phóng cầu lửa phát nổ gây 45 sát thương diện rộng.";
+            case 2: return "+20 Sát thương nổ và +30% Bán kính vụ nổ.";
+            case 3: return "Phóng 2 Cầu Lửa đồng thời vào các mục tiêu khác nhau.";
+            case 4: return "Giảm hồi chiêu xuống 1.35 giây và +15 Sát thương.";
+            case 5: return "Hỏa Ngục Bùng Nổ: 3 Cầu Lửa, 110 Sát thương, bán kính nổ cực lớn!";
+            default: return "Cường hóa phép Quả Cầu Lửa.";
         }
     }
 
@@ -451,12 +451,12 @@ public class UpgradeManager : MonoBehaviour
     {
         switch (rank)
         {
-            case 1: return "Fires sharp ice spears that pierce all enemies and slow by 40%.";
-            case 2: return "+16 Damage and reduces cooldown to 1.9s.";
-            case 3: return "Fires 2 Ice Spears in twin spread angles.";
-            case 4: return "Slow increased to 60% with extended 3.5s duration.";
-            case 5: return "Glacial Spike: 3 Ice Spears, Freezes enemies on contact!";
-            default: return "Empowers Ice Spear spell.";
+            case 1: return "Bắn ngọn giáo băng xuyên qua mọi kẻ địch và làm chậm 40%.";
+            case 2: return "+16 Sát thương và giảm thời gian hồi chiêu còn 1.9 giây.";
+            case 3: return "Bắn 2 Băng Thương theo góc tỏa đôi.";
+            case 4: return "Làm chậm tăng lên 60% với thời gian kéo dài 3.5 giây.";
+            case 5: return "Gai Băng Vĩnh Cửu: 3 Băng Thương, đóng băng hoàn toàn quái trúng đòn!";
+            default: return "Cường hóa phép Băng Thương.";
         }
     }
 
@@ -464,12 +464,12 @@ public class UpgradeManager : MonoBehaviour
     {
         switch (rank)
         {
-            case 1: return "Summons a dark orb orbiting around you, damaging contact foes.";
-            case 2: return "+1 Dark Orb (2 total) and +25% rotation speed.";
-            case 3: return "+1 Dark Orb (3 total) and +10 damage per hit.";
-            case 4: return "+1 Dark Orb (4 total) and +20% orbit radius.";
-            case 5: return "Void Ring: 5 Dark Orbs spinning furiously, 55 contact damage!";
-            default: return "Empowers Dark Orb spell.";
+            case 1: return "Triệu hồi cầu hắc ám bay quanh bản thân, gây sát thương liên tục.";
+            case 2: return "+1 Cầu Bóng Tối (tổng 2 cầu) và +25% tốc độ xoay.";
+            case 3: return "+1 Cầu Bóng Tối (tổng 3 cầu) và +10 sát thương mỗi đòn.";
+            case 4: return "+1 Cầu Bóng Tối (tổng 4 cầu) và +20% bán kính quỹ đạo.";
+            case 5: return "Vành Đai Hư Không: 5 Cầu xoay vũ bão, gây 55 sát thương va chạm!";
+            default: return "Cường hóa phép Cầu Bóng Tối.";
         }
     }
 
@@ -477,12 +477,12 @@ public class UpgradeManager : MonoBehaviour
     {
         switch (rank)
         {
-            case 1: return "Creates a barrier absorbing up to 35 damage. Regenerates out of combat.";
-            case 2: return "Shield capacity increased to 60 HP and 6s regen delay.";
-            case 3: return "Shield Shockwave: When broken, knocks back & damages nearby foes.";
-            case 4: return "Shield capacity increased to 125 HP and 5s regen delay.";
-            case 5: return "Aegis Barrier: 170 HP Shield and 15% passive damage reduction!";
-            default: return "Empowers Magic Shield spell.";
+            case 1: return "Tạo lớp khiên hấp thụ tối đa 35 sát thương. Tự hồi phục khi rời giao tranh.";
+            case 2: return "Độ bền khiên tăng lên 60 Máu và thời gian hồi phục giảm còn 6 giây.";
+            case 3: return "Sóng Xung Kích: Khi vỡ, phát nổ đẩy lùi và gây sát thương quái xung quanh.";
+            case 4: return "Độ bền khiên tăng lên 125 Máu và thời gian hồi phục giảm còn 5 giây.";
+            case 5: return "Thần Khiên Aegis: 170 Máu khiên và giảm vĩnh viễn 15% sát thương gánh chịu!";
+            default: return "Cường hóa phép Khiên Hộ Thể.";
         }
     }
 }
