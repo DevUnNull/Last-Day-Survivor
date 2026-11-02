@@ -8,7 +8,7 @@ public class MobileJoystick : MonoBehaviour, IPointerDownHandler, IDragHandler, 
     public static Vector2 InputVector { get; private set; }
 
     [Header("Joystick Settings")]
-    [SerializeField] private float handleRange = 70f;
+    [SerializeField] private float handleRange = 55f;
     [SerializeField] private bool autoCreateVisuals = true;
 
     [Header("Sprite Assets (Pixel Art)")]
@@ -18,6 +18,8 @@ public class MobileJoystick : MonoBehaviour, IPointerDownHandler, IDragHandler, 
     [Header("UI References")]
     [SerializeField] private RectTransform background;
     [SerializeField] private RectTransform handle;
+    [SerializeField] private CanvasGroup canvasGroup;
+    [SerializeField] private Image touchZoneImage;
 
     private Canvas canvas;
     private Camera cam;
@@ -39,6 +41,10 @@ public class MobileJoystick : MonoBehaviour, IPointerDownHandler, IDragHandler, 
             cam = canvas.worldCamera != null ? canvas.worldCamera : Camera.main;
         }
 
+        canvasGroup = GetComponent<CanvasGroup>();
+        if (canvasGroup == null) canvasGroup = gameObject.AddComponent<CanvasGroup>();
+        touchZoneImage = GetComponent<Image>();
+
         if (autoCreateVisuals && (background == null || handle == null))
         {
             CreateJoystickVisuals();
@@ -50,6 +56,38 @@ public class MobileJoystick : MonoBehaviour, IPointerDownHandler, IDragHandler, 
         }
     }
 
+    private void Update()
+    {
+        // When game is paused (e.g. LevelUp upgrade selection, Pause, Game Over),
+        // completely hide and disable joystick raycasting so buttons and cards receive all clicks cleanly.
+        bool isPaused = Time.timeScale <= 0f;
+        if (isPaused)
+        {
+            if (isDragging)
+            {
+                isDragging = false;
+                InputVector = Vector2.zero;
+                if (handle != null) handle.anchoredPosition = Vector2.zero;
+            }
+
+            if (canvasGroup != null)
+            {
+                canvasGroup.blocksRaycasts = false;
+                canvasGroup.interactable = false;
+                canvasGroup.alpha = 0f;
+            }
+        }
+        else
+        {
+            if (canvasGroup != null)
+            {
+                canvasGroup.blocksRaycasts = true;
+                canvasGroup.interactable = true;
+                canvasGroup.alpha = 1f;
+            }
+        }
+    }
+
     private void OnDestroy()
     {
         InputVector = Vector2.zero;
@@ -58,18 +96,27 @@ public class MobileJoystick : MonoBehaviour, IPointerDownHandler, IDragHandler, 
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        if (Time.timeScale <= 0f) return;
         isDragging = true;
         OnDrag(eventData);
     }
 
     public void OnDrag(PointerEventData eventData)
     {
+        if (Time.timeScale <= 0f)
+        {
+            OnPointerUp(eventData);
+            return;
+        }
+
         if (background == null || handle == null) return;
 
         Vector2 position = RectTransformUtility.WorldToScreenPoint(cam, background.position);
-        Vector2 radius = background.sizeDelta * 0.5f;
+        float radius = background.sizeDelta.x * 0.5f;
+        if (radius <= 0f) radius = 80f;
 
-        Vector2 input = (eventData.position - position) / (radius.magnitude > 0 ? radius.magnitude : 1f);
+        Vector2 offset = eventData.position - position;
+        Vector2 input = offset / radius;
         if (input.magnitude > 1f)
         {
             input = input.normalized;
@@ -114,20 +161,23 @@ public class MobileJoystick : MonoBehaviour, IPointerDownHandler, IDragHandler, 
 #endif
         }
 
-        // 1. Root container (Anchor to bottom-left quadrant)
+        // 1. Root container (Confined strictly to bottom-left corner 300x300, avoiding card areas)
         RectTransform rootRt = GetComponent<RectTransform>();
         if (rootRt == null) rootRt = gameObject.AddComponent<RectTransform>();
 
-        rootRt.anchorMin = new Vector2(0f, 0f);
-        rootRt.anchorMax = new Vector2(0.5f, 0.6f); // Left touch zone
-        rootRt.offsetMin = Vector2.zero;
-        rootRt.offsetMax = Vector2.zero;
+        rootRt.anchorMin = Vector2.zero;
+        rootRt.anchorMax = Vector2.zero;
+        rootRt.pivot = Vector2.zero;
+        rootRt.anchoredPosition = Vector2.zero;
+        rootRt.sizeDelta = new Vector2(300f, 300f);
 
-        // Transparent image to capture touches across the entire left side of the screen
-        Image zoneImg = GetComponent<Image>();
-        if (zoneImg == null) zoneImg = gameObject.AddComponent<Image>();
-        zoneImg.color = Color.clear;
-        zoneImg.raycastTarget = true;
+        touchZoneImage = GetComponent<Image>();
+        if (touchZoneImage == null) touchZoneImage = gameObject.AddComponent<Image>();
+        touchZoneImage.color = Color.clear;
+        touchZoneImage.raycastTarget = true;
+
+        if (canvasGroup == null) canvasGroup = GetComponent<CanvasGroup>();
+        if (canvasGroup == null) canvasGroup = gameObject.AddComponent<CanvasGroup>();
 
         // 2. Background Ring
         if (background == null)
@@ -135,11 +185,11 @@ public class MobileJoystick : MonoBehaviour, IPointerDownHandler, IDragHandler, 
             GameObject bgObj = new GameObject("JoystickBackground");
             bgObj.transform.SetParent(transform, false);
             background = bgObj.AddComponent<RectTransform>();
-            background.anchorMin = new Vector2(0f, 0f);
-            background.anchorMax = new Vector2(0f, 0f);
+            background.anchorMin = Vector2.zero;
+            background.anchorMax = Vector2.zero;
             background.pivot = new Vector2(0.5f, 0.5f);
-            background.anchoredPosition = new Vector2(220f, 220f);
-            background.sizeDelta = new Vector2(190f, 190f);
+            background.anchoredPosition = new Vector2(150f, 150f);
+            background.sizeDelta = new Vector2(160f, 160f);
 
             Image bgImg = bgObj.AddComponent<Image>();
             if (backgroundSprite != null)
@@ -165,7 +215,7 @@ public class MobileJoystick : MonoBehaviour, IPointerDownHandler, IDragHandler, 
             handle.anchorMax = new Vector2(0.5f, 0.5f);
             handle.pivot = new Vector2(0.5f, 0.5f);
             handle.anchoredPosition = Vector2.zero;
-            handle.sizeDelta = new Vector2(90f, 90f);
+            handle.sizeDelta = new Vector2(75f, 75f);
 
             Image handleImg = handleObj.AddComponent<Image>();
             if (handleSprite != null)
@@ -182,4 +232,3 @@ public class MobileJoystick : MonoBehaviour, IPointerDownHandler, IDragHandler, 
         }
     }
 }
-

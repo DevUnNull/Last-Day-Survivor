@@ -43,12 +43,33 @@ public class TopDownPlayerController : MonoBehaviour
     {
         if (MobileJoystick.Instance == null)
         {
-            Canvas canvas = FindFirstObjectByType<Canvas>();
-            if (canvas != null)
+            Canvas targetCanvas = null;
+            GameObject survivorHud = GameObject.Find("SurvivorHUD");
+            if (survivorHud != null)
+            {
+                targetCanvas = survivorHud.GetComponentInParent<Canvas>();
+            }
+            if (targetCanvas == null)
+            {
+                targetCanvas = FindFirstObjectByType<Canvas>();
+            }
+
+            if (targetCanvas != null)
             {
                 GameObject joyObj = new GameObject("MobileTouchJoystick");
-                joyObj.transform.SetParent(canvas.transform, false);
-                joyObj.transform.SetAsFirstSibling(); // Render beneath UI menus/HUD
+                joyObj.transform.SetParent(targetCanvas.transform, false);
+
+                // Ensure joystick is placed behind modal popups (LevelUpPanel, GameOverPanel, etc.)
+                Transform levelUpPanel = targetCanvas.transform.Find("LevelUpPanel");
+                if (levelUpPanel != null)
+                {
+                    joyObj.transform.SetSiblingIndex(levelUpPanel.GetSiblingIndex());
+                }
+                else
+                {
+                    joyObj.transform.SetAsFirstSibling();
+                }
+
                 joyObj.AddComponent<MobileJoystick>();
             }
         }
