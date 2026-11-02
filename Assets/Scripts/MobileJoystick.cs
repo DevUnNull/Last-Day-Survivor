@@ -8,8 +8,12 @@ public class MobileJoystick : MonoBehaviour, IPointerDownHandler, IDragHandler, 
     public static Vector2 InputVector { get; private set; }
 
     [Header("Joystick Settings")]
-    [SerializeField] private float handleRange = 65f;
+    [SerializeField] private float handleRange = 70f;
     [SerializeField] private bool autoCreateVisuals = true;
+
+    [Header("Sprite Assets (Pixel Art)")]
+    [SerializeField] private Sprite backgroundSprite;
+    [SerializeField] private Sprite handleSprite;
 
     [Header("UI References")]
     [SerializeField] private RectTransform background;
@@ -87,6 +91,29 @@ public class MobileJoystick : MonoBehaviour, IPointerDownHandler, IDragHandler, 
 
     private void CreateJoystickVisuals()
     {
+        // Load Pixel Art Sprites if not assigned
+        if (backgroundSprite == null)
+        {
+            backgroundSprite = Resources.Load<Sprite>("UI/joystick_base");
+#if UNITY_EDITOR
+            if (backgroundSprite == null)
+            {
+                backgroundSprite = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Sprite/UI/joystick_base.png");
+            }
+#endif
+        }
+
+        if (handleSprite == null)
+        {
+            handleSprite = Resources.Load<Sprite>("UI/joystick_knob");
+#if UNITY_EDITOR
+            if (handleSprite == null)
+            {
+                handleSprite = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Sprite/UI/joystick_knob.png");
+            }
+#endif
+        }
+
         // 1. Root container (Anchor to bottom-left quadrant)
         RectTransform rootRt = GetComponent<RectTransform>();
         if (rootRt == null) rootRt = gameObject.AddComponent<RectTransform>();
@@ -112,10 +139,19 @@ public class MobileJoystick : MonoBehaviour, IPointerDownHandler, IDragHandler, 
             background.anchorMax = new Vector2(0f, 0f);
             background.pivot = new Vector2(0.5f, 0.5f);
             background.anchoredPosition = new Vector2(220f, 220f);
-            background.sizeDelta = new Vector2(180f, 180f);
+            background.sizeDelta = new Vector2(190f, 190f);
 
             Image bgImg = bgObj.AddComponent<Image>();
-            bgImg.color = new Color(1f, 1f, 1f, 0.22f); // Translucent ring
+            if (backgroundSprite != null)
+            {
+                bgImg.sprite = backgroundSprite;
+                bgImg.color = new Color(1f, 1f, 1f, 0.8f);
+            }
+            else
+            {
+                bgImg.color = new Color(1f, 1f, 1f, 0.25f);
+            }
+            bgImg.preserveAspect = true;
             bgImg.raycastTarget = false;
         }
 
@@ -129,11 +165,21 @@ public class MobileJoystick : MonoBehaviour, IPointerDownHandler, IDragHandler, 
             handle.anchorMax = new Vector2(0.5f, 0.5f);
             handle.pivot = new Vector2(0.5f, 0.5f);
             handle.anchoredPosition = Vector2.zero;
-            handle.sizeDelta = new Vector2(80f, 80f);
+            handle.sizeDelta = new Vector2(90f, 90f);
 
             Image handleImg = handleObj.AddComponent<Image>();
-            handleImg.color = new Color(1f, 0.9f, 0.3f, 0.6f); // Soft golden glow
+            if (handleSprite != null)
+            {
+                handleImg.sprite = handleSprite;
+                handleImg.color = new Color(1f, 1f, 1f, 0.95f);
+            }
+            else
+            {
+                handleImg.color = new Color(1f, 0.9f, 0.3f, 0.6f);
+            }
+            handleImg.preserveAspect = true;
             handleImg.raycastTarget = false;
         }
     }
 }
+

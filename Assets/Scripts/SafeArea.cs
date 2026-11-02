@@ -49,3 +49,4 @@ public class SafeArea : MonoBehaviour
         rectTransform.offsetMax = Vector2.zero;
     }
 }
+

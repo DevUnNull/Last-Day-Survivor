@@ -9,6 +9,11 @@ public class TopDownPlayerController : MonoBehaviour
     [SerializeField] private bool invertFlipX = true; // Set true if default sprite faces Left
     [SerializeField] private float stepInterval = 0.32f;
 
+    [Header("Screen Boundary Settings")]
+    [SerializeField] private bool clampToScreen = true;
+    [SerializeField] private float boundaryPaddingX = 0.55f;
+    [SerializeField] private float boundaryPaddingY = 0.55f;
+
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
     private Vector2 moveInput;
@@ -134,5 +139,34 @@ public class TopDownPlayerController : MonoBehaviour
 
         Vector2 targetPosition = rb.position + moveInput * (speed * Time.fixedDeltaTime);
         rb.MovePosition(targetPosition);
+
+        if (clampToScreen)
+        {
+            ClampToScreenView();
+        }
+    }
+
+    private void ClampToScreenView()
+    {
+        Camera cam = Camera.main;
+        if (cam == null || rb == null) return;
+
+        float vertExtent = cam.orthographicSize;
+        float horzExtent = vertExtent * cam.aspect;
+        Vector3 camPos = cam.transform.position;
+
+        float minX = camPos.x - horzExtent + boundaryPaddingX;
+        float maxX = camPos.x + horzExtent - boundaryPaddingX;
+        float minY = camPos.y - vertExtent + boundaryPaddingY;
+        float maxY = camPos.y + vertExtent - boundaryPaddingY;
+
+        Vector2 curPos = rb.position;
+        float clampedX = Mathf.Clamp(curPos.x, minX, maxX);
+        float clampedY = Mathf.Clamp(curPos.y, minY, maxY);
+
+        if (clampedX != curPos.x || clampedY != curPos.y)
+        {
+            rb.position = new Vector2(clampedX, clampedY);
+        }
     }
 }
