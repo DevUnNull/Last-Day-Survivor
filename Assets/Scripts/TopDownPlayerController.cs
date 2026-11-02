@@ -29,12 +29,39 @@ public class TopDownPlayerController : MonoBehaviour
         rb.freezeRotation = true;
     }
 
+    private void Start()
+    {
+        EnsureMobileJoystick();
+    }
+
+    private void EnsureMobileJoystick()
+    {
+        if (MobileJoystick.Instance == null)
+        {
+            Canvas canvas = FindFirstObjectByType<Canvas>();
+            if (canvas != null)
+            {
+                GameObject joyObj = new GameObject("MobileTouchJoystick");
+                joyObj.transform.SetParent(canvas.transform, false);
+                joyObj.transform.SetAsFirstSibling(); // Render beneath UI menus/HUD
+                joyObj.AddComponent<MobileJoystick>();
+            }
+        }
+    }
+
     private void Update()
     {
         float moveX = 0f;
         float moveY = 0f;
 
-        // New Input System: Keyboard (WASD & Arrow Keys)
+        // 1. Mobile Virtual Touch Joystick
+        if (MobileJoystick.InputVector.sqrMagnitude > 0.01f)
+        {
+            moveX = MobileJoystick.InputVector.x;
+            moveY = MobileJoystick.InputVector.y;
+        }
+
+        // 2. New Input System: Keyboard (WASD & Arrow Keys)
         var keyboard = Keyboard.current;
         if (keyboard != null)
         {
@@ -44,7 +71,7 @@ public class TopDownPlayerController : MonoBehaviour
             if (keyboard.aKey.isPressed || keyboard.leftArrowKey.isPressed) moveX -= 1f;
         }
 
-        // New Input System: Gamepad (Left Stick & D-Pad)
+        // 3. New Input System: Gamepad (Left Stick & D-Pad)
         var gamepad = Gamepad.current;
         if (gamepad != null)
         {
