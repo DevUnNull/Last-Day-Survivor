@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using TMPro;
 using DhafinFawwaz.AnimationUILib;
 using DhafinFawwaz.AnimationUILib.Demo;
+using UnityEngine.InputSystem;
 
 public class SkillCodexUI : MonoBehaviour
 {
@@ -166,7 +167,8 @@ public class SkillCodexUI : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        var keyboard = Keyboard.current;
+        if (keyboard != null && keyboard.escapeKey.wasPressedThisFrame)
         {
             OnBackClicked();
         }

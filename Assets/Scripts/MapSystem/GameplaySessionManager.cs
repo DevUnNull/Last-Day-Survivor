@@ -123,7 +123,8 @@ public class GameplaySessionManager : MonoBehaviour
         if (isGameEnded) return;
 
         // Debug hotkey for testing: press B to skip immediately to Boss!
-        if (Input.GetKeyDown(KeyCode.B))
+        var keyboard = Keyboard.current;
+        if (keyboard != null && keyboard.bKey.wasPressedThisFrame)
         {
             SkipToBoss();
         }

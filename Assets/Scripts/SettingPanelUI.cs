@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.InputSystem;
 
 public class SettingPanelUI : MonoBehaviour
 {
@@ -176,8 +177,9 @@ public class SettingPanelUI : MonoBehaviour
 
     private void Update()
     {
-        // Press Escape to toggle settings
-        if (Input.GetKeyDown(KeyCode.Escape))
+        // Press Escape to toggle settings (New Input System)
+        var keyboard = Keyboard.current;
+        if (keyboard != null && keyboard.escapeKey.wasPressedThisFrame)
         {
             if (IsOpen())
             {
