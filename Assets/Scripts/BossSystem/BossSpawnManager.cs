@@ -48,18 +48,27 @@ public class BossSpawnManager : MonoBehaviour
             bossWarningBanner.SetActive(false);
         }
 
-        // Determine spawn position relative to player
+        // Determine spawn position relative to player within visible screen bounds
         Vector3 spawnPos = Vector3.zero;
         GameObject playerObj = GameObject.FindWithTag("Player");
         if (playerObj == null) playerObj = GameObject.Find("Player");
 
-        if (playerObj != null)
+        Camera cam = Camera.main;
+        if (cam != null)
         {
-            spawnPos = playerObj.transform.position + Vector3.up * spawnDistanceFromPlayer;
+            float topY = cam.transform.position.y + cam.orthographicSize - 1.5f;
+            float px = playerObj != null ? playerObj.transform.position.x : cam.transform.position.x;
+            float halfWidth = Mathf.Max(3f, cam.orthographicSize * cam.aspect - 1.5f);
+            float clampedX = Mathf.Clamp(px, cam.transform.position.x - halfWidth, cam.transform.position.x + halfWidth);
+            spawnPos = new Vector3(clampedX, topY, 0f);
+        }
+        else if (playerObj != null)
+        {
+            spawnPos = playerObj.transform.position + Vector3.up * 3.5f;
         }
         else
         {
-            spawnPos = Vector3.up * 5f;
+            spawnPos = Vector3.up * 3.5f;
         }
 
         // Instantiate Boss

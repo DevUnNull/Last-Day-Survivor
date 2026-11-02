@@ -235,22 +235,67 @@ public class BossController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (currentState == BossState.Idle && playerTransform != null && currentPhase != null)
+        if (currentState == BossState.Death || currentState == BossState.Spawning) return;
+
+        if (playerTransform == null)
         {
-            // Reposition / hover around preferred distance
-            Vector2 toPlayer = (playerTransform.position - transform.position);
+            FindPlayer();
+            if (playerTransform == null) return;
+        }
+
+        // Face player
+        if (animController != null)
+        {
+            animController.FaceTarget(playerTransform.position);
+        }
+
+        // Pursuit movement in Idle / Recovery: pursue player to maintain combat pressure
+        if ((currentState == BossState.Idle || currentState == BossState.Recovery) && rb != null)
+        {
+            Vector2 toPlayer = ((Vector2)playerTransform.position - rb.position);
             float dist = toPlayer.magnitude;
 
-            if (dist > currentPhase.preferredDistanceToPlayer + 1.0f)
+            // Engaging range: pursue player until within melee/close combat range
+            float stopDist = 1.3f;
+            float curSpeed = currentPhase != null ? currentPhase.moveSpeed : 2.6f;
+
+            if (dist > stopDist)
             {
                 Vector2 moveDir = toPlayer.normalized;
-                rb.MovePosition(rb.position + moveDir * (currentPhase.moveSpeed * Time.fixedDeltaTime));
+                rb.MovePosition(rb.position + moveDir * (curSpeed * Time.fixedDeltaTime));
             }
-            else if (dist < currentPhase.preferredDistanceToPlayer - 1.5f)
-            {
-                Vector2 moveDir = -toPlayer.normalized;
-                rb.MovePosition(rb.position + moveDir * (currentPhase.moveSpeed * Time.fixedDeltaTime));
-            }
+        }
+
+        // Always keep Boss strictly bounded within camera visible screen
+        ClampToScreenView();
+    }
+
+    public void ClampToScreenView()
+    {
+        if (rb == null) return;
+        Camera cam = Camera.main;
+        if (cam == null) return;
+
+        float vertExtent = cam.orthographicSize;
+        float horzExtent = vertExtent * cam.aspect;
+        Vector3 camPos = cam.transform.position;
+
+        // Margin accounting for boss size (radius ~ 1.3 units)
+        float marginX = 1.3f;
+        float marginY = 1.3f;
+
+        float minX = camPos.x - horzExtent + marginX;
+        float maxX = camPos.x + horzExtent - marginX;
+        float minY = camPos.y - vertExtent + marginY;
+        float maxY = camPos.y + vertExtent - marginY;
+
+        Vector2 curPos = rb.position;
+        float clampedX = Mathf.Clamp(curPos.x, minX, maxX);
+        float clampedY = Mathf.Clamp(curPos.y, minY, maxY);
+
+        if (clampedX != curPos.x || clampedY != curPos.y)
+        {
+            rb.position = new Vector2(clampedX, clampedY);
         }
     }
 
@@ -475,6 +520,7 @@ public class BossController : MonoBehaviour
         {
             timer += Time.deltaTime;
             rb.MovePosition(rb.position + dir * (dashSpeed * Time.deltaTime));
+            ClampToScreenView();
 
             // Check contact damage during dash
             Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, 1.8f);
