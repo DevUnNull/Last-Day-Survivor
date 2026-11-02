@@ -43,6 +43,11 @@ public class BossProjectile : MonoBehaviour
         Hit(collider.gameObject);
     }
 
+    private void OnTriggerStay2D(Collider2D collider)
+    {
+        Hit(collider.gameObject);
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Hit(collision.gameObject);
@@ -50,13 +55,24 @@ public class BossProjectile : MonoBehaviour
 
     private void Hit(GameObject target)
     {
-        if (target.CompareTag("Player") || target.name == "Player")
+        if (target == null) return;
+
+        // Ignore boss, other boss projectiles, and friendly enemies
+        if (target.GetComponent<BossController>() != null || target.GetComponentInParent<BossController>() != null) return;
+        if (target.GetComponent<BossProjectile>() != null) return;
+        if (target.GetComponent<EnemyController>() != null || target.GetComponentInParent<EnemyController>() != null) return;
+
+        PlayerHealth playerHealth = target.GetComponent<PlayerHealth>();
+        if (playerHealth == null) playerHealth = target.GetComponentInParent<PlayerHealth>();
+
+        if (playerHealth != null)
         {
-            PlayerHealth playerHealth = target.GetComponent<PlayerHealth>();
-            if (playerHealth != null)
+            if (AudioManager.Instance != null)
             {
-                playerHealth.TakeDamage(damage);
+                AudioManager.Instance.PlayEnemyAttack();
             }
+
+            playerHealth.TakeDamage(damage);
             Destroy(gameObject);
         }
     }

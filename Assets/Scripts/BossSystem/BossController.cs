@@ -22,6 +22,8 @@ public class BossController : MonoBehaviour
 {
     [Header("Configuration")]
     [SerializeField] private BossData bossConfig;
+    [Header("Visual Scale")]
+    [SerializeField] private float bossScale = 0.22f;
 
     [Header("References")]
     [SerializeField] private BossHealth bossHealth;
@@ -64,6 +66,8 @@ public class BossController : MonoBehaviour
             rb.freezeRotation = true;
         }
 
+        transform.localScale = Vector3.one * bossScale;
+
         if (GetComponent<BossFloatingHealthBar>() == null)
         {
             gameObject.AddComponent<BossFloatingHealthBar>();
@@ -73,6 +77,7 @@ public class BossController : MonoBehaviour
     public void Initialize(BossData config)
     {
         this.bossConfig = config;
+        transform.localScale = Vector3.one * bossScale;
 
         if (bossConfig != null)
         {
@@ -393,6 +398,8 @@ public class BossController : MonoBehaviour
         }
     }
 
+    private static Sprite defaultProjectileSprite;
+
     private void SpawnSingleProjectile(BossAttackData attack, Vector3 origin, Vector2 dir)
     {
         GameObject projObj;
@@ -402,15 +409,32 @@ public class BossController : MonoBehaviour
         }
         else
         {
-            // Fallback projectile
+            // Fallback projectile with visible sprite
             projObj = new GameObject("BossProjectile");
             projObj.transform.position = origin;
+            projObj.transform.localScale = Vector3.one * 1.5f;
+
             var sr = projObj.AddComponent<SpriteRenderer>();
-            sr.color = Color.red;
-            sr.sortingOrder = 7;
+            if (defaultProjectileSprite == null)
+            {
+#if UNITY_EDITOR
+                defaultProjectileSprite = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Sprite/New_All_Fire_Bullet_Pixel_16x16/All_Fire_Bullet_Pixel_16x16_00.png");
+                if (defaultProjectileSprite == null)
+                {
+                    defaultProjectileSprite = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Sprite/Generated/fireball.png");
+                }
+#endif
+            }
+            if (defaultProjectileSprite != null)
+            {
+                sr.sprite = defaultProjectileSprite;
+            }
+            sr.color = new Color(1f, 0.2f, 0.2f, 1f);
+            sr.sortingOrder = 15;
+
             var col = projObj.AddComponent<CircleCollider2D>();
             col.isTrigger = true;
-            col.radius = 0.3f;
+            col.radius = 0.45f;
         }
 
         BossProjectile proj = projObj.GetComponent<BossProjectile>();
@@ -426,14 +450,17 @@ public class BossController : MonoBehaviour
             Instantiate(attack.vfxPrefab, targetPos, Quaternion.identity);
         }
 
-        Collider2D hit = Physics2D.OverlapCircle(targetPos, attack.areaRadius);
-        if (hit != null && (hit.CompareTag("Player") || hit.name == "Player"))
+        Collider2D[] hits = Physics2D.OverlapCircleAll(targetPos, attack.areaRadius);
+        foreach (var hit in hits)
         {
-            PlayerHealth ph = hit.GetComponent<PlayerHealth>();
+            if (hit == null || hit.gameObject == gameObject) continue;
+            PlayerHealth ph = hit.GetComponent<PlayerHealth>() ?? hit.GetComponentInParent<PlayerHealth>();
             if (ph != null)
             {
+                if (AudioManager.Instance != null) AudioManager.Instance.PlayEnemyAttack();
                 int scaledDamage = Mathf.RoundToInt(attack.damage * currentDamageMultiplier);
                 ph.TakeDamage(scaledDamage);
+                break;
             }
         }
     }
@@ -448,6 +475,22 @@ public class BossController : MonoBehaviour
         {
             timer += Time.deltaTime;
             rb.MovePosition(rb.position + dir * (dashSpeed * Time.deltaTime));
+
+            // Check contact damage during dash
+            Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, 1.8f);
+            foreach (var h in hits)
+            {
+                if (h == null || h.gameObject == gameObject) continue;
+                PlayerHealth ph = h.GetComponent<PlayerHealth>() ?? h.GetComponentInParent<PlayerHealth>();
+                if (ph != null)
+                {
+                    if (AudioManager.Instance != null) AudioManager.Instance.PlayEnemyAttack();
+                    int scaledDamage = Mathf.RoundToInt(attack.damage * currentDamageMultiplier);
+                    ph.TakeDamage(scaledDamage);
+                    break;
+                }
+            }
+
             yield return null;
         }
     }
@@ -523,14 +566,17 @@ public class BossController : MonoBehaviour
 
     private void ExecuteBeamAttack(BossAttackData attack, Vector2 attackDir)
     {
-        RaycastHit2D hit = Physics2D.BoxCast(transform.position, new Vector2(attack.areaSize.x, 0.5f), Mathf.Atan2(attackDir.y, attackDir.x) * Mathf.Rad2Deg, attackDir, attack.areaSize.y);
-        if (hit.collider != null && (hit.collider.CompareTag("Player") || hit.collider.name == "Player"))
+        RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position, new Vector2(attack.areaSize.x, 0.8f), Mathf.Atan2(attackDir.y, attackDir.x) * Mathf.Rad2Deg, attackDir, attack.areaSize.y);
+        foreach (var hit in hits)
         {
-            PlayerHealth ph = hit.collider.GetComponent<PlayerHealth>();
+            if (hit.collider == null || hit.collider.gameObject == gameObject) continue;
+            PlayerHealth ph = hit.collider.GetComponent<PlayerHealth>() ?? hit.collider.GetComponentInParent<PlayerHealth>();
             if (ph != null)
             {
+                if (AudioManager.Instance != null) AudioManager.Instance.PlayEnemyAttack();
                 int scaledDamage = Mathf.RoundToInt(attack.damage * currentDamageMultiplier);
                 ph.TakeDamage(scaledDamage);
+                break;
             }
         }
     }
@@ -620,18 +666,47 @@ public class BossController : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
+    private float lastContactDamageTime = 0f;
+    [SerializeField] private float contactDamageInterval = 0.5f;
+
+    private void TryDamagePlayer(GameObject target)
     {
         if (currentState == BossState.Death || currentState == BossState.Spawning) return;
+        if (target == null || target == gameObject) return;
+        if (Time.time < lastContactDamageTime + contactDamageInterval) return;
 
-        if (collision.gameObject.CompareTag("Player") || collision.gameObject.name == "Player")
+        PlayerHealth ph = target.GetComponent<PlayerHealth>() ?? target.GetComponentInParent<PlayerHealth>();
+        if (ph != null)
         {
-            PlayerHealth ph = collision.gameObject.GetComponent<PlayerHealth>();
-            if (ph != null && bossConfig != null)
+            if (AudioManager.Instance != null)
             {
-                int scaledContactDamage = Mathf.RoundToInt(bossConfig.contactDamage * currentDamageMultiplier);
-                ph.TakeDamage(scaledContactDamage);
+                AudioManager.Instance.PlayEnemyAttack();
             }
+
+            int baseContactDmg = (bossConfig != null && bossConfig.contactDamage > 0) ? bossConfig.contactDamage : 25;
+            int scaledContactDamage = Mathf.RoundToInt(baseContactDmg * currentDamageMultiplier);
+            ph.TakeDamage(scaledContactDamage);
+            lastContactDamageTime = Time.time;
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        TryDamagePlayer(collision.gameObject);
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        TryDamagePlayer(collision.gameObject);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        TryDamagePlayer(collider.gameObject);
+    }
+
+    private void OnTriggerStay2D(Collider2D collider)
+    {
+        TryDamagePlayer(collider.gameObject);
     }
 }

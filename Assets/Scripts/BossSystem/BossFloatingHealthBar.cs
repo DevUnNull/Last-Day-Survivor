@@ -62,6 +62,9 @@ public class BossFloatingHealthBar : MonoBehaviour
         if (canvas != null)
         {
             canvas.transform.rotation = Quaternion.identity;
+            float pScale = transform.lossyScale.y != 0 ? Mathf.Abs(transform.lossyScale.y) : 1f;
+            canvas.transform.localPosition = new Vector3(0f, 1.55f / pScale, 0f);
+            canvas.transform.localScale = Vector3.one * (0.015f / pScale);
         }
     }
 
@@ -90,9 +93,10 @@ public class BossFloatingHealthBar : MonoBehaviour
         // 1. World Canvas
         GameObject canvasObj = new GameObject("BossWorldHealthCanvas");
         canvasObj.transform.SetParent(transform);
-        canvasObj.transform.localPosition = offset;
+        float pScale = transform.lossyScale.y != 0 ? Mathf.Abs(transform.lossyScale.y) : 1f;
+        canvasObj.transform.localPosition = new Vector3(0f, 1.55f / pScale, 0f);
         canvasObj.transform.localRotation = Quaternion.identity;
-        canvasObj.transform.localScale = new Vector3(0.015f, 0.015f, 0.015f);
+        canvasObj.transform.localScale = Vector3.one * (0.015f / pScale);
 
         canvas = canvasObj.AddComponent<Canvas>();
         canvas.renderMode = RenderMode.WorldSpace;
