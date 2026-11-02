@@ -1,0 +1,171 @@
+================================================================================
+          HƯỚNG DẪN CẤU HÌNH & TÙY BIẾN GAME: LAST DAY SURVIVOR
+================================================================================
+
+Tài liệu này hướng dẫn chi tiết cách:
+1. Tùy chỉnh Độ Khó (Máu, Sát thương, Tốc độ quái, Tần suất sinh quái, Sức mạnh Boss).
+2. Tùy chỉnh & Thay đổi Hình Ảnh (Nhân vật, Quái vật, Trùm, Bản đồ/Background, Joystick, Đạn).
+
+--------------------------------------------------------------------------------
+PHẦN 1: CÁCH CHỈNH ĐỘ KHÓ CỦA GAME (DIFFICULTY)
+--------------------------------------------------------------------------------
+
+1.1. CHỈNH SỨC MẠNH & TỐC ĐỘ CỦA QUÁI THƯỜNG (ENEMIES)
+------------------------------------------------------
+* Cách 1: Chỉnh trực tiếp trên Prefab quái
+  - Bước 1: Trong cửa sổ Project, tìm đến file:
+            Assets/Prefabs/EnemyPrefab.prefab
+  - Bước 2: Nhấp đúp chuột để mở Prefab.
+  - Bước 3: Trong cửa sổ Inspector:
+    + Tìm component "Enemy Health":
+      * Max Health: Lượng máu tối đa của quái (Mặc định: 45). Giảm xuống nếu muốn quái dễ chết hơn.
+    + Tìm component "Enemy Controller":
+      * Move Speed: Tốc độ di chuyển đuổi theo người chơi (Mặc định: 2.2).
+      * Contact Damage: Sát thương quái cắn trúng người chơi (Mặc định: 10).
+      * Damage Interval: Khoảng thời gian giữa 2 lần cắn liên tiếp (Mặc định: 0.8 giây).
+
+1.2. CHỈNH SỐ LƯỢNG & TẦN SUẤT XUẤT HIỆN QUÁI (SPAWN RATE & WAVE SCALING)
+-------------------------------------------------------------------------
+* Vị trí: Trong Scene chiến đấu chính:
+          Assets/Scenes/2_InGame.unity
+* Thao tác:
+  - Mở scene "2_InGame".
+  - Trong cửa sổ Hierarchy, bấm chọn GameObject: "EnemySpawner".
+  - Nhìn sang cửa sổ Inspector bên phải, tìm component "Enemy Spawner":
+    + Initial Spawn Interval: Khoảng cách giữa 2 lần sinh quái lúc mới vào trận (Mặc định: 2.5 giây). Tăng lên nếu muốn đầu game ra quái thưa hơn.
+    + Minimum Spawn Interval: Giới hạn tốc độ sinh quái nhanh nhất khi về cuối game (Mặc định: 0.45 giây).
+    + Spawn Interval Decrease Rate: Tốc độ tăng tiến độ khó theo thời gian (càng nhỏ thì game tăng độ khó càng chậm).
+    + Base Enemy Health: Máu khởi điểm của quái (Mặc định: 45).
+    + Base Enemy Damage: Sát thương khởi điểm của quái (Mặc định: 8).
+    + Health Scale Per Minute: Tỷ lệ tăng máu quái mỗi phút (Ví dụ: 0.25 = quái tăng 25% máu mỗi phút).
+    + Damage Scale Per Minute: Tỷ lệ tăng dame quái mỗi phút (Ví dụ: 0.15 = tăng 15% dame mỗi phút).
+    + Base Elite Chance: Tỷ lệ xuất hiện quái tinh anh khổng lồ (Mặc định: 0.03 = 3%).
+
+1.3. CHỈNH SỨC MẠNH CỦA 3 CON ĐẠI TRÙM (BOSSES)
+-----------------------------------------------
+Các thông số của 3 con Boss được lưu dưới dạng file ScriptableObject tại:
+Assets/Settings/Bosses/
+  + Boss_SkyDragon.asset       (Rồng Bầu Trời - Map 1)
+  + Boss_StormColossus.asset   (Khổng Lồ Bão Tố - Map 2)
+  + Boss_AbyssalTitan.asset    (Titan Vực Sâu - Map 3)
+
+* Thao tác:
+  - Bấm chọn trực tiếp file Boss bạn muốn chỉnh trong thư mục Assets/Settings/Bosses/
+  - Trong Inspector:
+    + Max Health: Máu của Boss (Mặc định: Rồng 4500, Bão Tố 6500, Vực Sâu 9000). Giảm số này nếu muốn diệt Boss nhanh hơn.
+    + Contact Damage: Sát thương khi người chơi chạm vào người Boss.
+    + Health Scale Per Player Level: Mức tăng máu Boss theo cấp độ người chơi (Mặc định: 0.35).
+    + Damage Scale Per Player Level: Mức tăng sát thương Boss theo cấp độ người chơi (Mặc định: 0.15).
+    + Danh sách "Phases" (Giai đoạn chiến đấu):
+      * Mở rộng Phase 1 hoặc Phase 2 -> Mở danh sách "Attacks":
+      * Mỗi chiêu thức (Fire Breath, Meteor Rain, Fist Slam, Void Beam...):
+        - Damage: Sát thương của chiêu đó.
+        - Cooldown: Thời gian hồi chiêu (Tăng cooldown để Boss ra chiêu thưa hơn).
+        - Telegraph Duration: Thời gian vệt đỏ cảnh báo xuất hiện trước khi đánh (Tăng lên để người chơi có nhiều thời gian né hơn).
+
+1.4. CHỈNH SỨC MẠNH CỦA NGƯỜI CHƠI (PLAYER)
+--------------------------------------------
+* Vị trí: Trong scene Assets/Scenes/2_InGame.unity -> Chọn GameObject "Player" trong Hierarchy:
+  - Component "Top Down Player Controller":
+    + Move Speed: Tốc độ chạy của nhân vật (Mặc định: 5.0).
+  - Component "Player Health":
+    + Max Health: Máu tối đa của bạn (Mặc định: 100).
+    + Invulnerability Duration: Thời gian bất tử (nhấp nháy vàng) sau khi bị đánh trúng (Mặc định: 0.8 giây).
+  - Component "Player Shooter":
+    + Fire Rate: Tốc độ bắn đạn thường (Số viên/giây).
+    + Bullet Damage: Sát thương đạn cơ bản của người chơi.
+    + Bullet Speed: Tốc độ bay của viên đạn.
+  - Component "Player Level System":
+    + Base Exp To Level: Lượng EXP cần nhặt để lên cấp 2 (Mặc định: 15).
+    + Exp Growth Multiplier: Hệ số nhân EXP cho các cấp tiếp theo (Mặc định: 1.25).
+
+
+--------------------------------------------------------------------------------
+PHẦN 2: CÁCH THAY ĐỔI HÌNH ẢNH (SPRITES & GRAPHICS)
+--------------------------------------------------------------------------------
+
+2.1. NGUYÊN TẮC KHI THÊM ẢNH MỚI VÀO UNITY
+------------------------------------------
+Trước khi kéo thả ảnh vào Game, hãy đảm bảo ảnh được cài đặt đúng định dạng Sprite:
+- Kéo file ảnh (.png) vào bất kỳ thư mục nào trong "Assets/".
+- Bấm vào file ảnh đó trong cửa sổ Project -> Nhìn sang Inspector:
+  + Texture Type: Chọn "Sprite (2D and UI)".
+  + Sprite Mode: Chọn "Single" (nếu là ảnh đơn) hoặc "Multiple" (nếu là ảnh cắt sprite sheet).
+  + Filter Mode: Chọn "Point (no filter)" nếu là đồ họa Pixel Art (để không bị mờ).
+  + Compression: Chọn "None" hoặc "High Quality".
+- Bấm nút "Apply" ở dưới cùng Inspector.
+
+2.2. THAY HÌNH ẢNH NHÂN VẬT CHÍNH (PLAYER)
+------------------------------------------
+- Mở scene: Assets/Scenes/2_InGame.unity
+- Chọn GameObject: "Player" trong cửa sổ Hierarchy.
+- Trong Inspector, tìm component "Sprite Renderer":
+  + Kéo file Sprite mới của bạn thả vào ô "Sprite".
+  - Hoặc thay thế các file sprite tại thư mục: Assets/Sprite/
+
+2.3. THAY HÌNH ẢNH QUÁI THƯỜNG (ENEMIES)
+----------------------------------------
+- Mở file: Assets/Prefabs/EnemyPrefab.prefab
+- Chọn GameObject "EnemyPrefab" ở đầu Hierarchy Prefab.
+- Trong Inspector, tìm component "Sprite Renderer":
+  + Kéo file Sprite quái mới vào ô "Sprite".
+- Thư mục ảnh quái gốc: Assets/Sprite/Bat_Sprite_Sheet.png
+
+2.4. THAY HÌNH ẢNH ĐẠI TRÙM (BOSSES)
+------------------------------------
+- Mở thư mục chứa dữ liệu Boss:
+  Assets/Settings/Bosses/
+  (Chọn Boss_SkyDragon.asset, Boss_StormColossus.asset hoặc Boss_AbyssalTitan.asset)
+- Trong Inspector:
+  + Ô "Default Sprite": Kéo ảnh Sprite toàn thân của Boss vào đây (ảnh này xuất hiện trong trận đấu).
+  + Ô "Boss Icon": Kéo ảnh đại diện avatar vuông tròn của Boss vào đây (ảnh này hiện trên thanh máu trùm và trên thẻ chọn map).
+- Thư mục ảnh Boss gốc chất lượng cao:
+  Assets/AnimationUI/Demo/UI/Boss/ (Sky Dragon.png, Storm Colossus.png, Abyssal Titan.png)
+
+2.5. THAY HÌNH ẢNH NỀN BẢN ĐỒ / MÔI TRƯỜNG (BACKGROUND & ENVIRONMENT)
+--------------------------------------------------------------------
+- Mở scene: Assets/Scenes/2_InGame.unity
+- Trong Hierarchy, mở rộng "Canvas", bạn sẽ thấy 3 lớp Background tương ứng 3 Map:
+  + "BackGround"     -> Nền Map 1 (Phế Tích Bầu Trời)
+  + "BackGround (1)" -> Nền Map 2 (Bão Tố U Ám)
+  + "BackGround (2)" -> Nền Map 3 (Nhật Thực Vực Sâu)
+- Thao tác thay ảnh:
+  + Bấm chọn vào GameObject "BackGround" (hoặc 1, 2).
+  + Trong Inspector, tìm component "Image":
+  + Kéo ảnh nền mới của bạn thả vào ô "Source Image".
+- Ảnh nền gốc: Assets/Sprite/backGround.png
+
+2.6. THAY HÌNH ẢNH JOYSTICK CẢM ỨNG DI ĐỘNG (MOBILE JOYSTICK)
+-------------------------------------------------------------
+Game sử dụng 2 file ảnh Sprite riêng biệt để tạo ra bộ Joystick:
+- Thư mục chứa ảnh:
+  Assets/Resources/UI/
+  (đồng bộ cả ở Assets/Sprite/UI/)
+- Các file ảnh:
+  + "joystick_base.png": Vòng tròn đế ngoài của cần điều khiển.
+  + "joystick_knob.png": Nút gạt tròn ngón tay ở giữa.
+- Cách thay:
+  + Thiết kế 2 ảnh PNG mới với nền trong suốt (kích thước đề xuất 256x256 cho base và 128x128 cho knob).
+  + Lưu đè tên đúng "joystick_base.png" và "joystick_knob.png" vào thư mục:
+    Assets/Resources/UI/
+  + Unity sẽ tự động nạp ảnh mới cho Joystick mỗi khi vào trận.
+
+2.7. THAY HÌNH ẢNH ĐẠN BẮN (BULLETS)
+------------------------------------
+- Mở file: Assets/Prefabs/BulletPrefab.prefab
+- Trong Inspector, tìm component "Sprite Renderer":
+  + Kéo Sprite viên đạn mới vào ô "Sprite".
+- Thư mục đạn gốc: Assets/Sprite/New_All_Fire_Bullet_Pixel_16x16/
+
+================================================================================
+TÓM TẮT ĐƯỜNG DẪN CÁC THÀNH PHẦN QUAN TRỌNG:
+================================================================================
+1. Scene chơi chính:       Assets/Scenes/2_InGame.unity
+2. Scene menu chính:       Assets/Scenes/1_1_MainMenu.unity
+3. Prefab quái thường:     Assets/Prefabs/EnemyPrefab.prefab
+4. Prefab đạn người chơi:  Assets/Prefabs/BulletPrefab.prefab
+5. Dữ liệu 3 Đại Boss:     Assets/Settings/Bosses/
+6. Dữ liệu 3 Bản đồ:       Assets/Settings/Maps/
+7. Joystick cảm ứng:       Assets/Resources/UI/joystick_base.png & joystick_knob.png
+8. Bảng cài đặt âm thanh:  Assets/Prefabs/SettingsPanel.prefab
+================================================================================
