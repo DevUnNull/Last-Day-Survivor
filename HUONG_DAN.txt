@@ -169,3 +169,4 @@ TÓM TẮT ĐƯỜNG DẪN CÁC THÀNH PHẦN QUAN TRỌNG:
 7. Joystick cảm ứng:       Assets/Resources/UI/joystick_base.png & joystick_knob.png
 8. Bảng cài đặt âm thanh:  Assets/Prefabs/SettingsPanel.prefab
 ================================================================================
+
