@@ -1,4 +1,3 @@
-
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -43,7 +42,16 @@ public class SceneController : MonoBehaviour
     // Thoát game
     public void QuitGame()
     {
-        Debug.Log("Quit Game");
+        Debug.Log("[SceneController] Thoát trò chơi...");
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayUIClick();
+        }
+
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
         Application.Quit();
+#endif
     }
 }
