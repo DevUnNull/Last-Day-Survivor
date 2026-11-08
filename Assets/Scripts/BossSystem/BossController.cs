@@ -446,7 +446,22 @@ public class BossController : MonoBehaviour
             }
             else if (attack.telegraphType == AttackTelegraphType.Line)
             {
-                telegraphController.ShowLineTelegraph(transform.position, attackDir, attack.areaSize, attack.telegraphDuration, warningColor);
+                if (attack.patternType == BossAttackPatternType.ProjectileBarrage && attack.projectileCount > 1)
+                {
+                    telegraphController.ShowProjectileFanTelegraph(
+                        transform.position,
+                        attackDir,
+                        attack.projectileCount,
+                        attack.projectileSpreadAngle,
+                        attack.areaSize.y,
+                        attack.telegraphDuration,
+                        warningColor
+                    );
+                }
+                else
+                {
+                    telegraphController.ShowLineTelegraph(transform.position, attackDir, attack.areaSize, attack.telegraphDuration, warningColor);
+                }
             }
         }
 

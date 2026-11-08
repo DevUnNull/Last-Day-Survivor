@@ -1,215 +1,206 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class BossTelegraphController : MonoBehaviour
 {
-    private static Sprite circleRingSprite;
-    private static Sprite circleFillSprite;
-    private static Sprite lineTrackSprite;
-    private static Sprite lineFillSprite;
+    private static Sprite unitCenterSprite;
+    private static Sprite unitBottomPivotSprite;
+    private static Shader telegraphShader;
 
-    private static void EnsureSprites()
+    private static void EnsureResources()
     {
-        if (circleRingSprite != null && circleFillSprite != null && lineTrackSprite != null && lineFillSprite != null)
+        if (telegraphShader == null)
+        {
+            telegraphShader = Shader.Find("Custom/BossTelegraphShader");
+            if (telegraphShader == null)
+            {
+                telegraphShader = Resources.Load<Shader>("Shaders/BossTelegraphShader");
+            }
+        }
+
+        if (unitCenterSprite != null && unitBottomPivotSprite != null)
             return;
 
-        // 1. 64x64 Crisp Pixel-Art Rune Danger Ring (Point Filtered)
-        Texture2D ringTex = new Texture2D(64, 64, TextureFormat.RGBA32, false)
-        {
-            filterMode = FilterMode.Point,
-            wrapMode = TextureWrapMode.Clamp
-        };
-        Vector2 center = new Vector2(31.5f, 31.5f);
-        for (int y = 0; y < 64; y++)
-        {
-            for (int x = 0; x < 64; x++)
-            {
-                Vector2 d = new Vector2(x, y) - center;
-                float dist = d.magnitude;
-                float angle = Mathf.Atan2(d.y, d.x) * Mathf.Rad2Deg;
-                if (angle < 0f) angle += 360f;
-
-                bool outerRim = dist >= 28.5f && dist <= 31.0f;
-                bool innerDashed = (dist >= 22.0f && dist <= 23.6f) && ((Mathf.RoundToInt(angle) / 10) % 2 == 0);
-                bool crosshair = (dist >= 8.0f && dist <= 28.5f) && (Mathf.Abs(d.x) <= 1.0f || Mathf.Abs(d.y) <= 1.0f);
-                bool centerDot = dist <= 3.2f;
-
-                if (outerRim || centerDot)
-                    ringTex.SetPixel(x, y, Color.white);
-                else if (innerDashed || crosshair)
-                    ringTex.SetPixel(x, y, new Color(1f, 1f, 1f, 0.75f));
-                else if (dist < 28.5f)
-                    ringTex.SetPixel(x, y, new Color(1f, 1f, 1f, 0.14f));
-                else
-                    ringTex.SetPixel(x, y, Color.clear);
-            }
-        }
-        ringTex.Apply();
-        circleRingSprite = Sprite.Create(ringTex, new Rect(0, 0, 64, 64), new Vector2(0.5f, 0.5f), 64f);
-
-        // 2. 64x64 Crisp Pixel Circle Fill (for expanding charge core)
-        Texture2D fillTex = new Texture2D(64, 64, TextureFormat.RGBA32, false)
-        {
-            filterMode = FilterMode.Point,
-            wrapMode = TextureWrapMode.Clamp
-        };
-        for (int y = 0; y < 64; y++)
-        {
-            for (int x = 0; x < 64; x++)
-            {
-                float dist = Vector2.Distance(new Vector2(x, y), center);
-                if (dist >= 27.5f && dist <= 30.8f)
-                    fillTex.SetPixel(x, y, Color.white);
-                else if (dist < 27.5f)
-                    fillTex.SetPixel(x, y, new Color(1f, 1f, 1f, 0.45f));
-                else
-                    fillTex.SetPixel(x, y, Color.clear);
-            }
-        }
-        fillTex.Apply();
-        circleFillSprite = Sprite.Create(fillTex, new Rect(0, 0, 64, 64), new Vector2(0.5f, 0.5f), 64f);
-
-        // 3. 32x64 Pixel-Art Directional Warning Track (with side rails & chevron arrows)
-        Texture2D trackTex = new Texture2D(32, 64, TextureFormat.RGBA32, false)
-        {
-            filterMode = FilterMode.Point,
-            wrapMode = TextureWrapMode.Clamp
-        };
-        for (int y = 0; y < 64; y++)
-        {
-            for (int x = 0; x < 32; x++)
-            {
-                bool sideRail = (x <= 2 || x >= 29);
-                bool topBottomCap = (y <= 1 || y >= 62);
-                int chevronY = (y + Mathf.Abs(x - 16)) % 16;
-                bool chevron = (x > 5 && x < 26) && (chevronY == 0 || chevronY == 1);
-
-                if (sideRail || topBottomCap)
-                    trackTex.SetPixel(x, y, Color.white);
-                else if (chevron)
-                    trackTex.SetPixel(x, y, new Color(1f, 1f, 1f, 0.72f));
-                else
-                    trackTex.SetPixel(x, y, new Color(1f, 1f, 1f, 0.16f));
-            }
-        }
-        trackTex.Apply();
-        lineTrackSprite = Sprite.Create(trackTex, new Rect(0, 0, 32, 64), new Vector2(0.5f, 0.5f), 32f);
-
-        // 4. 16x16 Pixel Square Fill
-        Texture2D sqTex = new Texture2D(16, 16, TextureFormat.RGBA32, false)
+        // 16x16 pure white 1x1 world-unit quad texture (Point filtered)
+        Texture2D quadTex = new Texture2D(16, 16, TextureFormat.RGBA32, false)
         {
             filterMode = FilterMode.Point,
             wrapMode = TextureWrapMode.Clamp
         };
         for (int y = 0; y < 16; y++)
             for (int x = 0; x < 16; x++)
-                sqTex.SetPixel(x, y, Color.white);
-        sqTex.Apply();
-        lineFillSprite = Sprite.Create(sqTex, new Rect(0, 0, 16, 16), new Vector2(0.5f, 0.5f), 16f);
+                quadTex.SetPixel(x, y, Color.white);
+        quadTex.Apply();
+
+        // Center pivot (0.5, 0.5) for Circles
+        unitCenterSprite = Sprite.Create(quadTex, new Rect(0, 0, 16, 16), new Vector2(0.5f, 0.5f), 16f);
+        // Bottom-center pivot (0.5, 0.0) for Lines & Rays so they start right at the Boss and extend forward
+        unitBottomPivotSprite = Sprite.Create(quadTex, new Rect(0, 0, 16, 16), new Vector2(0.5f, 0.0f), 16f);
     }
 
+    private static Color GetCoreHighlightColor(Color baseCol)
+    {
+        return Color.Lerp(baseCol, new Color(1f, 0.98f, 0.9f, 1f), 0.72f);
+    }
+
+    /// <summary>
+    /// Hiển thị vòng tròn cảnh báo AoE / Shockwave bằng Shader Pixel-Art (xoay cổ ngữ + sóng nạp từ tâm ra viền).
+    /// </summary>
     public GameObject ShowCircleTelegraph(Vector3 worldPosition, float radius, float duration, Color warningColor)
     {
-        EnsureSprites();
+        EnsureResources();
 
+        float diameter = Mathf.Max(1f, radius * 2f);
         GameObject marker = new GameObject("Telegraph_Circle");
         marker.transform.position = worldPosition;
-        marker.transform.localScale = Vector3.one * (radius * 2f);
+        marker.transform.localScale = new Vector3(diameter, diameter, 1f);
 
         SpriteRenderer sr = marker.AddComponent<SpriteRenderer>();
-        sr.sprite = circleRingSprite;
-        sr.color = new Color(warningColor.r, warningColor.g, warningColor.b, 0.82f);
+        sr.sprite = unitCenterSprite;
         sr.sortingOrder = 5;
 
-        // Inner charging ring/fill
-        GameObject fill = new GameObject("Fill");
-        fill.transform.SetParent(marker.transform);
-        fill.transform.localPosition = Vector3.zero;
-        fill.transform.localScale = Vector3.zero;
+        Material mat = CreateTelegraphMaterial(warningColor, 1f, new Vector2(diameter, diameter));
+        if (mat != null) sr.material = mat;
 
-        SpriteRenderer fillSr = fill.AddComponent<SpriteRenderer>();
-        fillSr.sprite = circleFillSprite;
-        fillSr.color = new Color(warningColor.r, warningColor.g, warningColor.b, 0.65f);
-        fillSr.sortingOrder = 6;
-
-        StartCoroutine(AnimateTelegraph(marker, sr, fill.transform, fillSr, duration, warningColor));
+        StartCoroutine(AnimateShaderTelegraph(marker, mat, duration));
         return marker;
     }
 
+    /// <summary>
+    /// Hiển thị hành lang năng lượng Laser / Lướt Húc (Charge Dash / Continuous Beam) thon gọn, bo tròn 2 đầu.
+    /// </summary>
     public GameObject ShowLineTelegraph(Vector3 startPos, Vector2 direction, Vector2 size, float duration, Color warningColor)
     {
-        EnsureSprites();
+        EnsureResources();
+
+        Vector2 dir = direction.sqrMagnitude > 0.001f ? direction.normalized : Vector2.right;
+        float width = Mathf.Clamp(size.x, 0.8f, 2.2f);
+        float length = Mathf.Max(2f, size.y);
 
         GameObject marker = new GameObject("Telegraph_Line");
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
-        marker.transform.position = startPos + (Vector3)(direction.normalized * (size.y * 0.5f));
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 90f;
+        marker.transform.position = startPos;
         marker.transform.rotation = Quaternion.Euler(0f, 0f, angle);
-        marker.transform.localScale = new Vector3(size.x, size.y * 0.5f, 1f);
+        marker.transform.localScale = new Vector3(width, length, 1f);
 
         SpriteRenderer sr = marker.AddComponent<SpriteRenderer>();
-        sr.sprite = lineTrackSprite;
-        sr.color = new Color(warningColor.r, warningColor.g, warningColor.b, 0.82f);
+        sr.sprite = unitBottomPivotSprite;
         sr.sortingOrder = 5;
 
-        // Inner charge
-        GameObject fill = new GameObject("Fill");
-        fill.transform.SetParent(marker.transform);
-        fill.transform.localPosition = Vector3.zero;
-        fill.transform.localScale = new Vector3(0.92f, 0f, 1f);
+        Material mat = CreateTelegraphMaterial(warningColor, 0f, new Vector2(width, length));
+        if (mat != null) sr.material = mat;
 
-        SpriteRenderer fillSr = fill.AddComponent<SpriteRenderer>();
-        fillSr.sprite = lineFillSprite;
-        fillSr.color = new Color(warningColor.r, warningColor.g, warningColor.b, 0.45f);
-        fillSr.sortingOrder = 6;
-
-        StartCoroutine(AnimateTelegraphLine(marker, fill.transform, fillSr, duration, warningColor));
+        StartCoroutine(AnimateShaderTelegraph(marker, mat, duration));
         return marker;
     }
 
-    private IEnumerator AnimateTelegraph(GameObject root, SpriteRenderer outerSr, Transform fill, SpriteRenderer fillSr, float duration, Color baseColor)
+    /// <summary>
+    /// Hiển thị chùm tia đường đạn mảnh (Fan of Bullet Trajectories) cho các chiêu bắn đạn tỏa hình quạt (Fire Breath, Shadow Projectiles).
+    /// </summary>
+    public GameObject ShowProjectileFanTelegraph(
+        Vector3 startPos,
+        Vector2 direction,
+        int projectileCount,
+        float spreadAngle,
+        float length,
+        float duration,
+        Color warningColor)
+    {
+        EnsureResources();
+
+        Vector2 dir = direction.sqrMagnitude > 0.001f ? direction.normalized : Vector2.right;
+        int count = Mathf.Clamp(projectileCount, 1, 12);
+        float baseAngle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        float rayWidth = 0.34f;
+        float rayLen = Mathf.Max(4f, length);
+
+        GameObject root = new GameObject("Telegraph_ProjectileFan");
+        root.transform.position = startPos;
+
+        List<Material> rayMats = new List<Material>(count);
+
+        for (int i = 0; i < count; i++)
+        {
+            float offset = (count > 1)
+                ? Mathf.Lerp(-spreadAngle * 0.5f, spreadAngle * 0.5f, (float)i / (count - 1))
+                : 0f;
+            float rayDeg = baseAngle + offset - 90f;
+
+            GameObject rayObj = new GameObject($"AimRay_{i}");
+            rayObj.transform.SetParent(root.transform, false);
+            rayObj.transform.localPosition = Vector3.zero;
+            rayObj.transform.rotation = Quaternion.Euler(0f, 0f, rayDeg);
+            rayObj.transform.localScale = new Vector3(rayWidth, rayLen, 1f);
+
+            SpriteRenderer sr = rayObj.AddComponent<SpriteRenderer>();
+            sr.sprite = unitBottomPivotSprite;
+            sr.sortingOrder = 5;
+
+            Material mat = CreateTelegraphMaterial(warningColor, 2f, new Vector2(rayWidth, rayLen));
+            if (mat != null)
+            {
+                sr.material = mat;
+                rayMats.Add(mat);
+            }
+        }
+
+        StartCoroutine(AnimateMultiMaterialTelegraph(root, rayMats, duration));
+        return root;
+    }
+
+    private static Material CreateTelegraphMaterial(Color warningColor, float shapeType, Vector2 worldSize)
+    {
+        if (telegraphShader == null) return null;
+
+        Material mat = new Material(telegraphShader);
+        mat.SetColor("_Color", warningColor);
+        mat.SetColor("_CoreColor", GetCoreHighlightColor(warningColor));
+        mat.SetFloat("_ShapeType", shapeType);
+        mat.SetVector("_WorldSize", new Vector4(worldSize.x, worldSize.y, 0f, 0f));
+        mat.SetFloat("_Progress", 0f);
+        mat.SetFloat("_PixelDensity", 16f);
+        return mat;
+    }
+
+    private IEnumerator AnimateShaderTelegraph(GameObject root, Material mat, float duration)
     {
         float timer = 0f;
-        while (timer < duration && root != null)
+        float total = Mathf.Max(0.1f, duration);
+        while (timer < total && root != null)
         {
             timer += Time.deltaTime;
-            float progress = Mathf.Clamp01(timer / duration);
-
-            // Rotate outer rune ring for dynamic menace
-            root.transform.Rotate(0f, 0f, 75f * Time.deltaTime);
-
-            if (fill != null) fill.localScale = Vector3.one * progress;
-
-            // Rapid flash in the final 20% right before impact
-            if (progress > 0.78f && fillSr != null)
+            float progress = Mathf.Clamp01(timer / total);
+            if (mat != null)
             {
-                bool flash = Mathf.FloorToInt(timer * 28f) % 2 == 0;
-                fillSr.color = flash ? new Color(1f, 0.98f, 0.85f, 0.88f) : new Color(baseColor.r, baseColor.g, baseColor.b, 0.72f);
+                mat.SetFloat("_Progress", progress);
             }
-
             yield return null;
         }
 
+        if (mat != null) Destroy(mat);
         if (root != null) Destroy(root);
     }
 
-    private IEnumerator AnimateTelegraphLine(GameObject root, Transform fill, SpriteRenderer fillSr, float duration, Color baseColor)
+    private IEnumerator AnimateMultiMaterialTelegraph(GameObject root, List<Material> mats, float duration)
     {
         float timer = 0f;
-        while (timer < duration && root != null)
+        float total = Mathf.Max(0.1f, duration);
+        while (timer < total && root != null)
         {
             timer += Time.deltaTime;
-            float progress = Mathf.Clamp01(timer / duration);
-            if (fill != null) fill.localScale = new Vector3(0.92f, progress * 2f, 1f);
-
-            if (progress > 0.78f && fillSr != null)
+            float progress = Mathf.Clamp01(timer / total);
+            for (int i = 0; i < mats.Count; i++)
             {
-                bool flash = Mathf.FloorToInt(timer * 28f) % 2 == 0;
-                fillSr.color = flash ? new Color(1f, 0.98f, 0.85f, 0.78f) : new Color(baseColor.r, baseColor.g, baseColor.b, 0.55f);
+                if (mats[i] != null) mats[i].SetFloat("_Progress", progress);
             }
-
             yield return null;
         }
 
+        for (int i = 0; i < mats.Count; i++)
+        {
+            if (mats[i] != null) Destroy(mats[i]);
+        }
         if (root != null) Destroy(root);
     }
 }
