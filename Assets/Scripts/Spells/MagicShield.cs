@@ -105,6 +105,10 @@ public class MagicShield : MonoBehaviour
             {
                 AudioManager.Instance.PlayShieldAbsorb();
             }
+            if (SpellFXManager.Instance != null)
+            {
+                SpellFXManager.Instance.SpawnShieldBlockImpact(transform.position);
+            }
             UpdateVisual();
             return 0; // Completely absorbed!
         }
@@ -124,6 +128,10 @@ public class MagicShield : MonoBehaviour
             {
                 TriggerShieldBreakBlast();
             }
+            else if (SpellFXManager.Instance != null)
+            {
+                SpellFXManager.Instance.SpawnShieldBlockImpact(transform.position);
+            }
 
             return remainingDamage;
         }
@@ -131,13 +139,18 @@ public class MagicShield : MonoBehaviour
 
     private void TriggerShieldBreakBlast()
     {
+        if (SpellFXManager.Instance != null)
+        {
+            SpellFXManager.Instance.SpawnShieldBreakBlastFX(transform.position, 4.0f);
+        }
+
         Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, 4.0f);
         foreach (var col in enemies)
         {
             if (col == null || col.CompareTag("Player") || col.name == "Player") continue;
 
             EnemyHealth eh = col.GetComponent<EnemyHealth>();
-            if (eh != null) eh.TakeDamage(40);
+            if (eh != null) eh.TakeDamage(40, SpellElementType.Shield);
 
             Rigidbody2D erb = col.GetComponent<Rigidbody2D>();
             if (erb != null)
@@ -160,8 +173,12 @@ public class MagicShield : MonoBehaviour
         shieldSr = shieldVisual.AddComponent<SpriteRenderer>();
         if (cachedShieldSprite == null)
         {
+            cachedShieldSprite = Resources.Load<Sprite>("Generated/magic_shield");
 #if UNITY_EDITOR
-            cachedShieldSprite = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Sprite/Generated/magic_shield.png");
+            if (cachedShieldSprite == null)
+            {
+                cachedShieldSprite = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Sprite/Generated/magic_shield.png");
+            }
 #endif
         }
         if (cachedShieldSprite != null) shieldSr.sprite = cachedShieldSprite;

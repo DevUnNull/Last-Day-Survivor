@@ -23,6 +23,7 @@ public class Bullet : MonoBehaviour
 
     private int pierceCount = 0;
     private int hitCount = 0;
+    private float fxSpawnTimer = 0f;
 
     public void Setup(Vector2 direction, float bulletSpeed, int bulletDamage, int pierce = 0)
     {
@@ -39,6 +40,11 @@ public class Bullet : MonoBehaviour
             transform.rotation = Quaternion.Euler(0f, 0f, angle);
         }
 
+        if (SpellFXManager.Instance != null)
+        {
+            SpellFXManager.Instance.AttachArcaneBoltTrail(gameObject);
+        }
+
         Destroy(gameObject, lifeTime);
     }
 
@@ -48,6 +54,16 @@ public class Bullet : MonoBehaviour
         {
             Vector2 targetPos = rb.position + moveDirection * (speed * Time.fixedDeltaTime);
             rb.MovePosition(targetPos);
+        }
+
+        fxSpawnTimer += Time.fixedDeltaTime;
+        if (fxSpawnTimer >= 0.04f)
+        {
+            fxSpawnTimer = 0f;
+            if (SpellFXManager.Instance != null)
+            {
+                SpellFXManager.Instance.SpawnArcaneFlightSpark(transform.position, moveDirection);
+            }
         }
     }
 
@@ -73,7 +89,12 @@ public class Bullet : MonoBehaviour
                 AudioManager.Instance.PlayBoltImpact();
             }
 
-            enemyHealth.TakeDamage(damage);
+            if (SpellFXManager.Instance != null)
+            {
+                SpellFXManager.Instance.SpawnArcaneHitImpact(transform.position, moveDirection);
+            }
+
+            enemyHealth.TakeDamage(damage, SpellElementType.Arcane);
             hitCount++;
             if (hitCount > pierceCount)
             {

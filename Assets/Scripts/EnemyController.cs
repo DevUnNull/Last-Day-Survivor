@@ -14,7 +14,11 @@ public class EnemyController : MonoBehaviour
     private float lastDamageTime;
     private float slowFactor = 1f;
     private float slowTimer = 0f;
+    private float frostMoteTimer = 0f;
+    private float hitFlashTimer = 0f;
+    private Vector3 baseLocalScale = Vector3.one;
     private Color originalColor = Color.white;
+    private static readonly Color IceSlowColor = new Color(0.4f, 0.75f, 1f, 1f);
 
     private void Awake()
     {
@@ -26,6 +30,7 @@ public class EnemyController : MonoBehaviour
         rb.gravityScale = 0f;
         rb.freezeRotation = true;
 
+        baseLocalScale = transform.localScale;
         spriteRenderer = GetComponent<SpriteRenderer>();
         if (spriteRenderer != null)
         {
@@ -37,6 +42,7 @@ public class EnemyController : MonoBehaviour
     {
         this.damageAmount = newDamage;
         this.moveSpeed *= speedMult;
+        this.baseLocalScale = transform.localScale;
         if (tint.HasValue && spriteRenderer != null)
         {
             this.originalColor = tint.Value;
@@ -48,9 +54,36 @@ public class EnemyController : MonoBehaviour
     {
         slowFactor = Mathf.Min(slowFactor, speedMultiplier);
         slowTimer = Mathf.Max(slowTimer, duration);
+        if (spriteRenderer != null && hitFlashTimer <= 0f)
+        {
+            spriteRenderer.color = IceSlowColor; // Ice slow blue tint
+        }
+    }
+
+    public void PlayHitFlash()
+    {
+        if (baseLocalScale.sqrMagnitude < 0.001f) baseLocalScale = transform.localScale;
+        hitFlashTimer = 0.07f;
         if (spriteRenderer != null)
         {
-            spriteRenderer.color = new Color(0.4f, 0.75f, 1f, 1f); // Ice slow blue tint
+            spriteRenderer.color = Color.white;
+        }
+        transform.localScale = baseLocalScale * 1.15f;
+    }
+
+    private void Update()
+    {
+        if (hitFlashTimer > 0f)
+        {
+            hitFlashTimer -= Time.deltaTime;
+            if (hitFlashTimer <= 0f)
+            {
+                transform.localScale = baseLocalScale;
+                if (spriteRenderer != null)
+                {
+                    spriteRenderer.color = slowTimer > 0f ? IceSlowColor : originalColor;
+                }
+            }
         }
     }
 
@@ -75,10 +108,20 @@ public class EnemyController : MonoBehaviour
         if (slowTimer > 0f)
         {
             slowTimer -= Time.fixedDeltaTime;
+            frostMoteTimer += Time.fixedDeltaTime;
+            if (frostMoteTimer >= 0.14f)
+            {
+                frostMoteTimer = 0f;
+                if (SpellFXManager.Instance != null)
+                {
+                    SpellFXManager.Instance.SpawnFrostSlowAuraMote(transform.position);
+                }
+            }
+
             if (slowTimer <= 0f)
             {
                 slowFactor = 1f;
-                if (spriteRenderer != null)
+                if (spriteRenderer != null && hitFlashTimer <= 0f)
                 {
                     spriteRenderer.color = originalColor;
                 }

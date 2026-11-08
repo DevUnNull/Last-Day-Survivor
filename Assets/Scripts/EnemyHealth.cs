@@ -16,6 +16,8 @@ public class EnemyHealth : MonoBehaviour
     public System.Action<int, int> onHealthChanged;
     public System.Action onDied;
 
+    protected SpellElementType lastHitElement = SpellElementType.Arcane;
+
     protected virtual void Awake()
     {
         currentHealth = maxHealth;
@@ -31,6 +33,12 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
+    public void TakeDamage(int damage, SpellElementType element)
+    {
+        lastHitElement = element;
+        TakeDamage(damage);
+    }
+
     public virtual void TakeDamage(int damage)
     {
         if (currentHealth <= 0) return;
@@ -41,6 +49,18 @@ public class EnemyHealth : MonoBehaviour
         {
             AudioManager.Instance.PlayEnemyHit();
         }
+
+        EnemyController ctrl = GetComponent<EnemyController>();
+        if (ctrl != null)
+        {
+            ctrl.PlayHitFlash();
+        }
+
+        if (SpellFXManager.Instance != null)
+        {
+            SpellFXManager.Instance.SpawnDamageNumber(transform.position, damage, lastHitElement);
+        }
+        lastHitElement = SpellElementType.Arcane;
 
         onHealthChanged?.Invoke(currentHealth, maxHealth);
 
@@ -56,6 +76,11 @@ public class EnemyHealth : MonoBehaviour
         if (AudioManager.Instance != null)
         {
             AudioManager.Instance.PlayEnemyDeath();
+        }
+
+        if (SpellFXManager.Instance != null)
+        {
+            SpellFXManager.Instance.SpawnEnemyDeathBurst(transform.position);
         }
 
         onDied?.Invoke();

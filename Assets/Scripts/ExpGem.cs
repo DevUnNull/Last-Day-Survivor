@@ -97,7 +97,8 @@ public class ExpGem : MonoBehaviour
         SpriteRenderer sr = gemObj.AddComponent<SpriteRenderer>();
         if (cachedGemSprite == null)
         {
-            cachedGemSprite = Resources.Load<Sprite>("exp_gem");
+            cachedGemSprite = Resources.Load<Sprite>("Generated/exp_gem");
+            if (cachedGemSprite == null) cachedGemSprite = Resources.Load<Sprite>("exp_gem");
             if (cachedGemSprite == null)
             {
 #if UNITY_EDITOR

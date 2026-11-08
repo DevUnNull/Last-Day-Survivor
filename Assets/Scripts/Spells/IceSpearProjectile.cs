@@ -12,6 +12,7 @@ public class IceSpearProjectile : MonoBehaviour
 
     private Rigidbody2D rb;
     private HashSet<int> hitEnemyIds = new HashSet<int>();
+    private float fxSpawnTimer = 0f;
 
     private static Sprite cachedIceSprite;
 
@@ -37,6 +38,11 @@ public class IceSpearProjectile : MonoBehaviour
             transform.rotation = Quaternion.Euler(0f, 0f, angle);
         }
 
+        if (SpellFXManager.Instance != null)
+        {
+            SpellFXManager.Instance.AttachIceSpearTrail(gameObject);
+        }
+
         Destroy(gameObject, lifeTime);
     }
 
@@ -46,6 +52,16 @@ public class IceSpearProjectile : MonoBehaviour
         {
             Vector2 targetPos = rb.position + moveDirection * (speed * Time.fixedDeltaTime);
             rb.MovePosition(targetPos);
+        }
+
+        fxSpawnTimer += Time.fixedDeltaTime;
+        if (fxSpawnTimer >= 0.04f)
+        {
+            fxSpawnTimer = 0f;
+            if (SpellFXManager.Instance != null)
+            {
+                SpellFXManager.Instance.SpawnIceSpearFlightCrystal(transform.position, moveDirection);
+            }
         }
     }
 
@@ -72,10 +88,15 @@ public class IceSpearProjectile : MonoBehaviour
             AudioManager.Instance.PlayIceSpearPierce();
         }
 
+        if (SpellFXManager.Instance != null)
+        {
+            SpellFXManager.Instance.SpawnIcePierceImpact(target.transform.position, moveDirection);
+        }
+
         EnemyHealth enemyHealth = target.GetComponent<EnemyHealth>();
         if (enemyHealth != null)
         {
-            enemyHealth.TakeDamage(damage);
+            enemyHealth.TakeDamage(damage, SpellElementType.Ice);
         }
 
         EnemyController enemyCtrl = target.GetComponent<EnemyController>();
@@ -93,8 +114,12 @@ public class IceSpearProjectile : MonoBehaviour
         SpriteRenderer sr = go.AddComponent<SpriteRenderer>();
         if (cachedIceSprite == null)
         {
+            cachedIceSprite = Resources.Load<Sprite>("Generated/ice_spear");
 #if UNITY_EDITOR
-            cachedIceSprite = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Sprite/Generated/ice_spear.png");
+            if (cachedIceSprite == null)
+            {
+                cachedIceSprite = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Sprite/Generated/ice_spear.png");
+            }
 #endif
         }
         if (cachedIceSprite != null) sr.sprite = cachedIceSprite;

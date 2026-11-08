@@ -15,6 +15,7 @@ public class DarkOrbSpell : MonoBehaviour
 
     private List<GameObject> activeOrbs = new List<GameObject>();
     private float currentAngle = 0f;
+    private float fxSpawnTimer = 0f;
 
     private static Sprite cachedOrbSprite;
 
@@ -66,6 +67,22 @@ public class DarkOrbSpell : MonoBehaviour
         if (currentAngle >= 360f) currentAngle -= 360f;
 
         PositionOrbs();
+
+        fxSpawnTimer += Time.deltaTime;
+        if (fxSpawnTimer >= 0.055f)
+        {
+            fxSpawnTimer = 0f;
+            if (SpellFXManager.Instance != null)
+            {
+                for (int i = 0; i < activeOrbs.Count; i++)
+                {
+                    if (activeOrbs[i] != null)
+                    {
+                        SpellFXManager.Instance.SpawnDarkOrbVoidMote(activeOrbs[i].transform.position);
+                    }
+                }
+            }
+        }
     }
 
     private void RebuildOrbs()
@@ -78,8 +95,12 @@ public class DarkOrbSpell : MonoBehaviour
 
         if (cachedOrbSprite == null)
         {
+            cachedOrbSprite = Resources.Load<Sprite>("Generated/dark_orb");
 #if UNITY_EDITOR
-            cachedOrbSprite = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Sprite/Generated/dark_orb.png");
+            if (cachedOrbSprite == null)
+            {
+                cachedOrbSprite = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Sprite/Generated/dark_orb.png");
+            }
 #endif
         }
 
@@ -100,6 +121,11 @@ public class DarkOrbSpell : MonoBehaviour
 
             DarkOrbContact contact = orbObj.AddComponent<DarkOrbContact>();
             contact.Setup(this);
+
+            if (SpellFXManager.Instance != null)
+            {
+                SpellFXManager.Instance.AttachDarkOrbTrail(orbObj);
+            }
 
             activeOrbs.Add(orbObj);
         }
@@ -173,9 +199,19 @@ public class DarkOrbContact : MonoBehaviour
                 {
                     AudioManager.Instance.PlayDarkOrbHit();
                 }
+                if (SpellFXManager.Instance != null)
+                {
+                    SpellFXManager.Instance.SpawnDarkOrbHitImpact(transform.position, target.transform.position);
+                }
                 if (parentSpell != null)
                 {
-                    enemy.TakeDamage(parentSpell.GetCurrentDamage());
+                    enemy.TakeDamage(parentSpell.GetCurrentDamage(), SpellElementType.Void);
+                }
+                Rigidbody2D erb = target.GetComponent<Rigidbody2D>();
+                if (erb != null && parentSpell != null)
+                {
+                    Vector2 pushDir = ((Vector2)target.transform.position - (Vector2)parentSpell.transform.position).normalized;
+                    erb.AddForce(pushDir * 2.5f, ForceMode2D.Impulse);
                 }
             }
         }

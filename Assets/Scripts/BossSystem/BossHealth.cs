@@ -28,6 +28,12 @@ public class BossHealth : EnemyHealth
         currentHealth -= damage;
         if (currentHealth < 0) currentHealth = 0;
 
+        if (SpellFXManager.Instance != null)
+        {
+            SpellFXManager.Instance.SpawnDamageNumber(transform.position + Vector3.up * 0.6f, damage, lastHitElement);
+        }
+        lastHitElement = SpellElementType.Arcane;
+
         onHealthChanged?.Invoke(currentHealth, maxHealth);
 
         if (bossController != null)

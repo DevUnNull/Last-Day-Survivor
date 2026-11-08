@@ -10,6 +10,7 @@ public class FireballProjectile : MonoBehaviour
 
     private Rigidbody2D rb;
     private bool hasExploded = false;
+    private float fxSpawnTimer = 0f;
 
     private static Sprite cachedFireSprite;
 
@@ -34,6 +35,11 @@ public class FireballProjectile : MonoBehaviour
             transform.rotation = Quaternion.Euler(0f, 0f, angle);
         }
 
+        if (SpellFXManager.Instance != null)
+        {
+            SpellFXManager.Instance.AttachFireballTrail(gameObject);
+        }
+
         Destroy(gameObject, lifeTime);
     }
 
@@ -44,6 +50,16 @@ public class FireballProjectile : MonoBehaviour
         {
             Vector2 targetPos = rb.position + moveDirection * (speed * Time.fixedDeltaTime);
             rb.MovePosition(targetPos);
+        }
+
+        fxSpawnTimer += Time.fixedDeltaTime;
+        if (fxSpawnTimer >= 0.035f)
+        {
+            fxSpawnTimer = 0f;
+            if (SpellFXManager.Instance != null)
+            {
+                SpellFXManager.Instance.SpawnFireballFlightEmber(transform.position, moveDirection);
+            }
         }
     }
 
@@ -83,12 +99,32 @@ public class FireballProjectile : MonoBehaviour
             EnemyHealth enemy = col.GetComponent<EnemyHealth>();
             if (enemy != null)
             {
-                enemy.TakeDamage(damage);
+                enemy.TakeDamage(damage, SpellElementType.Fire);
             }
+        }
+
+        if (SpellFXManager.Instance != null)
+        {
+            SpellFXManager.Instance.SpawnFireballExplosion(transform.position, explosionRadius);
         }
 
         SpawnExplosionVisual();
         Destroy(gameObject);
+    }
+
+    private static Sprite GetFireSprite()
+    {
+        if (cachedFireSprite == null)
+        {
+            cachedFireSprite = Resources.Load<Sprite>("Generated/fireball");
+#if UNITY_EDITOR
+            if (cachedFireSprite == null)
+            {
+                cachedFireSprite = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Sprite/Generated/fireball.png");
+            }
+#endif
+        }
+        return cachedFireSprite;
     }
 
     private void SpawnExplosionVisual()
@@ -98,15 +134,10 @@ public class FireballProjectile : MonoBehaviour
         expObj.transform.localScale = Vector3.one * (explosionRadius * 1.5f);
 
         SpriteRenderer sr = expObj.AddComponent<SpriteRenderer>();
-        if (cachedFireSprite == null)
+        Sprite sp = GetFireSprite();
+        if (sp != null)
         {
-#if UNITY_EDITOR
-            cachedFireSprite = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Sprite/Generated/fireball.png");
-#endif
-        }
-        if (cachedFireSprite != null)
-        {
-            sr.sprite = cachedFireSprite;
+            sr.sprite = sp;
         }
         sr.color = new Color(1f, 0.45f, 0.1f, 0.85f);
         sr.sortingOrder = 8;
@@ -121,13 +152,8 @@ public class FireballProjectile : MonoBehaviour
         go.transform.position = pos;
 
         SpriteRenderer sr = go.AddComponent<SpriteRenderer>();
-        if (cachedFireSprite == null)
-        {
-#if UNITY_EDITOR
-            cachedFireSprite = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Sprite/Generated/fireball.png");
-#endif
-        }
-        if (cachedFireSprite != null) sr.sprite = cachedFireSprite;
+        Sprite sp = GetFireSprite();
+        if (sp != null) sr.sprite = sp;
         else sr.color = Color.red;
 
         sr.sortingOrder = 7;
