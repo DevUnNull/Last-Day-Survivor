@@ -45,6 +45,8 @@ public class BossController : MonoBehaviour
 
     private float currentDamageMultiplier = 1f;
     private int playerLevelAtSpawn = 1;
+    private Material bossShaderMaterial;
+    private Vector3 baseBossScale;
 
     public BossData BossConfig => bossConfig;
     public BossState CurrentState => currentState;
@@ -77,7 +79,9 @@ public class BossController : MonoBehaviour
     public void Initialize(BossData config)
     {
         this.bossConfig = config;
-        transform.localScale = Vector3.one * bossScale;
+        baseBossScale = Vector3.one * bossScale;
+        transform.localScale = baseBossScale;
+        SetupBossChargeShader();
 
         if (bossConfig != null)
         {
@@ -361,13 +365,74 @@ public class BossController : MonoBehaviour
         }
     }
 
+    private void SetupBossChargeShader()
+    {
+        SpriteRenderer sr = animController != null ? animController.MainSpriteRenderer : GetComponent<SpriteRenderer>();
+        if (sr == null) return;
+
+        Shader chargeShader = Shader.Find("Custom/BossPixelChargeAura");
+        if (chargeShader == null)
+        {
+            chargeShader = Resources.Load<Shader>("Shaders/BossPixelChargeAura");
+        }
+
+        if (chargeShader != null)
+        {
+            bossShaderMaterial = new Material(chargeShader);
+            sr.material = bossShaderMaterial;
+            UpdateBossShaderThemeColors();
+            SetBossShaderCharge(0f);
+            SetBossShaderDissolve(0f);
+        }
+    }
+
+    private void UpdateBossShaderThemeColors()
+    {
+        if (bossShaderMaterial == null) return;
+        switch (GetBossTheme())
+        {
+            case BossThemeType.StormColossus:
+                bossShaderMaterial.SetColor("_OutlineColor", new Color(0.18f, 0.88f, 1f, 1f));
+                bossShaderMaterial.SetColor("_InnerGlowColor", new Color(0.92f, 1f, 1f, 1f));
+                break;
+            case BossThemeType.AbyssalTitan:
+                bossShaderMaterial.SetColor("_OutlineColor", new Color(0.92f, 0.2f, 1f, 1f));
+                bossShaderMaterial.SetColor("_InnerGlowColor", new Color(1f, 0.78f, 1f, 1f));
+                break;
+            default:
+                bossShaderMaterial.SetColor("_OutlineColor", new Color(1f, 0.48f, 0.08f, 1f));
+                bossShaderMaterial.SetColor("_InnerGlowColor", new Color(1f, 0.96f, 0.65f, 1f));
+                break;
+        }
+    }
+
+    private void SetBossShaderCharge(float amount)
+    {
+        if (bossShaderMaterial != null)
+        {
+            bossShaderMaterial.SetFloat("_ChargeAmount", Mathf.Clamp01(amount));
+        }
+    }
+
+    private void SetBossShaderDissolve(float amount)
+    {
+        if (bossShaderMaterial != null)
+        {
+            bossShaderMaterial.SetFloat("_DissolveAmount", Mathf.Clamp01(amount));
+        }
+    }
+
     private IEnumerator ExecuteAttackRoutine(BossAttackData attack)
     {
         isExecutingAction = true;
         currentAttack = attack;
+        if (baseBossScale.sqrMagnitude < 0.0001f) baseBossScale = Vector3.one * bossScale;
 
-        // 1. Telegraph Phase
+        // 1. Telegraph & Vận Chiêu (Charge-Up) Phase
         currentState = BossState.Telegraphing;
+        BossThemeType theme = GetBossTheme();
+        UpdateBossShaderThemeColors();
+
         Vector3 targetPos = playerTransform != null ? playerTransform.position : transform.position + Vector3.right * 3f;
         Vector2 attackDir = (targetPos - transform.position).normalized;
 
@@ -385,23 +450,77 @@ public class BossController : MonoBehaviour
             }
         }
 
-        yield return new WaitForSeconds(attack.telegraphDuration);
+        // Bắt đầu hiệu ứng Vận Chiêu dưới chân & quanh thân Boss
+        if (SpellFXManager.Instance != null)
+        {
+            SpellFXManager.Instance.SpawnBossChargeStartFX(transform.position, theme, attack.telegraphDuration);
+        }
 
-        // 2. Cast Time & Animation
+        float telegraphElapsed = 0f;
+        float fxTickTimer = 0f;
+        float totalTelegraph = Mathf.Max(0.15f, attack.telegraphDuration);
+
+        while (telegraphElapsed < totalTelegraph)
+        {
+            float dt = Time.deltaTime;
+            telegraphElapsed += dt;
+            fxTickTimer += dt;
+
+            float progress = Mathf.Clamp01(telegraphElapsed / totalTelegraph);
+
+            // Điều khiển Shader Vận Chiêu (Pixel Outline + Scrolling Energy Wave + Sine Vibration)
+            SetBossShaderCharge(progress);
+
+            // Hiệu ứng thân Boss gồng lực (Squash nén lực + Rung nhẹ theo tiến độ vận chiêu)
+            float squashX = 1f + progress * 0.14f + Mathf.Sin(Time.time * 42f) * (0.03f * progress);
+            float squashY = 1f - progress * 0.10f - Mathf.Sin(Time.time * 42f) * (0.03f * progress);
+            transform.localScale = new Vector3(baseBossScale.x * squashX, baseBossScale.y * squashY, baseBossScale.z);
+
+            if (fxTickTimer >= 0.065f)
+            {
+                fxTickTimer = 0f;
+                if (SpellFXManager.Instance != null)
+                {
+                    SpellFXManager.Instance.SpawnBossChargeTickFX(
+                        transform.position,
+                        targetPos,
+                        attackDir,
+                        attack.patternType,
+                        theme,
+                        progress
+                    );
+                }
+            }
+
+            yield return null;
+        }
+
+        // 2. Cast Time & Animation (Bung lực khai hỏa)
         currentState = BossState.Attacking;
+        SetBossShaderCharge(1f);
+        transform.localScale = baseBossScale * 1.18f;
+
         if (animController != null)
         {
             animController.PlayAttack(attack.animationTrigger);
         }
 
+        if (SpellFXManager.Instance != null)
+        {
+            SpellFXManager.Instance.SpawnBossCastReleaseFX(transform.position, attackDir, theme);
+        }
+
         yield return new WaitForSeconds(attack.castTime);
 
         // 3. Attack Pattern Execution
+        transform.localScale = baseBossScale;
         SpawnAttackPattern(attack, targetPos, attackDir);
 
         yield return new WaitForSeconds(attack.attackDuration);
 
         // 4. Recovery Phase
+        SetBossShaderCharge(0f);
+        transform.localScale = baseBossScale;
         currentState = BossState.Recovery;
         attack.currentCooldownTimer = attack.cooldown;
 
@@ -814,11 +933,13 @@ public class BossController : MonoBehaviour
             }
 
             float p = timer / deathDuration;
-            if (sr != null)
+            SetBossShaderCharge(1f - p * 0.5f);
+            SetBossShaderDissolve(p);
+            if (sr != null && bossShaderMaterial == null)
             {
                 sr.color = new Color(1f, 1f, 1f, 1f - p);
             }
-            transform.localScale = initialScale * (1f - p * 0.3f);
+            transform.localScale = initialScale * (1f - p * 0.25f);
             yield return null;
         }
 

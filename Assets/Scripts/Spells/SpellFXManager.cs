@@ -2167,5 +2167,312 @@ public class SpellFXManager : MonoBehaviour
             );
         }
     }
+
+    // =========================================================================
+    // 8. HỆ THỐNG HIỆU ỨNG VẬN CHIÊU BOSS (BOSS CHARGE / TELEGRAPH / CAST VFX)
+    // =========================================================================
+
+    /// <summary>
+    /// Kích hoạt khi Boss bắt đầu Vận Chiêu (Telegraphing):
+    /// Sinh vòng Ma Trận Cổ Ngữ xoay dưới chân Boss + vòng sóng tụ lực co rút vào tâm Boss.
+    /// </summary>
+    public void SpawnBossChargeStartFX(Vector3 bossPos, BossThemeType theme, float chargeDuration)
+    {
+        Color mainCol, coreCol, fadeCol;
+        GetBossThemeColors(theme, out mainCol, out coreCol, out fadeCol);
+
+        float dur = Mathf.Max(0.4f, chargeDuration);
+
+        // 1. Vòng Ma Trận Cổ Ngữ xoay dưới chân Boss trong suốt thời gian vận chiêu
+        SpawnParticle(
+            pixelRuneCircleSprite,
+            bossPos,
+            Vector3.zero,
+            Vector3.one * 1.45f,
+            Vector3.one * 0.55f,
+            mainCol,
+            fadeCol,
+            dur,
+            0f,
+            240f,
+            0f,
+            0f,
+            6
+        );
+
+        // 2. Vòng hào quang phụ xoay ngược chiều
+        SpawnParticle(
+            pixelRuneCircleSprite,
+            bossPos,
+            Vector3.zero,
+            Vector3.one * 0.65f,
+            Vector3.one * 1.35f,
+            coreCol,
+            fadeCol,
+            dur * 0.9f,
+            45f,
+            -180f,
+            0f,
+            0f,
+            7
+        );
+    }
+
+    /// <summary>
+    /// Được gọi liên tục mỗi nhịp (~0.07s) trong lúc Boss đang Vận Chiêu (progress từ 0 -> 1):
+    /// - Hút các hạt năng lượng nguyên tố & tia sét từ xung quanh lao ngược vào ngực/miệng Boss (Inward Implosion).
+    /// - Nuôi quả cầu tụ lực (Charge Orb) trước mặt Boss to dần lên.
+    /// - Tạo hiệu ứng mồi báo trước tại vùng mục tiêu (Target Zone).
+    /// </summary>
+    public void SpawnBossChargeTickFX(
+        Vector3 bossPos,
+        Vector3 targetPos,
+        Vector2 attackDir,
+        BossAttackPatternType pattern,
+        BossThemeType theme,
+        float progress)
+    {
+        Color mainCol, coreCol, fadeCol;
+        GetBossThemeColors(theme, out mainCol, out coreCol, out fadeCol);
+
+        Vector2 dir = attackDir.sqrMagnitude > 0.001f ? attackDir.normalized : Vector2.down;
+        Vector3 muzzlePos = bossPos + (Vector3)(dir * 0.75f);
+
+        // 1. Hạt năng lượng nguyên tố từ ngoài bị hút xoáy ngược vào tâm/đầu nòng Boss (Inward Implosion)
+        int pullCount = progress > 0.5f ? 4 : 3;
+        for (int i = 0; i < pullCount; i++)
+        {
+            float angle = Random.Range(0f, 360f) * Mathf.Deg2Rad;
+            float spawnDist = Random.Range(1.8f, 3.0f) * (1.15f - progress * 0.35f);
+            Vector3 offset = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0f) * spawnDist;
+            Vector3 startPos = muzzlePos + offset;
+
+            float travelTime = 0.22f;
+            Vector3 inwardVel = -offset / travelTime;
+
+            Sprite sp = pixelDiamondSprite;
+            if (theme == BossThemeType.StormColossus && i == 0) sp = pixelBoltSprite;
+            else if (theme == BossThemeType.AbyssalTitan && i == 0) sp = pixelShardSprite;
+            else if (theme == BossThemeType.SkyDragon && i % 2 == 0) sp = pixelSquareSprite;
+
+            SpawnParticle(
+                sp,
+                startPos,
+                inwardVel,
+                Vector3.one * Random.Range(0.55f, 0.95f),
+                Vector3.one * 0.15f,
+                (i == 0) ? coreCol : mainCol,
+                fadeCol,
+                travelTime,
+                angle * Mathf.Rad2Deg,
+                320f,
+                0f,
+                0f,
+                14
+            );
+        }
+
+        // 2. Vòng sóng tụ lực co rút (Imploding Ring) từ ngoài thu nhỏ vào người Boss
+        if (Random.value < 0.45f)
+        {
+            SpawnParticle(
+                pixelRingSprite,
+                muzzlePos,
+                Vector3.zero,
+                Vector3.one * Mathf.Lerp(1.65f, 1.15f, progress),
+                Vector3.one * 0.15f,
+                mainCol,
+                fadeCol,
+                0.22f,
+                0f,
+                180f,
+                0f,
+                0f,
+                13
+            );
+        }
+
+        // 3. Quả Cầu Tụ Lực (Charging Core Orb) ở đầu nòng/ngực Boss phình to dần theo progress
+        Sprite orbSprite = GetBossProjectileSprite(theme);
+        float orbScale = Mathf.Lerp(0.35f, 1.35f, progress);
+        SpawnParticle(
+            orbSprite,
+            muzzlePos,
+            Vector3.zero,
+            Vector3.one * orbScale,
+            Vector3.one * (orbScale * 1.25f),
+            coreCol,
+            mainCol,
+            0.09f,
+            Time.time * 420f,
+            360f,
+            0f,
+            0f,
+            15
+        );
+
+        // 4. Hiệu ứng vận chiêu báo trước tại Vùng Mục Tiêu (Target Zone Pre-Impact FX)
+        if (pattern == BossAttackPatternType.TargetedAoE)
+        {
+            Vector2 randCir = Random.insideUnitCircle * 1.8f;
+            Vector3 groundPt = targetPos + (Vector3)randCir;
+
+            if (theme == BossThemeType.SkyDragon)
+            {
+                // Lửa nham thạch & khói nóng bốc lên từ vòng cảnh báo trước khi thiên thạch rơi
+                SpawnParticle(
+                    pixelDiamondSprite,
+                    groundPt,
+                    new Vector3(0f, Random.Range(1.5f, 3.2f), 0f),
+                    Vector3.one * 0.7f,
+                    Vector3.zero,
+                    mainCol,
+                    fadeCol,
+                    0.26f,
+                    Random.Range(0f, 360f),
+                    180f,
+                    2f,
+                    0f,
+                    8
+                );
+            }
+            else if (theme == BossThemeType.StormColossus)
+            {
+                // Tia điện tĩnh giật lách tách trên mặt đất báo hiệu sấm sét sắp giáng
+                SpawnParticle(
+                    pixelBoltSprite,
+                    groundPt,
+                    new Vector3(0f, Random.Range(1.0f, 2.5f), 0f),
+                    new Vector3(0.95f, 0.85f, 1f),
+                    Vector3.zero,
+                    coreCol,
+                    fadeCol,
+                    0.18f,
+                    Random.Range(-60f, 60f),
+                    0f,
+                    0f,
+                    0f,
+                    9
+                );
+            }
+            else
+            {
+                // Hạt hư không bị hút xoáy vào tâm hố đen tại vùng mục tiêu
+                Vector3 pullToCenter = (targetPos - groundPt) / 0.22f;
+                SpawnParticle(
+                    pixelShardSprite,
+                    groundPt,
+                    pullToCenter,
+                    Vector3.one * 0.75f,
+                    Vector3.zero,
+                    mainCol,
+                    fadeCol,
+                    0.22f,
+                    Random.Range(0f, 360f),
+                    -240f,
+                    0f,
+                    0f,
+                    9
+                );
+            }
+        }
+        else if (pattern == BossAttackPatternType.ContinuousBeam)
+        {
+            // Hạt năng lượng hội tụ dọc đường ngắm tia Laser trước khi khai hỏa
+            float dAlong = Random.Range(1.5f, 10f);
+            Vector2 perp = new Vector2(-dir.y, dir.x) * Random.Range(-1.2f, 1.2f);
+            Vector3 beamAxisPt = bossPos + (Vector3)(dir * dAlong);
+            SpawnParticle(
+                pixelDiamondSprite,
+                beamAxisPt + (Vector3)perp,
+                -(Vector3)(perp / 0.16f),
+                Vector3.one * 0.55f,
+                Vector3.zero,
+                coreCol,
+                fadeCol,
+                0.16f,
+                0f,
+                200f,
+                0f,
+                0f,
+                12
+            );
+        }
+    }
+
+    /// <summary>
+    /// Kích hoạt khoảnh khắc Boss vận chiêu đạt 100% và tung đòn (Cast Release Burst):
+    /// Nổ bùng sóng xung kích tụ lực tại đầu nòng + chớp sáng hạt năng lượng.
+    /// </summary>
+    public void SpawnBossCastReleaseFX(Vector3 bossPos, Vector2 attackDir, BossThemeType theme)
+    {
+        Color mainCol, coreCol, fadeCol;
+        GetBossThemeColors(theme, out mainCol, out coreCol, out fadeCol);
+
+        Vector2 dir = attackDir.sqrMagnitude > 0.001f ? attackDir.normalized : Vector2.down;
+        Vector3 muzzlePos = bossPos + (Vector3)(dir * 0.75f);
+
+        TriggerCameraShake(0.10f, 0.07f);
+
+        SpawnParticle(
+            pixelRingSprite,
+            muzzlePos,
+            Vector3.zero,
+            Vector3.one * 0.25f,
+            Vector3.one * 1.45f,
+            coreCol,
+            fadeCol,
+            0.22f,
+            0f,
+            180f,
+            0f,
+            0f,
+            15
+        );
+
+        for (int i = 0; i < 10; i++)
+        {
+            float spread = Random.Range(-55f, 55f);
+            Vector2 sparkDir = Quaternion.Euler(0f, 0f, spread) * dir;
+            SpawnParticle(
+                (theme == BossThemeType.StormColossus && i % 2 == 0) ? pixelBoltSprite : pixelDiamondSprite,
+                muzzlePos,
+                sparkDir * Random.Range(3.5f, 7.5f),
+                Vector3.one * Random.Range(0.65f, 1.05f),
+                Vector3.zero,
+                coreCol,
+                fadeCol,
+                Random.Range(0.18f, 0.28f),
+                spread,
+                Random.Range(-240f, 240f),
+                6f,
+                0f,
+                15
+            );
+        }
+    }
+
+    private void GetBossThemeColors(BossThemeType theme, out Color mainCol, out Color coreCol, out Color fadeCol)
+    {
+        switch (theme)
+        {
+            case BossThemeType.StormColossus:
+                mainCol = new Color(0.2f, 0.88f, 1f, 0.95f);
+                coreCol = new Color(0.92f, 1f, 1f, 1f);
+                fadeCol = new Color(0.1f, 0.4f, 0.95f, 0f);
+                break;
+            case BossThemeType.AbyssalTitan:
+                mainCol = new Color(0.92f, 0.22f, 1f, 0.95f);
+                coreCol = new Color(1f, 0.78f, 1f, 1f);
+                fadeCol = new Color(0.28f, 0.02f, 0.5f, 0f);
+                break;
+            default:
+                mainCol = new Color(1f, 0.52f, 0.1f, 0.95f);
+                coreCol = new Color(1f, 0.96f, 0.65f, 1f);
+                fadeCol = new Color(0.9f, 0.12f, 0.02f, 0f);
+                break;
+        }
+    }
 }
+
 
