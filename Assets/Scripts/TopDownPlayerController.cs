@@ -95,6 +95,20 @@ public class TopDownPlayerController : MonoBehaviour
             if (keyboard.sKey.isPressed || keyboard.downArrowKey.isPressed) moveY -= 1f;
             if (keyboard.dKey.isPressed || keyboard.rightArrowKey.isPressed) moveX += 1f;
             if (keyboard.aKey.isPressed || keyboard.leftArrowKey.isPressed) moveX -= 1f;
+
+            // Phím tắt P: gọi Boss ngay lập tức để test
+            if (keyboard.pKey.wasPressedThisFrame)
+            {
+                if (GameplaySessionManager.Instance == null)
+                {
+                    GameObject gm = new GameObject("GameplaySessionManager");
+                    gm.AddComponent<GameplaySessionManager>();
+                }
+                if (GameplaySessionManager.Instance != null)
+                {
+                    GameplaySessionManager.Instance.SpawnOrCycleDebugBoss();
+                }
+            }
         }
 
         // 3. New Input System: Gamepad (Left Stick & D-Pad)

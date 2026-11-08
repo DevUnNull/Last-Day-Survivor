@@ -22,6 +22,7 @@ public class BossSpawnManager : MonoBehaviour
 
     public void SpawnBoss(BossData bossData, System.Action<BossController> onSpawned = null)
     {
+        StopAllCoroutines();
         StartCoroutine(SpawnBossRoutine(bossData, onSpawned));
     }
 

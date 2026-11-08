@@ -26,6 +26,8 @@ public class GameplaySessionManager : MonoBehaviour
     private bool isBossSpawned = false;
     private bool isGameEnded = false;
     private int enemiesKilled = 0;
+    private int debugBossCycleIndex = -1;
+    private int lastDebugSpawnFrame = -1;
 
     public float CurrentSurvivalTime => currentSurvivalTime;
     public float TargetSurvivalTime => targetSurvivalTime;
@@ -123,11 +125,19 @@ public class GameplaySessionManager : MonoBehaviour
     {
         if (isGameEnded) return;
 
-        // Debug hotkey for testing: press B to skip immediately to Boss!
+        // Debug hotkeys for testing: press P (or B) to spawn Boss immediately!
+        // Pressing P again while a Boss is alive cycles through all 3 Bosses (Sky Dragon -> Storm Colossus -> Abyssal Titan).
         var keyboard = Keyboard.current;
-        if (keyboard != null && keyboard.bKey.wasPressedThisFrame)
+        if (keyboard != null)
         {
-            SkipToBoss();
+            if (keyboard.pKey.wasPressedThisFrame)
+            {
+                SpawnOrCycleDebugBoss();
+            }
+            else if (keyboard.bKey.wasPressedThisFrame)
+            {
+                SkipToBoss();
+            }
         }
 
         if (!isBossSpawned)
@@ -175,6 +185,77 @@ public class GameplaySessionManager : MonoBehaviour
         TriggerBossEncounter();
     }
 
+    public void SpawnOrCycleDebugBoss()
+    {
+        if (isGameEnded) return;
+        if (Time.frameCount == lastDebugSpawnFrame) return;
+        lastDebugSpawnFrame = Time.frameCount;
+
+        // Pause standard enemy spawning & clear regular mobs for clean boss testing
+        EnemySpawner spawner = FindFirstObjectByType<EnemySpawner>();
+        if (spawner != null)
+        {
+            spawner.enabled = false;
+        }
+
+        // Remove any currently active boss & projectiles if cycling
+        BossController existingBoss = FindFirstObjectByType<BossController>();
+        if (existingBoss != null)
+        {
+            Destroy(existingBoss.gameObject);
+        }
+        BossProjectile[] existingProjs = FindObjectsByType<BossProjectile>(FindObjectsSortMode.None);
+        foreach (var p in existingProjs)
+        {
+            if (p != null) Destroy(p.gameObject);
+        }
+
+        isBossSpawned = true;
+        currentSurvivalTime = targetSurvivalTime;
+        UpdateTimerUI();
+
+        // Lần ấn P đầu tiên: gọi thẳng Boss Cuối (Abyssal Titan - index 0).
+        // Ấn P các lần tiếp theo sẽ xoay vòng qua cả 3 Boss: Abyssal Titan -> Sky Dragon -> Storm Colossus.
+        debugBossCycleIndex = (debugBossCycleIndex + 1) % 3;
+        BossData bossToSpawn = LoadDebugBossByIndex(debugBossCycleIndex);
+
+        if (bossToSpawn == null && SelectedMap != null)
+        {
+            bossToSpawn = SelectedMap.bossData;
+        }
+
+        EnsureBossSpawnManager();
+        if (BossSpawnManager.Instance != null && bossToSpawn != null)
+        {
+            Debug.Log($"[GameplaySessionManager] Phím P: Gọi Boss '{bossToSpawn.bossName}' ngay lập tức!");
+            BossSpawnManager.Instance.SpawnBoss(bossToSpawn);
+        }
+    }
+
+    private void EnsureBossSpawnManager()
+    {
+        if (BossSpawnManager.Instance == null)
+        {
+            GameObject go = new GameObject("BossSpawnManager");
+            go.AddComponent<BossSpawnManager>();
+        }
+    }
+
+    private BossData LoadDebugBossByIndex(int index)
+    {
+        string[] assetNames = { "Boss_AbyssalTitan", "Boss_SkyDragon", "Boss_StormColossus" };
+        string chosen = assetNames[Mathf.Clamp(index, 0, assetNames.Length - 1)];
+
+        BossData data = Resources.Load<BossData>($"Settings/Bosses/{chosen}");
+#if UNITY_EDITOR
+        if (data == null)
+        {
+            data = UnityEditor.AssetDatabase.LoadAssetAtPath<BossData>($"Assets/Settings/Bosses/{chosen}.asset");
+        }
+#endif
+        return data;
+    }
+
     private void TriggerBossEncounter()
     {
         if (isBossSpawned) return;
@@ -187,9 +268,10 @@ public class GameplaySessionManager : MonoBehaviour
             spawner.enabled = false;
         }
 
-        BossData bossToSpawn = SelectedMap != null && SelectedMap.bossData != null ? SelectedMap.bossData : null;
+        BossData bossToSpawn = SelectedMap != null && SelectedMap.bossData != null ? SelectedMap.bossData : LoadDebugBossByIndex(0);
         if (bossToSpawn != null)
         {
+            EnsureBossSpawnManager();
             if (BossSpawnManager.Instance != null)
             {
                 BossSpawnManager.Instance.SpawnBoss(bossToSpawn);
