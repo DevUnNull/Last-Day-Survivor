@@ -337,6 +337,30 @@ public class BossController : MonoBehaviour
         return validAttacks[Random.Range(0, validAttacks.Count)];
     }
 
+    private BossThemeType GetBossTheme()
+    {
+        if (bossConfig != null && !string.IsNullOrEmpty(bossConfig.bossId))
+        {
+            string id = bossConfig.bossId.ToLowerInvariant();
+            if (id.Contains("storm") || id.Contains("colossus")) return BossThemeType.StormColossus;
+            if (id.Contains("abyss") || id.Contains("titan")) return BossThemeType.AbyssalTitan;
+        }
+        return BossThemeType.SkyDragon;
+    }
+
+    private Color GetBossWarningColor()
+    {
+        switch (GetBossTheme())
+        {
+            case BossThemeType.StormColossus:
+                return new Color(0.2f, 0.88f, 1f, 0.95f);
+            case BossThemeType.AbyssalTitan:
+                return new Color(0.88f, 0.22f, 1f, 0.95f);
+            default:
+                return new Color(1f, 0.42f, 0.1f, 0.95f);
+        }
+    }
+
     private IEnumerator ExecuteAttackRoutine(BossAttackData attack)
     {
         isExecutingAction = true;
@@ -349,7 +373,7 @@ public class BossController : MonoBehaviour
 
         if (telegraphController != null && attack.telegraphType != AttackTelegraphType.None)
         {
-            Color warningColor = new Color(1f, 0.2f, 0.2f, 0.9f);
+            Color warningColor = GetBossWarningColor();
             if (attack.telegraphType == AttackTelegraphType.Circle)
             {
                 Vector3 center = (attack.patternType == BossAttackPatternType.RadialShockwave) ? transform.position : targetPos;
@@ -447,6 +471,7 @@ public class BossController : MonoBehaviour
 
     private void SpawnSingleProjectile(BossAttackData attack, Vector3 origin, Vector2 dir)
     {
+        BossThemeType theme = GetBossTheme();
         GameObject projObj;
         if (attack.projectilePrefab != null)
         {
@@ -454,38 +479,27 @@ public class BossController : MonoBehaviour
         }
         else
         {
-            // Fallback projectile with visible sprite
-            projObj = new GameObject("BossProjectile");
+            projObj = new GameObject($"BossProjectile_{theme}");
             projObj.transform.position = origin;
-            projObj.transform.localScale = Vector3.one * 1.5f;
+            projObj.transform.localScale = Vector3.one * 1.15f;
 
             var sr = projObj.AddComponent<SpriteRenderer>();
-            if (defaultProjectileSprite == null)
+            if (SpellFXManager.Instance != null)
             {
-#if UNITY_EDITOR
-                defaultProjectileSprite = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Sprite/New_All_Fire_Bullet_Pixel_16x16/All_Fire_Bullet_Pixel_16x16_00.png");
-                if (defaultProjectileSprite == null)
-                {
-                    defaultProjectileSprite = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Sprite/Generated/fireball.png");
-                }
-#endif
+                sr.sprite = SpellFXManager.Instance.GetBossProjectileSprite(theme);
             }
-            if (defaultProjectileSprite != null)
-            {
-                sr.sprite = defaultProjectileSprite;
-            }
-            sr.color = new Color(1f, 0.2f, 0.2f, 1f);
+            sr.color = Color.white;
             sr.sortingOrder = 15;
 
             var col = projObj.AddComponent<CircleCollider2D>();
             col.isTrigger = true;
-            col.radius = 0.45f;
+            col.radius = 0.42f;
         }
 
         BossProjectile proj = projObj.GetComponent<BossProjectile>();
         if (proj == null) proj = projObj.AddComponent<BossProjectile>();
         int scaledDamage = Mathf.RoundToInt(attack.damage * currentDamageMultiplier);
-        proj.Setup(dir, attack.projectileSpeed, scaledDamage, attack.projectileLifetime);
+        proj.Setup(dir, attack.projectileSpeed, scaledDamage, attack.projectileLifetime, theme);
     }
 
     private void ExecuteAoEImpact(BossAttackData attack, Vector3 targetPos)
@@ -493,6 +507,29 @@ public class BossController : MonoBehaviour
         if (attack.vfxPrefab != null)
         {
             Instantiate(attack.vfxPrefab, targetPos, Quaternion.identity);
+        }
+
+        if (SpellFXManager.Instance != null)
+        {
+            BossThemeType theme = GetBossTheme();
+            string atkName = attack.attackName != null ? attack.attackName.ToLowerInvariant() : "";
+
+            if (atkName.Contains("fist") || atkName.Contains("slam"))
+            {
+                SpellFXManager.Instance.SpawnBossFistSlamFX(targetPos, attack.areaRadius);
+            }
+            else if (atkName.Contains("lightning") || atkName.Contains("thunder") || theme == BossThemeType.StormColossus)
+            {
+                SpellFXManager.Instance.SpawnBossLightningStormFX(targetPos, attack.areaRadius);
+            }
+            else if (atkName.Contains("abyss") || atkName.Contains("eclipse") || theme == BossThemeType.AbyssalTitan)
+            {
+                SpellFXManager.Instance.SpawnBossAbyssalCataclysmFX(targetPos, attack.areaRadius);
+            }
+            else
+            {
+                SpellFXManager.Instance.SpawnBossMeteorRainFX(targetPos, attack.areaRadius);
+            }
         }
 
         Collider2D[] hits = Physics2D.OverlapCircleAll(targetPos, attack.areaRadius);
@@ -515,12 +552,30 @@ public class BossController : MonoBehaviour
         float dashSpeed = attack.projectileSpeed > 0 ? attack.projectileSpeed : 12f;
         float dashTime = 0.5f;
         float timer = 0f;
+        float ghostTimer = 0f;
+        BossThemeType theme = GetBossTheme();
+        SpriteRenderer bossSr = animController != null ? animController.MainSpriteRenderer : GetComponent<SpriteRenderer>();
+
+        if (SpellFXManager.Instance != null)
+        {
+            SpellFXManager.Instance.SpawnBossRadialBurstFX(transform.position, 2.2f, theme);
+        }
 
         while (timer < dashTime)
         {
             timer += Time.deltaTime;
+            ghostTimer += Time.deltaTime;
             rb.MovePosition(rb.position + dir * (dashSpeed * Time.deltaTime));
             ClampToScreenView();
+
+            if (ghostTimer >= 0.045f)
+            {
+                ghostTimer = 0f;
+                if (SpellFXManager.Instance != null)
+                {
+                    SpellFXManager.Instance.SpawnBossDashAfterImage(bossSr, transform.position, transform.localScale, dir, theme);
+                }
+            }
 
             // Check contact damage during dash
             Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, 1.8f);
@@ -539,10 +594,20 @@ public class BossController : MonoBehaviour
 
             yield return null;
         }
+
+        if (SpellFXManager.Instance != null)
+        {
+            SpellFXManager.Instance.TriggerCameraShake(0.14f, 0.10f);
+        }
     }
 
     private void FireRadialShockwave(BossAttackData attack)
     {
+        if (SpellFXManager.Instance != null)
+        {
+            SpellFXManager.Instance.SpawnBossRadialBurstFX(transform.position, attack.areaRadius, GetBossTheme());
+        }
+
         int ringCount = Mathf.Max(8, attack.projectileCount);
         for (int i = 0; i < ringCount; i++)
         {
@@ -554,11 +619,22 @@ public class BossController : MonoBehaviour
 
     private void SummonMinions(BossAttackData attack)
     {
+        BossThemeType theme = GetBossTheme();
+        if (SpellFXManager.Instance != null)
+        {
+            SpellFXManager.Instance.SpawnBossRadialBurstFX(transform.position, 2.5f, theme);
+        }
+
         int count = Mathf.Max(2, attack.summonCount);
         for (int i = 0; i < count; i++)
         {
             Vector2 offset = Random.insideUnitCircle.normalized * Random.Range(2.5f, 4.5f);
             Vector3 spawnPos = transform.position + (Vector3)offset;
+
+            if (SpellFXManager.Instance != null)
+            {
+                SpellFXManager.Instance.SpawnBossSummonPortalFX(spawnPos, theme);
+            }
 
             if (EnemySpawner.Instance != null)
             {
@@ -577,6 +653,12 @@ public class BossController : MonoBehaviour
     {
         if (playerTransform == null) FindPlayer();
         Vector3 targetCenter = (playerTransform != null) ? playerTransform.position : transform.position;
+        BossThemeType theme = GetBossTheme();
+
+        if (SpellFXManager.Instance != null)
+        {
+            SpellFXManager.Instance.SpawnBossRadialBurstFX(transform.position, 3.5f, theme);
+        }
 
         int swarmCount = Mathf.Max(12, attack.summonCount > 0 ? attack.summonCount : 16);
         float ringRadius = (attack.areaRadius > 0f) ? attack.areaRadius : 7.0f;
@@ -589,6 +671,11 @@ public class BossController : MonoBehaviour
         {
             float angle = (i * (360f / swarmCount)) * Mathf.Deg2Rad;
             Vector3 spawnPos = targetCenter + new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0f) * ringRadius;
+
+            if (SpellFXManager.Instance != null)
+            {
+                SpellFXManager.Instance.SpawnBossSummonPortalFX(spawnPos, theme);
+            }
 
             if (EnemySpawner.Instance != null)
             {
@@ -612,6 +699,18 @@ public class BossController : MonoBehaviour
 
     private void ExecuteBeamAttack(BossAttackData attack, Vector2 attackDir)
     {
+        if (SpellFXManager.Instance != null)
+        {
+            SpellFXManager.Instance.SpawnBossLaserBeamFX(
+                transform.position,
+                attackDir,
+                Mathf.Max(1.2f, attack.areaSize.x),
+                Mathf.Max(10f, attack.areaSize.y),
+                Mathf.Max(0.45f, attack.attackDuration),
+                GetBossTheme()
+            );
+        }
+
         RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position, new Vector2(attack.areaSize.x, 0.8f), Mathf.Atan2(attackDir.y, attackDir.x) * Mathf.Rad2Deg, attackDir, attack.areaSize.y);
         foreach (var hit in hits)
         {
@@ -653,6 +752,11 @@ public class BossController : MonoBehaviour
         currentPhaseIndex = newIndex;
         currentPhase = bossConfig.phases[newIndex];
 
+        if (SpellFXManager.Instance != null)
+        {
+            SpellFXManager.Instance.SpawnBossRadialBurstFX(transform.position, 4.5f, GetBossTheme());
+        }
+
         if (animController != null)
         {
             animController.PlayPhaseTransition();
@@ -684,16 +788,31 @@ public class BossController : MonoBehaviour
             animController.PlayDeath();
         }
 
+        BossThemeType theme = GetBossTheme();
+        if (SpellFXManager.Instance != null)
+        {
+            SpellFXManager.Instance.SpawnBossRadialBurstFX(transform.position, 5.0f, theme);
+        }
+
         float deathDuration = bossConfig != null ? bossConfig.deathDuration : 2.5f;
 
-        // Visual fade / shrink death feedback
+        // Visual fade / shrink death feedback with periodic mini explosions
         float timer = 0f;
+        float burstTimer = 0f;
         Vector3 initialScale = transform.localScale;
         SpriteRenderer sr = animController != null ? animController.MainSpriteRenderer : GetComponent<SpriteRenderer>();
 
         while (timer < deathDuration)
         {
             timer += Time.deltaTime;
+            burstTimer += Time.deltaTime;
+            if (burstTimer >= 0.35f && SpellFXManager.Instance != null)
+            {
+                burstTimer = 0f;
+                Vector3 randOffset = (Vector3)(Random.insideUnitCircle * 1.2f);
+                SpellFXManager.Instance.SpawnBossProjectileHitFX(transform.position + randOffset, Vector2.up, theme);
+            }
+
             float p = timer / deathDuration;
             if (sr != null)
             {

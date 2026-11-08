@@ -11,6 +11,13 @@ public enum SpellElementType
     Shield
 }
 
+public enum BossThemeType
+{
+    SkyDragon,
+    StormColossus,
+    AbyssalTitan
+}
+
 /// <summary>
 /// Quản lý toàn bộ hiệu ứng hình ảnh (Fly FX, Hit Impact FX, Floating Damage, Camera Shake)
 /// cho các kỹ năng trong game với cơ chế Object Pooling (Zero GC) tối ưu cho Mobile Android.
@@ -33,7 +40,7 @@ public class SpellFXManager : MonoBehaviour
 
     [Header("Cấu hình Object Pool (Tối ưu Mobile)")]
     [Tooltip("Số lượng hạt hiệu ứng pixel tối đa hoạt động cùng lúc")]
-    [SerializeField] private int maxParticles = 180;
+    [SerializeField] private int maxParticles = 280;
 
     [Tooltip("Số lượng chữ sát thương bay lên tối đa cùng lúc")]
     [SerializeField] private int maxFloatingTexts = 40;
@@ -96,6 +103,15 @@ public class SpellFXManager : MonoBehaviour
     private Sprite pixelRingSprite;
     private Sprite pixelShardSprite;
     private Sprite pixelBoltSprite;
+
+    // Procedural Boss VFX & Projectile Sprites (Point Filtered)
+    private Sprite pixelRuneCircleSprite;
+    private Sprite pixelSkyLightningSprite;
+    private Sprite pixelCraterCrackSprite;
+    private Sprite pixelLaserBeamSprite;
+    private Sprite dragonFireOrbSprite;
+    private Sprite stormPlasmaOrbSprite;
+    private Sprite abyssVoidOrbSprite;
 
     private Material sharedTrailMaterial;
 
@@ -246,6 +262,163 @@ public class SpellFXManager : MonoBehaviour
         }
         boltTex.Apply();
         pixelBoltSprite = Sprite.Create(boltTex, new Rect(0, 0, 20, 8), new Vector2(0.5f, 0.5f), 16f);
+
+        // 7. 48x48 Pixel Rune Magic Circle (for Boss Telegraphs, Summon Portals & AoE Sigils)
+        Texture2D runeTex = new Texture2D(48, 48, TextureFormat.RGBA32, false)
+        {
+            filterMode = FilterMode.Point,
+            wrapMode = TextureWrapMode.Clamp
+        };
+        Vector2 rc = new Vector2(23.5f, 23.5f);
+        for (int y = 0; y < 48; y++)
+        {
+            for (int x = 0; x < 48; x++)
+            {
+                Vector2 p = new Vector2(x, y) - rc;
+                float dist = p.magnitude;
+                float angle = Mathf.Atan2(p.y, p.x) * Mathf.Rad2Deg;
+                if (angle < 0f) angle += 360f;
+
+                bool outerRing = dist >= 20.5f && dist <= 22.8f;
+                bool innerRing = dist >= 14.5f && dist <= 16.0f;
+                bool runeNotch = (dist >= 16.0f && dist <= 20.5f) && ((Mathf.RoundToInt(angle) % 45) <= 4);
+                bool starSpoke = (dist >= 6.0f && dist <= 14.5f) && ((Mathf.RoundToInt(angle) % 90) <= 3 || (Mathf.RoundToInt(angle + 45f) % 90) <= 2);
+                bool coreRing = dist >= 4.5f && dist <= 6.2f;
+
+                if (outerRing || innerRing || coreRing)
+                    runeTex.SetPixel(x, y, Color.white);
+                else if (runeNotch || starSpoke)
+                    runeTex.SetPixel(x, y, new Color(1f, 1f, 1f, 0.85f));
+                else if (dist < 20.5f)
+                    runeTex.SetPixel(x, y, new Color(1f, 1f, 1f, 0.14f));
+                else
+                    runeTex.SetPixel(x, y, Color.clear);
+            }
+        }
+        runeTex.Apply();
+        pixelRuneCircleSprite = Sprite.Create(runeTex, new Rect(0, 0, 48, 48), new Vector2(0.5f, 0.5f), 16f);
+
+        // 8. 24x96 Towering Sky-Lightning Pillar (for Storm Colossus & Cataclysm)
+        Texture2D skyBoltTex = new Texture2D(24, 96, TextureFormat.RGBA32, false)
+        {
+            filterMode = FilterMode.Point,
+            wrapMode = TextureWrapMode.Clamp
+        };
+        for (int y = 0; y < 96; y++)
+            for (int x = 0; x < 24; x++)
+                skyBoltTex.SetPixel(x, y, Color.clear);
+
+        int curX = 12;
+        for (int y = 95; y >= 0; y--)
+        {
+            if (y % 5 == 0)
+            {
+                int shift = ((y / 5) % 2 == 0) ? 2 : -2;
+                curX = Mathf.Clamp(curX + shift, 5, 18);
+            }
+            // Bright white core (3px wide) + glow (7px wide)
+            for (int dx = -3; dx <= 3; dx++)
+            {
+                int px = curX + dx;
+                if (px < 0 || px >= 24) continue;
+                int absDx = Mathf.Abs(dx);
+                if (absDx <= 1)
+                    skyBoltTex.SetPixel(px, y, Color.white);
+                else
+                    skyBoltTex.SetPixel(px, y, new Color(1f, 1f, 1f, 0.55f));
+            }
+            // Side branches every 18 pixels
+            if (y % 18 == 0 && y > 15 && y < 85)
+            {
+                int bDir = (y % 36 == 0) ? 1 : -1;
+                for (int b = 1; b <= 6; b++)
+                {
+                    int bx = curX + b * bDir;
+                    int by = y - b * 2;
+                    if (bx >= 0 && bx < 24 && by >= 0 && by < 96)
+                        skyBoltTex.SetPixel(bx, by, new Color(1f, 1f, 1f, 0.8f));
+                }
+            }
+        }
+        skyBoltTex.Apply();
+        pixelSkyLightningSprite = Sprite.Create(skyBoltTex, new Rect(0, 0, 24, 96), new Vector2(0.5f, 0.05f), 16f);
+
+        // 9. 48x48 Ground Crater Fissure Cracks (for Fist Slam & Meteor Rain)
+        Texture2D crackTex = new Texture2D(48, 48, TextureFormat.RGBA32, false)
+        {
+            filterMode = FilterMode.Point,
+            wrapMode = TextureWrapMode.Clamp
+        };
+        for (int y = 0; y < 48; y++)
+            for (int x = 0; x < 48; x++)
+                crackTex.SetPixel(x, y, Color.clear);
+
+        float[] crackAngles = { 15f, 68f, 125f, 175f, 222f, 278f, 330f };
+        foreach (float ang in crackAngles)
+        {
+            float rad = ang * Mathf.Deg2Rad;
+            Vector2 dir = new Vector2(Mathf.Cos(rad), Mathf.Sin(rad));
+            Vector2 perp = new Vector2(-dir.y, dir.x);
+            for (int r = 2; r < 22; r++)
+            {
+                float jag = ((r / 4) % 2 == 0) ? 1.2f : -1.2f;
+                Vector2 pt = rc + dir * r + perp * jag;
+                int px = Mathf.RoundToInt(pt.x);
+                int py = Mathf.RoundToInt(pt.y);
+                if (px >= 1 && px < 47 && py >= 1 && py < 47)
+                {
+                    crackTex.SetPixel(px, py, Color.white);
+                    crackTex.SetPixel(px + 1, py, new Color(1f, 1f, 1f, 0.7f));
+                    crackTex.SetPixel(px, py + 1, new Color(1f, 1f, 1f, 0.7f));
+                }
+            }
+        }
+        crackTex.Apply();
+        pixelCraterCrackSprite = Sprite.Create(crackTex, new Rect(0, 0, 48, 48), new Vector2(0.5f, 0.5f), 16f);
+
+        // 10. 32x16 Pixel Energy Laser Beam Segment (Pivot at Left-Center 0, 0.5)
+        Texture2D beamTex = new Texture2D(32, 16, TextureFormat.RGBA32, false)
+        {
+            filterMode = FilterMode.Point,
+            wrapMode = TextureWrapMode.Clamp
+        };
+        for (int y = 0; y < 16; y++)
+        {
+            float distY = Mathf.Abs(y - 7.5f);
+            for (int x = 0; x < 32; x++)
+            {
+                if (distY <= 2.5f)
+                    beamTex.SetPixel(x, y, Color.white);
+                else if (distY <= 5.2f)
+                    beamTex.SetPixel(x, y, new Color(1f, 1f, 1f, 0.78f));
+                else if (distY <= 7.2f)
+                {
+                    bool edgePulse = ((x + y) % 4 != 0);
+                    beamTex.SetPixel(x, y, edgePulse ? new Color(1f, 1f, 1f, 0.38f) : Color.clear);
+                }
+                else
+                    beamTex.SetPixel(x, y, Color.clear);
+            }
+        }
+        beamTex.Apply();
+        pixelLaserBeamSprite = Sprite.Create(beamTex, new Rect(0, 0, 32, 16), new Vector2(0f, 0.5f), 32f);
+
+        // 11. Custom Boss Projectiles (20x20 Multi-Color Pixel Art)
+        dragonFireOrbSprite = CreateBossOrbSprite(
+            new Color(1f, 0.98f, 0.75f, 1f),
+            new Color(1f, 0.52f, 0.08f, 1f),
+            new Color(0.85f, 0.12f, 0.04f, 0.9f)
+        );
+        stormPlasmaOrbSprite = CreateBossOrbSprite(
+            new Color(0.95f, 1f, 1f, 1f),
+            new Color(0.2f, 0.85f, 1f, 1f),
+            new Color(0.1f, 0.38f, 0.95f, 0.9f)
+        );
+        abyssVoidOrbSprite = CreateBossOrbSprite(
+            new Color(0.12f, 0.02f, 0.22f, 1f),
+            new Color(0.92f, 0.22f, 1f, 1f),
+            new Color(0.45f, 0.05f, 0.75f, 0.9f)
+        );
 
         // Shared Trail Material
         Shader spriteShader = Shader.Find("Sprites/Default");
@@ -1107,4 +1280,892 @@ public class SpellFXManager : MonoBehaviour
             );
         }
     }
+
+    // =========================================================================
+    // 7. HỆ THỐNG HIỆU ỨNG KỸ NĂNG 3 ĐẠI BOSS (BOSS SKILL VFX)
+    // =========================================================================
+
+    private Sprite CreateBossOrbSprite(Color coreCol, Color midCol, Color rimCol)
+    {
+        Texture2D tex = new Texture2D(20, 20, TextureFormat.RGBA32, false)
+        {
+            filterMode = FilterMode.Point,
+            wrapMode = TextureWrapMode.Clamp
+        };
+        Vector2 c = new Vector2(9.5f, 9.5f);
+        for (int y = 0; y < 20; y++)
+        {
+            for (int x = 0; x < 20; x++)
+            {
+                Vector2 d = new Vector2(x, y) - c;
+                float dist = d.magnitude;
+                bool spike = (Mathf.Abs(d.x) <= 1.6f && dist <= 9.2f) || (Mathf.Abs(d.y) <= 1.6f && dist <= 9.2f) ||
+                             (Mathf.Abs(Mathf.Abs(d.x) - Mathf.Abs(d.y)) <= 1.2f && dist <= 8.4f);
+
+                if (dist <= 3.6f)
+                    tex.SetPixel(x, y, coreCol);
+                else if (dist <= 6.4f)
+                    tex.SetPixel(x, y, midCol);
+                else if (dist <= 8.0f || spike)
+                    tex.SetPixel(x, y, rimCol);
+                else
+                    tex.SetPixel(x, y, Color.clear);
+            }
+        }
+        tex.Apply();
+        return Sprite.Create(tex, new Rect(0, 0, 20, 20), new Vector2(0.5f, 0.5f), 16f);
+    }
+
+    public Sprite GetBossProjectileSprite(BossThemeType theme)
+    {
+        switch (theme)
+        {
+            case BossThemeType.StormColossus:
+                return stormPlasmaOrbSprite != null ? stormPlasmaOrbSprite : pixelDiamondSprite;
+            case BossThemeType.AbyssalTitan:
+                return abyssVoidOrbSprite != null ? abyssVoidOrbSprite : pixelDiamondSprite;
+            default:
+                return dragonFireOrbSprite != null ? dragonFireOrbSprite : pixelCircleSprite;
+        }
+    }
+
+    public Sprite GetPixelRuneCircleSprite() => pixelRuneCircleSprite;
+
+    public void AttachBossProjectileTrail(GameObject projObj, BossThemeType theme)
+    {
+        if (projObj == null) return;
+        switch (theme)
+        {
+            case BossThemeType.StormColossus:
+                AttachPixelTrail(
+                    projObj,
+                    new Color(0.45f, 0.95f, 1f, 0.9f),
+                    new Color(0.1f, 0.35f, 0.95f, 0f),
+                    0.34f,
+                    0.22f
+                );
+                break;
+            case BossThemeType.AbyssalTitan:
+                AttachPixelTrail(
+                    projObj,
+                    new Color(0.9f, 0.25f, 1f, 0.9f),
+                    new Color(0.25f, 0.02f, 0.45f, 0f),
+                    0.36f,
+                    0.24f
+                );
+                break;
+            default:
+                AttachPixelTrail(
+                    projObj,
+                    new Color(1f, 0.65f, 0.12f, 0.9f),
+                    new Color(0.85f, 0.12f, 0.04f, 0f),
+                    0.38f,
+                    0.22f
+                );
+                break;
+        }
+    }
+
+    public void SpawnBossProjectileFlightFX(Vector3 pos, Vector2 moveDir, BossThemeType theme)
+    {
+        Vector2 offset = Random.insideUnitCircle * 0.16f;
+        Vector3 vel = (Vector3)(-moveDir * Random.Range(0.8f, 2.2f) + Random.insideUnitCircle * 0.6f);
+
+        switch (theme)
+        {
+            case BossThemeType.StormColossus:
+                SpawnParticle(
+                    pixelDiamondSprite,
+                    pos + (Vector3)offset,
+                    vel,
+                    Vector3.one * Random.Range(0.45f, 0.75f),
+                    Vector3.zero,
+                    new Color(0.75f, 0.98f, 1f, 0.95f),
+                    new Color(0.15f, 0.55f, 1f, 0f),
+                    0.20f,
+                    Random.Range(0f, 360f),
+                    240f,
+                    4f,
+                    0f,
+                    12
+                );
+                break;
+            case BossThemeType.AbyssalTitan:
+                SpawnParticle(
+                    pixelDiamondSprite,
+                    pos + (Vector3)offset,
+                    vel,
+                    Vector3.one * Random.Range(0.5f, 0.8f),
+                    Vector3.zero,
+                    new Color(0.95f, 0.35f, 1f, 0.9f),
+                    new Color(0.2f, 0.02f, 0.38f, 0f),
+                    0.22f,
+                    Random.Range(0f, 360f),
+                    -200f,
+                    4f,
+                    0f,
+                    12
+                );
+                break;
+            default:
+                SpawnParticle(
+                    pixelSquareSprite,
+                    pos + (Vector3)offset,
+                    vel,
+                    Vector3.one * Random.Range(0.55f, 0.85f),
+                    Vector3.zero,
+                    new Color(1f, 0.85f, 0.25f, 0.95f),
+                    new Color(0.9f, 0.15f, 0.05f, 0f),
+                    0.20f,
+                    Random.Range(0f, 360f),
+                    180f,
+                    4f,
+                    0f,
+                    12
+                );
+                break;
+        }
+    }
+
+    public void SpawnBossProjectileHitFX(Vector3 pos, Vector2 moveDir, BossThemeType theme)
+    {
+        Color ringStart, ringEnd, sparkStart, sparkEnd;
+        switch (theme)
+        {
+            case BossThemeType.StormColossus:
+                ringStart = new Color(0.65f, 0.98f, 1f, 0.95f);
+                ringEnd = new Color(0.15f, 0.5f, 1f, 0f);
+                sparkStart = new Color(0.85f, 1f, 1f, 1f);
+                sparkEnd = new Color(0.2f, 0.6f, 1f, 0f);
+                break;
+            case BossThemeType.AbyssalTitan:
+                ringStart = new Color(0.95f, 0.35f, 1f, 0.95f);
+                ringEnd = new Color(0.35f, 0.05f, 0.65f, 0f);
+                sparkStart = new Color(1f, 0.55f, 1f, 1f);
+                sparkEnd = new Color(0.25f, 0.02f, 0.45f, 0f);
+                break;
+            default:
+                ringStart = new Color(1f, 0.85f, 0.25f, 0.95f);
+                ringEnd = new Color(0.95f, 0.15f, 0.05f, 0f);
+                sparkStart = new Color(1f, 0.9f, 0.3f, 1f);
+                sparkEnd = new Color(0.9f, 0.15f, 0.05f, 0f);
+                break;
+        }
+
+        SpawnParticle(
+            pixelRingSprite,
+            pos,
+            Vector3.zero,
+            Vector3.one * 0.25f,
+            Vector3.one * 1.15f,
+            ringStart,
+            ringEnd,
+            0.22f,
+            0f,
+            90f,
+            0f,
+            0f,
+            13
+        );
+
+        for (int i = 0; i < 8; i++)
+        {
+            float angle = (i * 45f + Random.Range(-15f, 15f)) * Mathf.Deg2Rad;
+            Vector2 dir = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
+            SpawnParticle(
+                (theme == BossThemeType.StormColossus && i % 2 == 0) ? pixelBoltSprite : pixelDiamondSprite,
+                pos,
+                dir * Random.Range(2.5f, 5.5f),
+                Vector3.one * Random.Range(0.6f, 0.95f),
+                Vector3.zero,
+                sparkStart,
+                sparkEnd,
+                Random.Range(0.18f, 0.28f),
+                angle * Mathf.Rad2Deg,
+                Random.Range(-180f, 180f),
+                6f,
+                0f,
+                13
+            );
+        }
+    }
+
+    /// <summary>
+    /// Hiệu ứng lướt húc tốc độ cao (Dragon Charge): tạo bóng mờ pixel (After-Image) + lốc lửa hai bên.
+    /// </summary>
+    public void SpawnBossDashAfterImage(SpriteRenderer bossSr, Vector3 pos, Vector3 scale, Vector2 dashDir, BossThemeType theme)
+    {
+        Color startCol = theme == BossThemeType.StormColossus
+            ? new Color(0.35f, 0.9f, 1f, 0.65f)
+            : (theme == BossThemeType.AbyssalTitan ? new Color(0.85f, 0.25f, 1f, 0.65f) : new Color(1f, 0.45f, 0.12f, 0.65f));
+        Color endCol = new Color(startCol.r, startCol.g, startCol.b, 0f);
+
+        if (bossSr != null && bossSr.sprite != null)
+        {
+            SpawnParticle(
+                bossSr.sprite,
+                pos,
+                Vector3.zero,
+                scale,
+                scale * 0.92f,
+                startCol,
+                endCol,
+                0.24f,
+                0f,
+                0f,
+                0f,
+                0f,
+                Mathf.Max(1, bossSr.sortingOrder - 1)
+            );
+        }
+
+        // Lốc lửa & bụi văng sang 2 bên sườn khi lao
+        Vector2 perp = new Vector2(-dashDir.y, dashDir.x).normalized;
+        for (int side = -1; side <= 1; side += 2)
+        {
+            Vector2 vel = (perp * side * Random.Range(2.2f, 4.5f)) - (dashDir * Random.Range(1.0f, 2.5f));
+            SpawnParticle(
+                pixelDiamondSprite,
+                pos + (Vector3)(perp * side * 0.5f),
+                vel,
+                Vector3.one * Random.Range(0.75f, 1.15f),
+                Vector3.zero,
+                new Color(1f, 0.85f, 0.25f, 0.95f),
+                endCol,
+                0.26f,
+                Random.Range(0f, 360f),
+                240f,
+                5f,
+                0f,
+                11
+            );
+        }
+    }
+
+    /// <summary>
+    /// Hiệu ứng tỏa sóng xung kích 360 độ khi Boss tung Wing Sweep / Thunder Shockwave / Spiral Barrage.
+    /// </summary>
+    public void SpawnBossRadialBurstFX(Vector3 bossPos, float radius, BossThemeType theme)
+    {
+        TriggerCameraShake(0.16f, 0.12f);
+
+        Color c1, c2;
+        switch (theme)
+        {
+            case BossThemeType.StormColossus:
+                c1 = new Color(0.45f, 0.95f, 1f, 0.95f);
+                c2 = new Color(0.1f, 0.45f, 1f, 0f);
+                break;
+            case BossThemeType.AbyssalTitan:
+                c1 = new Color(0.95f, 0.3f, 1f, 0.95f);
+                c2 = new Color(0.3f, 0.02f, 0.55f, 0f);
+                break;
+            default:
+                c1 = new Color(1f, 0.75f, 0.2f, 0.95f);
+                c2 = new Color(0.95f, 0.15f, 0.05f, 0f);
+                break;
+        }
+
+        // Vòng cổ ngữ xoay dưới chân Boss
+        SpawnParticle(
+            pixelRuneCircleSprite,
+            bossPos,
+            Vector3.zero,
+            Vector3.one * 0.5f,
+            Vector3.one * Mathf.Max(1.6f, radius * 0.65f),
+            c1,
+            c2,
+            0.38f,
+            0f,
+            180f,
+            0f,
+            0f,
+            5
+        );
+
+        // Vòng sóng xung kích bung cực nhanh
+        SpawnParticle(
+            pixelRingSprite,
+            bossPos,
+            Vector3.zero,
+            Vector3.one * 0.4f,
+            Vector3.one * Mathf.Max(2.2f, radius * 1.1f),
+            c1,
+            c2,
+            0.30f,
+            0f,
+            -120f,
+            0f,
+            0f,
+            12
+        );
+    }
+
+    /// <summary>
+    /// BOSS 1 (SKY DRAGON) - Mưa Thiên Thạch (Meteor Rain):
+    /// Thiên thạch lửa lao chéo từ bầu trời xuống + Nứt đất nham thạch + Sóng nhiệt + 18 mảnh nham thạch.
+    /// </summary>
+    public void SpawnBossMeteorRainFX(Vector3 targetPos, float radius)
+    {
+        TriggerCameraShake(0.25f, 0.18f);
+
+        // 1. Vệt thiên thạch xé gió lao từ góc trên xuống tâm nổ
+        Vector3 skyOffset = new Vector3(2.8f, 7.5f, 0f);
+        SpawnParticle(
+            dragonFireOrbSprite != null ? dragonFireOrbSprite : pixelCircleSprite,
+            targetPos + skyOffset,
+            -skyOffset / 0.10f,
+            Vector3.one * 2.2f,
+            Vector3.one * 1.4f,
+            new Color(1f, 0.95f, 0.5f, 1f),
+            new Color(1f, 0.35f, 0.05f, 0.9f),
+            0.11f,
+            0f,
+            360f,
+            0f,
+            0f,
+            14
+        );
+
+        // 2. Vết nứt đất nham thạch đỏ rực dưới mặt đất
+        SpawnParticle(
+            pixelCraterCrackSprite,
+            targetPos,
+            Vector3.zero,
+            Vector3.one * (radius * 0.75f),
+            Vector3.one * (radius * 0.85f),
+            new Color(1f, 0.55f, 0.1f, 0.95f),
+            new Color(0.25f, 0.05f, 0.02f, 0f),
+            0.85f,
+            Random.Range(0f, 360f),
+            0f,
+            0f,
+            0f,
+            3
+        );
+
+        // 3. Vòng cổ ngữ hỏa ngục + Lõi chớp sáng trắng cam
+        SpawnParticle(
+            pixelRuneCircleSprite,
+            targetPos,
+            Vector3.zero,
+            Vector3.one * (radius * 0.4f),
+            Vector3.one * (radius * 0.95f),
+            new Color(1f, 0.85f, 0.25f, 0.9f),
+            new Color(0.95f, 0.12f, 0.02f, 0f),
+            0.40f,
+            0f,
+            90f,
+            0f,
+            0f,
+            6
+        );
+
+        SpawnParticle(
+            pixelCircleSprite,
+            targetPos,
+            Vector3.zero,
+            Vector3.one * (radius * 0.5f),
+            Vector3.one * (radius * 1.45f),
+            new Color(1f, 0.98f, 0.75f, 0.95f),
+            new Color(1f, 0.25f, 0.05f, 0f),
+            0.24f,
+            0f,
+            0f,
+            0f,
+            0f,
+            11
+        );
+
+        // 4. Sóng xung kích kép (Double Shockwave Ring)
+        SpawnParticle(
+            pixelRingSprite,
+            targetPos,
+            Vector3.zero,
+            Vector3.one * 0.4f,
+            Vector3.one * (radius * 1.35f),
+            new Color(1f, 0.92f, 0.35f, 1f),
+            new Color(1f, 0.15f, 0.02f, 0f),
+            0.32f,
+            0f,
+            120f,
+            0f,
+            0f,
+            12
+        );
+
+        // 5. 18 mảnh đá nham thạch & tàn lửa văng tung tóe
+        for (int i = 0; i < 18; i++)
+        {
+            float angle = (i * 20f + Random.Range(-8f, 8f)) * Mathf.Deg2Rad;
+            Vector2 dir = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
+            float spd = Random.Range(3.5f, 9.0f);
+
+            SpawnParticle(
+                (i % 2 == 0) ? pixelShardSprite : pixelDiamondSprite,
+                targetPos + (Vector3)(dir * 0.25f),
+                dir * spd,
+                Vector3.one * Random.Range(0.85f, 1.35f),
+                Vector3.zero,
+                new Color(1f, 0.92f, 0.3f, 1f),
+                new Color(0.9f, 0.12f, 0.02f, 0f),
+                Random.Range(0.28f, 0.48f),
+                angle * Mathf.Rad2Deg,
+                Random.Range(-320f, 320f),
+                5.5f,
+                2.0f,
+                13
+            );
+        }
+    }
+
+    /// <summary>
+    /// BOSS 2 (STORM COLOSSUS) - Nắm Đấm Thiên Lôi (Giant Fist Slam):
+    /// Chấn động nứt toạc mặt đất phát quang điện + 8 tia hồ quang điện + đá văng.
+    /// </summary>
+    public void SpawnBossFistSlamFX(Vector3 targetPos, float radius)
+    {
+        TriggerCameraShake(0.26f, 0.20f);
+
+        // 1. Vết nứt đất phát quang điện xanh lam trắng
+        SpawnParticle(
+            pixelCraterCrackSprite,
+            targetPos,
+            Vector3.zero,
+            Vector3.one * (radius * 0.8f),
+            Vector3.one * (radius * 0.92f),
+            new Color(0.65f, 0.98f, 1f, 1f),
+            new Color(0.1f, 0.4f, 0.95f, 0f),
+            0.80f,
+            Random.Range(0f, 360f),
+            0f,
+            0f,
+            0f,
+            4
+        );
+
+        // 2. Sóng chấn động điện từ kép
+        SpawnParticle(
+            pixelRingSprite,
+            targetPos,
+            Vector3.zero,
+            Vector3.one * 0.35f,
+            Vector3.one * (radius * 1.35f),
+            new Color(0.85f, 1f, 1f, 1f),
+            new Color(0.15f, 0.6f, 1f, 0f),
+            0.28f,
+            0f,
+            -140f,
+            0f,
+            0f,
+            12
+        );
+
+        // 3. 8 tia hồ quang sét giật lan trên mặt đất
+        for (int i = 0; i < 8; i++)
+        {
+            float deg = i * 45f + Random.Range(-10f, 10f);
+            float rad = deg * Mathf.Deg2Rad;
+            Vector2 dir = new Vector2(Mathf.Cos(rad), Mathf.Sin(rad));
+
+            SpawnParticle(
+                pixelBoltSprite,
+                targetPos + (Vector3)(dir * (radius * 0.45f)),
+                dir * 2.5f,
+                new Vector3(1.45f, 1.15f, 1f),
+                new Vector3(1.65f, 0.1f, 1f),
+                new Color(0.9f, 1f, 1f, 1f),
+                new Color(0.2f, 0.7f, 1f, 0f),
+                0.24f,
+                deg,
+                0f,
+                4f,
+                0f,
+                13
+            );
+        }
+
+        // 4. 14 mảnh đá & tia lửa điện văng ra
+        for (int i = 0; i < 14; i++)
+        {
+            float rad = (i * (360f / 14f)) * Mathf.Deg2Rad;
+            Vector2 dir = new Vector2(Mathf.Cos(rad), Mathf.Sin(rad));
+            SpawnParticle(
+                (i % 2 == 0) ? pixelSquareSprite : pixelDiamondSprite,
+                targetPos,
+                dir * Random.Range(3.5f, 8.0f),
+                Vector3.one * Random.Range(0.8f, 1.25f),
+                Vector3.zero,
+                new Color(0.6f, 0.95f, 1f, 1f),
+                new Color(0.15f, 0.45f, 0.9f, 0f),
+                Random.Range(0.25f, 0.42f),
+                Random.Range(0f, 360f),
+                Random.Range(-260f, 260f),
+                6f,
+                0f,
+                12
+            );
+        }
+    }
+
+    /// <summary>
+    /// BOSS 2 (STORM COLOSSUS) - Bão Sét Giáng Trần (Lightning Storm):
+    /// Cột sét khổng lồ giáng thẳng từ đỉnh trời xuống + trận đồ điện từ + 4 cột sét phụ.
+    /// </summary>
+    public void SpawnBossLightningStormFX(Vector3 targetPos, float radius)
+    {
+        TriggerCameraShake(0.24f, 0.18f);
+
+        // 1. Cột thiên lôi chính giáng thẳng vào tâm
+        SpawnParticle(
+            pixelSkyLightningSprite,
+            targetPos,
+            Vector3.zero,
+            new Vector3(1.8f, 1.6f, 1f),
+            new Vector3(0.3f, 1.6f, 1f),
+            new Color(0.95f, 1f, 1f, 1f),
+            new Color(0.2f, 0.75f, 1f, 0f),
+            0.28f,
+            0f,
+            0f,
+            0f,
+            0f,
+            15
+        );
+
+        // 2. 4 cột sét phụ giáng xung quanh bán kính nổ
+        for (int i = 0; i < 4; i++)
+        {
+            float rad = (i * 90f + 45f) * Mathf.Deg2Rad;
+            Vector3 subPos = targetPos + new Vector3(Mathf.Cos(rad), Mathf.Sin(rad), 0f) * (radius * 0.55f);
+            SpawnParticle(
+                pixelSkyLightningSprite,
+                subPos,
+                Vector3.zero,
+                new Vector3(1.1f, 1.25f, 1f),
+                new Vector3(0.2f, 1.25f, 1f),
+                new Color(0.65f, 0.98f, 1f, 0.95f),
+                new Color(0.15f, 0.55f, 1f, 0f),
+                0.24f,
+                Random.Range(-6f, 6f),
+                0f,
+                0f,
+                0f,
+                14
+            );
+        }
+
+        // 3. Trận đồ điện từ dưới đất + Vòng shockwave
+        SpawnParticle(
+            pixelRuneCircleSprite,
+            targetPos,
+            Vector3.zero,
+            Vector3.one * (radius * 0.65f),
+            Vector3.one * (radius * 0.95f),
+            new Color(0.55f, 0.95f, 1f, 0.9f),
+            new Color(0.1f, 0.45f, 1f, 0f),
+            0.45f,
+            0f,
+            160f,
+            0f,
+            0f,
+            5
+        );
+
+        SpawnParticle(
+            pixelRingSprite,
+            targetPos,
+            Vector3.zero,
+            Vector3.one * 0.4f,
+            Vector3.one * (radius * 1.35f),
+            new Color(0.8f, 1f, 1f, 1f),
+            new Color(0.2f, 0.65f, 1f, 0f),
+            0.30f,
+            0f,
+            0f,
+            0f,
+            0f,
+            13
+        );
+    }
+
+    /// <summary>
+    /// BOSS 3 (ABYSSAL TITAN) - Vực Thẳm Xung Kích & Nhật Thực Diệt Vong (Abyssal Explosion / Eclipse Cataclysm):
+    /// Hố đen co rút (Implosion) + Bùng nổ Supernova tím đen + 4 cột sét hư không + 18 mảnh tinh thể.
+    /// </summary>
+    public void SpawnBossAbyssalCataclysmFX(Vector3 targetPos, float radius)
+    {
+        TriggerCameraShake(0.28f, 0.22f);
+
+        // 1. Trận đồ Nhật Thực Đen xoay dưới mặt đất
+        SpawnParticle(
+            pixelRuneCircleSprite,
+            targetPos,
+            Vector3.zero,
+            Vector3.one * (radius * 0.85f),
+            Vector3.one * (radius * 1.05f),
+            new Color(0.92f, 0.25f, 1f, 0.95f),
+            new Color(0.2f, 0.02f, 0.35f, 0f),
+            0.55f,
+            0f,
+            -180f,
+            0f,
+            0f,
+            5
+        );
+
+        // 2. Lõi Hố Đen Vũ Trụ (Dark Singularity Core)
+        SpawnParticle(
+            pixelCircleSprite,
+            targetPos,
+            Vector3.zero,
+            Vector3.one * (radius * 0.95f),
+            Vector3.one * 0.2f,
+            new Color(0.08f, 0.01f, 0.14f, 0.95f),
+            new Color(0.6f, 0.05f, 0.85f, 0f),
+            0.35f,
+            0f,
+            0f,
+            0f,
+            0f,
+            11
+        );
+
+        // 3. Sóng xung kích kép Hư Không (Tím Neon & Đỏ Thẫm)
+        SpawnParticle(
+            pixelRingSprite,
+            targetPos,
+            Vector3.zero,
+            Vector3.one * 0.3f,
+            Vector3.one * (radius * 1.4f),
+            new Color(0.95f, 0.3f, 1f, 1f),
+            new Color(0.35f, 0.02f, 0.65f, 0f),
+            0.34f,
+            0f,
+            150f,
+            0f,
+            0f,
+            13
+        );
+
+        SpawnParticle(
+            pixelRingSprite,
+            targetPos,
+            Vector3.zero,
+            Vector3.one * (radius * 1.25f),
+            Vector3.one * 0.2f,
+            new Color(1f, 0.15f, 0.45f, 0.85f),
+            new Color(0.25f, 0.0f, 0.4f, 0f),
+            0.22f,
+            0f,
+            -150f,
+            0f,
+            0f,
+            12
+        );
+
+        // 4. 3 cột sét Hư Không giáng xuống
+        for (int i = 0; i < 3; i++)
+        {
+            float rad = (i * 120f + Random.Range(-15f, 15f)) * Mathf.Deg2Rad;
+            Vector3 boltPos = targetPos + new Vector3(Mathf.Cos(rad), Mathf.Sin(rad), 0f) * (radius * 0.4f);
+            SpawnParticle(
+                pixelSkyLightningSprite,
+                boltPos,
+                Vector3.zero,
+                new Vector3(1.35f, 1.4f, 1f),
+                new Vector3(0.2f, 1.4f, 1f),
+                new Color(0.95f, 0.45f, 1f, 0.95f),
+                new Color(0.3f, 0.02f, 0.55f, 0f),
+                0.26f,
+                0f,
+                0f,
+                0f,
+                0f,
+                14
+            );
+        }
+
+        // 5. 18 mảnh tinh thể Hư Không văng 360 độ
+        for (int i = 0; i < 18; i++)
+        {
+            float rad = (i * 20f) * Mathf.Deg2Rad;
+            Vector2 dir = new Vector2(Mathf.Cos(rad), Mathf.Sin(rad));
+            float spd = Random.Range(4.0f, 9.5f);
+
+            SpawnParticle(
+                (i % 2 == 0) ? pixelShardSprite : pixelDiamondSprite,
+                targetPos + (Vector3)(dir * 0.3f),
+                dir * spd,
+                Vector3.one * Random.Range(0.85f, 1.3f),
+                Vector3.zero,
+                new Color(1f, 0.45f, 1f, 1f),
+                new Color(0.25f, 0.02f, 0.45f, 0f),
+                Random.Range(0.28f, 0.45f),
+                rad * Mathf.Rad2Deg,
+                Random.Range(-240f, 240f),
+                5.5f,
+                0f,
+                13
+            );
+        }
+    }
+
+    /// <summary>
+    /// Chùm Tia Năng Lượng Boss (Electric Beam của Storm Colossus & Void Beam của Abyssal Titan):
+    /// Vẽ chùm tia Laser Pixel đa lớp (Lõi trắng + Hào quang nguyên tố + Hồ quang giật dọc thân tia + Quả cầu tụ lực ở đầu nòng).
+    /// </summary>
+    public void SpawnBossLaserBeamFX(Vector3 origin, Vector2 direction, float width, float length, float duration, BossThemeType theme)
+    {
+        TriggerCameraShake(Mathf.Max(0.25f, duration), 0.15f);
+
+        Vector2 dir = direction.sqrMagnitude > 0.001f ? direction.normalized : Vector2.right;
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        float beamDur = Mathf.Max(0.35f, duration);
+
+        Color outerColor = (theme == BossThemeType.AbyssalTitan)
+            ? new Color(0.88f, 0.18f, 1f, 0.92f)
+            : new Color(0.2f, 0.85f, 1f, 0.92f);
+        Color outerEnd = new Color(outerColor.r, outerColor.g, outerColor.b, 0f);
+
+        Color coreColor = (theme == BossThemeType.AbyssalTitan)
+            ? new Color(1f, 0.82f, 1f, 1f)
+            : new Color(0.92f, 1f, 1f, 1f);
+
+        // 1. Lớp Hào Quang Laser Ngoài (Outer Wide Beam)
+        SpawnParticle(
+            pixelLaserBeamSprite,
+            origin,
+            Vector3.zero,
+            new Vector3(length, width * 2.2f, 1f),
+            new Vector3(length, width * 0.35f, 1f),
+            outerColor,
+            outerEnd,
+            beamDur,
+            angle,
+            0f,
+            0f,
+            0f,
+            13
+        );
+
+        // 2. Lớp Lõi Laser Trắng Siêu Nhiệt (Inner Core Beam)
+        SpawnParticle(
+            pixelLaserBeamSprite,
+            origin,
+            Vector3.zero,
+            new Vector3(length, width * 1.15f, 1f),
+            new Vector3(length, 0.05f, 1f),
+            coreColor,
+            outerEnd,
+            beamDur * 0.9f,
+            angle,
+            0f,
+            0f,
+            0f,
+            14
+        );
+
+        // 3. Quả cầu tụ năng lượng xoay tại đầu nòng Boss
+        SpawnParticle(
+            pixelRuneCircleSprite,
+            origin + (Vector3)(dir * 0.4f),
+            Vector3.zero,
+            Vector3.one * 0.85f,
+            Vector3.one * 0.25f,
+            coreColor,
+            outerEnd,
+            beamDur,
+            0f,
+            360f,
+            0f,
+            0f,
+            15
+        );
+
+        // 4. Các tia hồ quang điện / hư không giật dọc suốt chiều dài thân tia Laser
+        int segments = Mathf.Clamp(Mathf.RoundToInt(length * 0.8f), 6, 14);
+        for (int i = 1; i <= segments; i++)
+        {
+            float distAlong = (length / segments) * i;
+            Vector3 pt = origin + (Vector3)(dir * distAlong);
+            SpawnParticle(
+                pixelBoltSprite,
+                pt + (Vector3)(Random.insideUnitCircle * (width * 0.25f)),
+                (Vector3)(dir * Random.Range(2f, 5f) + Random.insideUnitCircle * 1.5f),
+                new Vector3(1.25f, 1.1f, 1f),
+                Vector3.zero,
+                coreColor,
+                outerEnd,
+                beamDur * 0.85f,
+                angle + Random.Range(-25f, 25f),
+                0f,
+                3f,
+                0f,
+                15
+            );
+        }
+    }
+
+    /// <summary>
+    /// Hiệu ứng Cổng Triệu Hồi Ma Thuật (Summon Minions & Mass Horde Invasion) dưới chân mỗi quái được Boss gọi ra.
+    /// </summary>
+    public void SpawnBossSummonPortalFX(Vector3 spawnPos, BossThemeType theme)
+    {
+        Color portalCol, fadeCol;
+        switch (theme)
+        {
+            case BossThemeType.StormColossus:
+                portalCol = new Color(0.35f, 0.92f, 1f, 0.9f);
+                fadeCol = new Color(0.1f, 0.4f, 0.95f, 0f);
+                break;
+            case BossThemeType.AbyssalTitan:
+                portalCol = new Color(0.9f, 0.25f, 1f, 0.9f);
+                fadeCol = new Color(0.25f, 0.02f, 0.45f, 0f);
+                break;
+            default:
+                portalCol = new Color(1f, 0.45f, 0.1f, 0.9f);
+                fadeCol = new Color(0.85f, 0.1f, 0.02f, 0f);
+                break;
+        }
+
+        // Vòng cổ ngữ triệu hồi xoay dưới mặt đất
+        SpawnParticle(
+            pixelRuneCircleSprite,
+            spawnPos,
+            Vector3.zero,
+            Vector3.one * 0.15f,
+            Vector3.one * 0.65f,
+            portalCol,
+            fadeCol,
+            0.45f,
+            0f,
+            180f,
+            0f,
+            0f,
+            4
+        );
+
+        // 4 hạt năng lượng bốc thẳng từ cổng triệu hồi lên
+        for (int i = 0; i < 4; i++)
+        {
+            Vector2 offset = Random.insideUnitCircle * 0.35f;
+            SpawnParticle(
+                pixelDiamondSprite,
+                spawnPos + (Vector3)offset,
+                new Vector3(0f, Random.Range(1.8f, 3.5f), 0f),
+                Vector3.one * 0.65f,
+                Vector3.zero,
+                portalCol,
+                fadeCol,
+                0.35f,
+                Random.Range(0f, 360f),
+                180f,
+                2f,
+                0f,
+                9
+            );
+        }
+    }
 }
+

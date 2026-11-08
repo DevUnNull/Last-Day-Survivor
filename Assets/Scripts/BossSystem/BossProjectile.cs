@@ -6,14 +6,19 @@ public class BossProjectile : MonoBehaviour
     private float speed = 8f;
     private int damage = 20;
     private float lifetime = 5f;
+    private BossThemeType bossTheme = BossThemeType.SkyDragon;
     private Rigidbody2D rb;
+    private float fxSpawnTimer = 0f;
+    private Vector3 baseScale = Vector3.one * 1.15f;
 
-    public void Setup(Vector2 dir, float projSpeed, int dmg, float life)
+    public void Setup(Vector2 dir, float projSpeed, int dmg, float life, BossThemeType theme = BossThemeType.SkyDragon)
     {
         this.direction = dir.normalized;
         this.speed = projSpeed;
         this.damage = dmg;
         this.lifetime = life;
+        this.bossTheme = theme;
+        this.baseScale = transform.localScale;
 
         rb = GetComponent<Rigidbody2D>();
         if (rb == null) rb = gameObject.AddComponent<Rigidbody2D>();
@@ -26,6 +31,11 @@ public class BossProjectile : MonoBehaviour
             transform.rotation = Quaternion.Euler(0f, 0f, angle);
         }
 
+        if (SpellFXManager.Instance != null)
+        {
+            SpellFXManager.Instance.AttachBossProjectileTrail(gameObject, bossTheme);
+        }
+
         Destroy(gameObject, lifetime);
     }
 
@@ -35,6 +45,21 @@ public class BossProjectile : MonoBehaviour
         {
             Vector2 targetPos = rb.position + direction * (speed * Time.fixedDeltaTime);
             rb.MovePosition(targetPos);
+        }
+
+        // Dynamic rotation & pulse so projectile looks energized
+        transform.Rotate(0f, 0f, 260f * Time.fixedDeltaTime);
+        float pulse = 1f + Mathf.Sin(Time.time * 16f) * 0.12f;
+        transform.localScale = baseScale * pulse;
+
+        fxSpawnTimer += Time.fixedDeltaTime;
+        if (fxSpawnTimer >= 0.045f)
+        {
+            fxSpawnTimer = 0f;
+            if (SpellFXManager.Instance != null)
+            {
+                SpellFXManager.Instance.SpawnBossProjectileFlightFX(transform.position, direction, bossTheme);
+            }
         }
     }
 
@@ -70,6 +95,11 @@ public class BossProjectile : MonoBehaviour
             if (AudioManager.Instance != null)
             {
                 AudioManager.Instance.PlayEnemyAttack();
+            }
+
+            if (SpellFXManager.Instance != null)
+            {
+                SpellFXManager.Instance.SpawnBossProjectileHitFX(transform.position, direction, bossTheme);
             }
 
             playerHealth.TakeDamage(damage);
